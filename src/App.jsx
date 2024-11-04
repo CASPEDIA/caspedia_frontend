@@ -4,17 +4,18 @@ import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom';
 import Main from './pages/Main';
 import Navbar from './components/common/Navbar';
 import Navigation from './components/common/Navigation';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className='app-container'>
-      <Navbar />
       <BrowserRouter>
-        <div className='main-content'>
-          <Main />
-        </div>
+        <Navbar />
+          <div className='main-content'>
+            <Main />
+          </div>
+        <Navigation />
       </BrowserRouter>
-      <Navigation />
     </div>
     // <div className="App">
     //   <header className="App-header">
