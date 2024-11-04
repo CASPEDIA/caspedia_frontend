@@ -1,7 +1,5 @@
 import React  from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "../components/common/Navbar";
-import Navigation from "../components/common/Navigation";
 import BoardGameDetail from "./boardgame/BoardGameDetail";
 import BasicInfo from "./dashboard/BasicInfo";
 import NotFound from "./NotFound";
@@ -15,7 +13,7 @@ export default function Main() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
         <Router>
           <Switch>
             <Route path="/signin">
@@ -41,7 +39,7 @@ export default function Main() {
             </Route>
           </Switch>
         </Router>
-      <Navigation />
+      {/* <Navigation /> */}
     </>
   );
 }

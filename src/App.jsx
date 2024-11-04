@@ -2,14 +2,20 @@
 import './App.css';
 import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom';
 import Main from './pages/Main';
+import Navbar from './components/common/Navbar';
+import Navigation from './components/common/Navigation';
 
 function App() {
   return (
-    <>
+    <div className='app-container'>
+      <Navbar />
       <BrowserRouter>
-        <Main />
+        <div className='main-content'>
+          <Main />
+        </div>
       </BrowserRouter>
-    </>
+      <Navigation />
+    </div>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />

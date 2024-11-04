@@ -1,3 +1,39 @@
+#root {
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+  /* background-color: #61dafb; */
+}
+
+
+/* 전역 CSS 변수 선언 */
+:root {
+  /* --primary-color: #3498db; */
+  /* --secondary-color: #2ecc71; */
+  --font-size-base: 16px;
+  --navbar-height: 7vh;
+  --navbar-font-color: white;
+  --navigation-height: 7vh;
+  --navigation-font-color: black;
+}
+
+/* 전체 컨테이너 스타일 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 중앙 메인 콘텐츠 영역 */
+.main-content {
+  flex: 1;
+  margin-top: var(--navbar-height); /* Navbar의 높이만큼 여백 */
+  margin-bottom: var(--navigation-height); /* Navigation의 높이만큼 여백 */
+  overflow-y: auto;
+}
+
 .App {
   text-align: center;
 }
