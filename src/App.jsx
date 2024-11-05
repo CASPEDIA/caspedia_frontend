@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className='app-container'>
+    <div className='app-container component-background'>
       <BrowserRouter>
         <Navbar />
           <div className='main-content'>

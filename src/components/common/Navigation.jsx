@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom'
 export default function Navigation() {
 
   return (
-    <div className='navigation p-2'>
-      <Row className='mt-2'>
+    <div className='custom-navigation p-3'>
+      <Row className='justify-content-md-center align-items-center'>
         <Col>
           <Link to="/">
             <img src="/img/toDashboard.svg" alt="Home" className="nav-icon" />
           </Link>
         </Col>
-        <Col className='flex-grow-1'/>
+        <Col />
         <Col>
           <Link to="/user/3">
             <img src="/img/toUser.svg" alt="My Page" className="nav-icon" />
