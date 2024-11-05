@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class BoardgameLikedUsersModal extends Component {
-  render() {
-    return (
-      <div>BoardgameLikedUsersModal</div>
-    )
-  }
+export default function BoardgameLikedUsersModal() {
+  return (
+    <div>BoardgameLikedUsersModal</div>
+  )
 }

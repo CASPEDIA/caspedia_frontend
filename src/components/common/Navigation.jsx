@@ -1,26 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import "./Navigation.css"
-import { Link } from 'react-router-dom/cjs/react-router-dom'
 import { Col, Row } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
-export default class Navigation extends Component {
-  render() {
-    return (
-      <div className='navigation p-2'>
-        <Row className='mt-2'>
-          <Col>
-            <Link to="/" className="nav-link">
-              <img src="/img/toDashboard.svg" alt="Home" className="nav-icon" />
-            </Link>
-          </Col>
-          <Col className='flex-grow-1'/>
-          <Col>
-            <Link to="/user/3" className="nav-link">
-              <img src="/img/toUser.svg" alt="My Page" className="nav-icon" />
-            </Link>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
+
+export default function Navigation() {
+  const history = useHistory();
+  return (
+    <div className='navigation p-2'>
+      <Row className='mt-2'>
+        <Col onClick={history.push('/')}>
+          <img src="/img/toDashboard.svg" alt="Home" className="nav-icon" />
+        </Col>
+        <Col className='flex-grow-1'/>
+        <Col onClick={history.push('/user/3')}>
+          <img src="/img/toUser.svg" alt="My Page" className="nav-icon"/>
+        </Col>
+      </Row>
+    </div>
+  )
 }

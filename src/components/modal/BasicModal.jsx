@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class BasicModal extends Component {
-  render() {
-    return (
-      <div>BasicModal</div>
-    )
-  }
+export default function BasicModal() {
+  return (
+    <div>BasicModal</div>
+  )
 }

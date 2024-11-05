@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class CommonConfirmModal extends Component {
-  render() {
-    return (
-      <div>CommonConfirmModal</div>
-    )
-  }
+export default function CommonConfirmModal() {
+  return (
+    <div>CommonConfirmModal</div>
+  )
 }

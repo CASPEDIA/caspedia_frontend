@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class BoardgameSearched extends Component {
-  render() {
-    return (
-      <div>BoardgameSearched</div>
-    )
-  }
+export default function BoardgameSearched() {
+  return (
+    <div>BoardgameSearched</div>
+  )
 }

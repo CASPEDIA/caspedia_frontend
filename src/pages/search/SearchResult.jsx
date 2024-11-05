@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class SearchResult extends Component {
-  render() {
-    return (
-      <div>SearchResult</div>
-    )
-  }
+export default function SearchResult() {
+  return (
+    <div>SearchResult</div>
+  )
 }

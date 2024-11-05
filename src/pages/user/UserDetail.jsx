@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class UserDetail extends Component {
-  render() {
-    return (
-      <div>UserDetail</div>
-    )
-  }
+export default function UserDetail() {
+  return (
+    <div>UserDetail</div>
+  )
 }

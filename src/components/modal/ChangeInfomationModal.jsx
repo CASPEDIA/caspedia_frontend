@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class ChangeInfomationModal extends Component {
-  render() {
-    return (
-      <div>ChangeInfomationModal</div>
-    )
-  }
+export default function ChangeInfomationModal() {
+  return (
+    <div>ChangeInfomationModal</div>
+  )
 }

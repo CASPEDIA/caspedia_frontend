@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class ChangeProfileModal extends Component {
-  render() {
-    return (
-      <div>ChangeProfileModal</div>
-    )
-  }
+export default function ChangeProfileModal() {
+  return (
+    <div>ChangeProfileModal</div>
+  )
 }

@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class ChangeNicknameModal extends Component {
-  render() {
-    return (
-      <div>ChangeNicknameModal</div>
-    )
-  }
+export default function ChangeNicknameModal() {
+  return (
+    <div>ChangeNicknameModal</div>
+  )
 }

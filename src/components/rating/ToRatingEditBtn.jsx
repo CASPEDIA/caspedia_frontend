@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class ToRatingEditBtn extends Component {
-  render() {
-    return (
-      <div>ToRatingEditBtn</div>
-    )
-  }
+export default function ToRatingEditBtn() {
+  return (
+    <div>ToRatingEditBtn</div>
+  )
 }

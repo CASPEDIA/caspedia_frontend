@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class CommonWarningModal extends Component {
-  render() {
-    return (
-      <div>CommonWarningModal</div>
-    )
-  }
+export default function CommonWarningModal() {
+  return (
+    <div>CommonWarningModal</div>
+  )
 }

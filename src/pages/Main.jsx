@@ -19,10 +19,10 @@ export default function Main() {
             <Route path="/signin">
               <SignIn />
             </Route>
-            <Route exact path="/" key={BasicInfo}>
+            <Route exact path="/">
               <BasicInfo />
             </Route>
-            <Route path="/user/:nanoid" key={UserDetail}>
+            <Route path="/user/:nanoid" >
               <UserDetail />
             </Route>
             <Route path="/search">

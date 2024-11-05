@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class UserSearchBar extends Component {
-  render() {
-    return (
-      <div>UserSearchBar</div>
-    )
-  }
+export default function UserSearchBar() {
+  return (
+    <div>UserSearchBar</div>
+  )
 }

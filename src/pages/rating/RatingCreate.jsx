@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class RatingCreate extends Component {
-  render() {
-    return (
-      <div>RatingCreate</div>
-    )
-  }
+export default function RatingCreate() {
+  return (
+    <div>RatingCreate</div>
+  )
 }

@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Dashboard extends Component {
-  render() {
-    return (
-      <div>Dashboard</div>
-    )
-  }
+export default function Dashboard() {
+  return (
+    <div>Dashboard</div>
+  )
 }
