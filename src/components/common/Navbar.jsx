@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Navbar.css"
-import { Button, Col, InputGroup, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import Form from 'react-bootstrap/Form';
+import { Col, Row } from 'react-bootstrap'
+import { Link, useLocation } from 'react-router-dom'
+import BoardgameSearchBar from '../search/BoardgameSearchBar';
+import UserSearchBar from '../search/UserSearchBar';
 
 export default function Navbar() {
+  const location = useLocation();
+  
   return (
     <div className='custom-navbar'>
       <Row className='my-3 justify-content-md-center align-items-center'>
@@ -15,17 +18,7 @@ export default function Navbar() {
         </Col>
         <Col md="9">
           <div className='mr-4'>
-            <InputGroup>
-              <Form.Control
-                type="text"
-                id="boardgamesearch"
-                placeholder="Search..."
-                aria-label="Search"
-              />
-              <Button variant="light">
-                <img src="/img/search.svg" alt="Search" className="search-icon" />
-              </Button>
-            </InputGroup>
+            { location.pathname.includes('/user') ? <UserSearchBar /> : <BoardgameSearchBar />}
           </div>
         </Col>
       </Row>

@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button, InputGroup } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserSearchBar() {
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+  // const navigate = useNavigate();
+
+  function userSearch(event){
+    setUserSearchQuery(event.target.value)
+    console.log("user 자동완성");
+  }
+
   return (
-    <div>UserSearchBar</div>
+    <InputGroup>
+      <Form.Control
+        type="text"
+        id="usersearch"
+        placeholder="유저 검색..."
+        aria-label="Search"
+        value={userSearchQuery}
+        onChange={userSearch}
+      />
+    </InputGroup>
   )
 }

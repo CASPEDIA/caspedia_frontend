@@ -24,31 +24,6 @@ export default function Main() {
         </Route>
         <Route path="*" element={<NotFound />}/>
       </Routes>
-      {/* <Navbar /> */}
-        {/* <Routes>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path="/">
-            <BasicInfo />
-          </Route>
-          <Route path="/user/:nanoid" >
-            <UserDetail />
-          </Route>
-          <Route path="/search">
-            <SearchResult />
-          </Route>
-          <Route path="/boardgame/:boardid">
-            <BoardGameDetail />
-          </Route>
-          <Route path="/rating">
-            <Rating />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Routes> */}
-      {/* <Navigation /> */}
     </>
   );
 }

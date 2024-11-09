@@ -1,0 +1,18 @@
+.custom-search-result {
+  width: 100%;  
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+}
+
+.div-pagination {
+  position: fixed;
+  bottom: var(--navigation-height); /* 화면 하단에 고정 */
+  left: 0;   /* 화면 왼쪽에 맞추기 */
+  width: 100%; /* 화면 너비에 맞게 확장 */
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center;     /* 수직 중앙 정렬 */
+  padding : 10px 0px;
+  z-index: 1000;           /* 다른 요소 위에 표시되도록 설정 */
+  background-color: rgb(250, 250, 250);
+}
