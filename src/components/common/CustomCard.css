@@ -1,10 +1,10 @@
 .custom-card{
   margin: var(--basic-margin);
-  padding: var(--basic-padding);
+  /* padding: var(--basic-padding); */
   border-radius: var(--basic-border-radius);
   background-color: var(--basic-gray-color);
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   text-align: center;
 }
