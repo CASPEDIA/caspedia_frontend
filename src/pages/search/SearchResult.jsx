@@ -3,7 +3,7 @@ import './SearchResult.css'
 import { Pagination, Table } from 'react-bootstrap'
 import Result from '../../components/search/Result'
 import { useLocation } from 'react-router-dom'
-import CommonBox from '../../components/common/CustomCard'
+import CustomCard from '../../components/common/CustomCard'
 
 export default function SearchResult() {
   const location = useLocation();
@@ -33,10 +33,10 @@ export default function SearchResult() {
               className='my-5' 
               width={"35%"}
             />
-            <CommonBox height="50px">
+            <CustomCard height="50px">
               검색에 실패했습니다. 게임 이름을 다시 확인해주세요.<br/>
               같은 상황이 계속 반복되었을 경우, 관리자에게 문의해주세요.
-            </CommonBox>
+            </CustomCard>
           </div>
         </>
       : 
