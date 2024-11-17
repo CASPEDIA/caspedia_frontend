@@ -75,18 +75,6 @@
   font-size: medium;
 }
 
-
-/* .div-boardgame-more-info {
-  height : 20%;
-  background-color: #e7e7e9;
-}
-
-.div-boardgame-more-info > .row > .col {
-  border : 1px solid #c6c6c7;
-  height : 4.5em;
-  vertical-align: middle;
-} */
-
 .div-boardgame-best-tags {
   background-image: url('/public/img/F3_best_tags_background.png'); /* 배경 이미지 경로 */
   background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
@@ -95,7 +83,7 @@
   height: auto;                 /* 높이는 비율 유지 */
   max-width: 800px;                 
   max-height: 100%;             /* 높이가 화면 높이를 넘지 않도록 제한 */
-  margin: var(--basic-margin);
+  margin: var(--basic-margin) var(--basic-margin) 0 var(--basic-margin);
   padding: 4%;
   border-radius: var(--basic-border-radius);
   color: white;
@@ -106,7 +94,7 @@
 }
 
 .div-title-tag{
-  margin: 2%;
+  margin: 2% 2% 4% 2%;
   padding: 1% 4% 1% 3%;
   border-radius: var(--basic-border-radius);
   background-color: var(--basic-gray-color);
@@ -129,4 +117,11 @@
   color: black;
   font-size: x-large;
   border : 2px solid black;
+}
+
+.create-rating-btn{
+  z-index: 1000;
+  position: fixed;
+  bottom: calc(var(--navigation-height) + 1rem);
+  right: calc((100% - var(--max-width)) / 2 + 2rem);
 }

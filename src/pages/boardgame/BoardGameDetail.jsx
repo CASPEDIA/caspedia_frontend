@@ -1,6 +1,6 @@
 import React from 'react'
 import './BoardGameDetail.css'
-import { Col, Row } from 'react-bootstrap'
+import BoardgameRating from '../../components/boardgame/BoardgameRating'
 
 export default function BoardGameDetail() {
   return (
@@ -63,7 +63,14 @@ export default function BoardGameDetail() {
         <Tag text='구성물이 예쁜💎'/>
       </div>
       <div className='div-boardgame-ratings'>
+        <BoardgameRating/>
+        <BoardgameRating/>
+        <BoardgameRating/>
+        <BoardgameRating/>
+        <BoardgameRating/>
+        <BoardgameRating/>
       </div>
+      <img src="/img/F3_create_review.png" alt="리뷰작성" className='create-rating-btn'/>
     </div>
   )
 }
