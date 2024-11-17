@@ -27,6 +27,40 @@
   --basic-border-radius: 8px;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+/*** Box3 스크롤바 설정 ***/
+.main-content::-webkit-scrollbar{
+  display:unset;
+}
+/* 스크롤바 설정*/
+.main-content::-webkit-scrollbar{
+  background-color:transparent;
+  width:1rem;
+}
+/* 스크롤바 막대 설정*/
+.main-content::-webkit-scrollbar-thumb{
+  background-color:var(--basic-gray-color);
+  border-radius:16px;
+}
+.main-content::-webkit-scrollbar-thumb:hover{
+  background-color:#a0a0a5;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.main-content::-webkit-scrollbar-track{
+  border-radius: 10px;
+  background-color:black;
+}
+.main-content::-webkit-scrollbar-track:hover{
+  background-color:rgb(44, 43, 43);
+}
+.main-content::-webkit-scrollbar-button {
+  display:none;
+}
+
+
 .component-background {
   background-image: url('/public/img/F1_main_background.jpg'); /* 배경 이미지 경로 */
   background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
