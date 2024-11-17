@@ -1,0 +1,10 @@
+.custom-card{
+  margin: 3%;
+  padding: 5%;
+  border-radius: 8px;
+  background-color: var(--basic-gray-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
