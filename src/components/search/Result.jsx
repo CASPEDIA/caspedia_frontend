@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Result({
   id=36218,
-  imageUrl = "/img/noImage.jpg",
+  imageUrl = "/img/F2_no_image.png",
   nameKor = "도미니언",
   nameEng = "Dominion",
   yearPublished = 2008,
@@ -27,13 +27,15 @@ export default function Result({
         </td>
       <td>
         {liked}&nbsp;
-        <img src="/img/heart.png" alt="heart" width="8%" />
+        <img src="/img/F2_heart_liked.png" alt="heart" width="16%" />
       </td>
       <td>
         {geekScore} &nbsp;
-        <img src="/img/bggLogo.svg" alt="logo" width="12%" />
+        <img src="/img/F2_geek_logo.png" alt="logo" width="13%" />
       </td>
-      <td>{castScore}</td>
+      <td>{castScore} &nbsp;
+        <img src="/img/F2_cast_rating_logo.png" alt="logo" width="13%" />
+      </td>
     </tr>
   )
 }

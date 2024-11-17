@@ -18,16 +18,22 @@
   --navigation-height: 7vh;
   --navigation-font-color: black;
   --max-width: 800px;
+  --basic-white-color: #fafafa;
+  --basic-black-color: #000000;
+  --basic-mint-color: #E1F1FF;
+  --basic-gray-color: #dbdbdb;
 }
 
 .component-background {
-  background-image: url('/public/img/basic_background.jpg'); /* 배경 이미지 경로 */
-  background-size: auto 100vh;  /* 높이는 100vh로 고정, 비율 유지 */
+  background-image: url('/public/img/F1_main_background.jpg'); /* 배경 이미지 경로 */
+  background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
   background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
   background-position: center;  /* 이미지를 가운데 정렬 */
-  height: 100vh;                /* 컴포넌트 높이를 화면 높이에 맞춤 */
-  max-width: 100%;                  /* 컴포넌트 너비를 화면 너비에 맞춤 */
+  height: auto;                 /* 높이는 비율 유지 */
+  max-width: 800px;                 
+  max-height: 100%;             /* 높이가 화면 높이를 넘지 않도록 제한 */
 }
+
 
 /* 전체 컨테이너 스타일 */
 .app-container {

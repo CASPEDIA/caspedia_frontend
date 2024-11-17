@@ -29,7 +29,7 @@ export default function BoardgameSearchBar() {
         onKeyDown={keyPress}
       />
       <Button variant="light" onClick={boardgameSearch}>
-        <img src="/img/search.svg" alt="Search" className="search-icon" />
+        <img src="/img/F5_search.png" alt="Search" className="search-icon" />
       </Button>
     </InputGroup>
   )

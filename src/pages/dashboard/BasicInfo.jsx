@@ -5,7 +5,7 @@ export default function BasicInfo() {
   return (
     <div>
       <div className='m-5'>
-        <img src="/img/index_main.png" alt="caspedia" style={{ width: '70%' }}/>
+        <img src="/img/F5_main_logo.png" alt="caspedia" style={{ width: '70%' }}/>
       </div>
       <div className='mx-4 p-4 index_introduction'>
         <br />

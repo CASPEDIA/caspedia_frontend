@@ -6,7 +6,7 @@
   text-align: center;
   max-width: var(--max-width);
   height: var(--navigation-height); /* 원하는 높이 설정 */
-  background-color: #E1F1FF;
+  background-color: var(--basic-mint-color);
   color: var(--navigation-font-color);
   z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
 }

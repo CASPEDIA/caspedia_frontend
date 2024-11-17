@@ -11,13 +11,13 @@ export default function Navigation() {
       <Row className='justify-content-md-center align-items-center'>
         <Col>
           <Link to="/">
-            <img src="/img/toDashboard.svg" alt="Home" className="nav-icon" />
+            <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" />
           </Link>
         </Col>
         <Col />
         <Col>
           <Link to="/user/3">
-            <img src="/img/toUser.svg" alt="My Page" className="nav-icon" />
+            <img src="/img/F5_toMypage.png" alt="My Page" className="nav-icon" />
           </Link>
         </Col>
       </Row>

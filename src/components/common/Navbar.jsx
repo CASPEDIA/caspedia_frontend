@@ -13,7 +13,7 @@ export default function Navbar() {
       <Row className='my-3 justify-content-md-center align-items-center'>
         <Col md="1">
           <Link to="/">
-            <img src="/img/home_icon.png" alt="Home" className="nav-icon" />
+            <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" />
           </Link>
         </Col>
         <Col md="9">
