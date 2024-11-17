@@ -22,6 +22,9 @@
   --basic-black-color: #000000;
   --basic-mint-color: #E1F1FF;
   --basic-gray-color: #dbdbdb;
+  --basic-margin: 3%;
+  --basic-padding: 5%;
+  --basic-border-radius: 8px;
 }
 
 .component-background {
