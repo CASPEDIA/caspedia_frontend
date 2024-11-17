@@ -1,7 +1,7 @@
 .custom-search-result {
   width: 100%;  
   height: 100%;
-  background-color: rgb(250, 250, 250);
+  background-color: var(--basic-white-color);
 }
 
 .div-pagination {
@@ -14,5 +14,9 @@
   align-items: center;     /* 수직 중앙 정렬 */
   padding : 10px 0px;
   z-index: 1000;           /* 다른 요소 위에 표시되도록 설정 */
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(--basic-white-color);
+}
+
+.no-results{
+  text-align: center;
 }
