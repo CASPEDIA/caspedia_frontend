@@ -1,3 +1,17 @@
+.div-boardgame-rating-card {
+  margin: var(--basic-margin);
+  padding: 2%;
+  border-radius: var(--basic-border-radius);
+  background-color: var(--basic-gray-color);
+}
+
+.div-boardgame-rating-basic-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
 .div-boardgame-rating {
   display: flex;
   justify-content: left;
@@ -12,7 +26,38 @@
   font-size: xx-large;
   color: white;
   background-color: #394955;
-  width:4rem;
-  height:4rem;
+  min-width:4rem;
+  min-height:4rem;
   border-radius: 50%;
+}
+
+.p-rating-comment {
+  display: -webkit-box;        
+  -webkit-line-clamp: 2;      
+  -webkit-box-orient: vertical;
+  overflow: hidden;           
+  text-overflow: ellipsis;    
+}
+
+.div-tag-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3%;
+}
+
+.div-tag-item {
+  flex: 0 0 48%;       
+  box-sizing: border-box; 
+  padding: 1% 3% 1% 3%;
+  margin: 1%;
+  border: 1px solid black;
+  border-radius: var(--basic-border-radius);
+  background-color: var(--basic-white-color);
+  text-align: left;
+}
+
+.div-collapse-rating{
+  display: flex;
+  justify-content: end;
+  padding: 1% 3% 1% 3%;
 }

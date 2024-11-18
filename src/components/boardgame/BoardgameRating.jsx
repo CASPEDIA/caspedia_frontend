@@ -1,7 +1,7 @@
-import React from 'react'
-import CustomCard from '../common/CustomCard'
+import React, { useState } from 'react'
 import './BoardgameRating.css'
 import { Link, useNavigate } from 'react-router-dom'
+import CancelButton from '../common/CancelButton';
 
 export default function BoardgameRating({
   nanoid="guest",
@@ -14,19 +14,66 @@ export default function BoardgameRating({
   tag_keys=[1,2,3,5,7]
 }) {
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => {
+    setIsExpanded((prev) => !prev);
+  };
   return (
-    <CustomCard padding="2%" justifyContent="space-between">
-      <div className='div-boardgame-rating'>
-        <img src={image_url} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
-        <div style={{"textAlign":"left", "padding":"1rem"}}>
-          <strong onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
-          <br />
-          {comment}
+    <div className='div-boardgame-rating-card'>
+      <div className='div-boardgame-rating-basic-info'>
+        <div className='div-boardgame-rating'>
+          <img src={image_url} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
+          <div style={{"textAlign":"left", "padding":"1rem"}}>
+            <strong onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
+            <br />
+            {isExpanded ? 
+              <>
+              </>
+              :
+              <>
+                <p className='p-rating-comment' onClick={toggleExpand}>
+                  {comment}
+                </p>
+              </>
+            }
+          </div>
+        </div>
+        <div className='rating-circle'>
+          {score}
         </div>
       </div>
-      <div className='rating-circle'>
-        {score}
-      </div>
-    </CustomCard>
+      {isExpanded ?
+        <>
+          <div className='div-tag-container'>
+            <SelectedTag text="3인 베스트🤟"/>
+            <SelectedTag text="숙련자들이 즐기는👨🏻‍🎓"/>
+            <SelectedTag text="또 해보고 싶은💘"/>
+          </div>
+          <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
+            {comment}
+          </p>
+          <div className='div-collapse-rating'>
+            <CancelButton 
+              text="접기"
+              onClick={toggleExpand}
+            />
+          </div>
+        </>
+        :
+        <>
+        </>  
+      }
+    </div>
   )
+}
+
+
+function SelectedTag({
+  text="Selected"
+}) {
+  return(
+    <div className='div-tag-item'>
+      {text}
+    </div>
+  );
 }
