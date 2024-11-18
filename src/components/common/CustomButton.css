@@ -1,0 +1,14 @@
+.div-custom-button{
+  background-color: var(--basic-black-color);
+  border:none;
+  padding:2% 4%;
+  border-radius: var(--basic-border-radius);
+  color:white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.div-custom-button:hover {
+  background-color: #394955;
+  transform: scale(1.05);
+}
