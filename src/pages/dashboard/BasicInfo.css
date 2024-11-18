@@ -2,4 +2,5 @@
   color:white;
   text-align: center;
   background-color: rgba(95,95,95,0.6);
+  border-radius: var(--basic-border-radius);
 }
