@@ -20,7 +20,7 @@ export default function Main() {
           <Route path="user/:nanoid" element={<UserDetail />}/>
           <Route path="search" element={<SearchResult />}/>
           <Route path="boardgame/:boardid" element={<BoardGameDetail />}/>
-          <Route path="rating" element={<Rating />}/>
+          <Route path="rating/:boardid" element={<Rating />}/>
         </Route>
         <Route path="*" element={<NotFound />}/>
       </Routes>

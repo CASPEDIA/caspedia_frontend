@@ -10,18 +10,28 @@ export default function Navbar() {
   
   return (
     <div className='custom-navbar'>
-      <Row className='my-3 justify-content-md-center align-items-center'>
-        <Col md="1">
-          <Link to="/">
-            <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" />
-          </Link>
-        </Col>
-        <Col md="9">
-          <div className='mr-4'>
-            { location.pathname.includes('/user') ? <UserSearchBar /> : <BoardgameSearchBar />}
-          </div>
-        </Col>
-      </Row>
+      { location.pathname.includes('/signin') ?
+        <>
+        </>
+        :
+        <>
+          <Row className='my-3 justify-content-md-center align-items-center'>
+            <Col md="1">
+              <Link to="/">
+                <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" />
+              </Link>
+            </Col>
+            <Col md="9">
+              <div className='mr-4'>
+                { location.pathname.includes('/user') ? <UserSearchBar /> : 
+                  location.pathname.includes('/rating') ? <></> :
+                  <BoardgameSearchBar />
+                }
+              </div>
+            </Col>
+          </Row>
+        </>
+      }
     </div>
   )
 }
