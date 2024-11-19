@@ -1,0 +1,70 @@
+
+.div-boardgame-image {
+  height : 40%;
+  background-color: var(--basic-black-color);
+}
+
+.div-boardgame-title-info {
+  height : 30%;
+  background-color: var(--basic-black-color);
+  color: white;
+}
+
+.div-boardgame-title-info > div {
+  text-align: left;
+}
+
+.div-boardgame-title-info > div > span {
+  font-size : x-large;
+  font-weight: bold;
+}
+
+.div-cast-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3% 3% ;
+}
+
+.div-cast-info > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.div-cast-info > div > div{
+  text-align: center;
+  font-size: xxx-large;
+  font-weight: bold;
+}
+
+.basic-boardgame-comment {
+  height : 30%;
+}
+
+.div-boardgame-more-info {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #e7e7e9;
+}
+
+.div-boardgame-more-info > tr {
+  height: 6vh;
+}
+
+.div-boardgame-more-info > tr > td {
+  border : 1px solid #c6c6c7;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.td-weight-info {
+  width:100%;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+.table-inner-info{
+  font-size: medium;
+}
