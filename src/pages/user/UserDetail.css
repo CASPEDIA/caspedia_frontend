@@ -1,0 +1,67 @@
+.div-user-basic-info {
+  background-color: var(--basic-white-color);
+  padding : var(--basic-padding) var(--basic-padding) 1% var(--basic-padding);
+}
+
+.div-user-name-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-user-inner-info {
+  width : 65%;
+}
+
+.h1-nickname {
+  text-align: left;
+  margin-bottom : 2%;
+  display: flex;
+  justify-content: left;
+  align-items: start;
+}
+
+.div-name-info {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-textarea {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: center;
+}
+
+.div-calculated-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.div-inner-card {
+  background-image: url("/public/img/F3_best_tags_background.png");
+  height:100%;
+  border-radius: var(--basic-border-radius);
+  padding: 5%;
+  color:white;
+}
+
+.h1-review-name {
+  padding: 2% 0 2% 0;
+  text-align: left;
+}
+
+.div-review-background {
+  background-color: rgba(255,255,255,0.2);
+  padding-bottom: var(--basic-padding);
+}
+
+.div-sort-tabs {
+  color:white;
+  padding: 3% var(--basic-padding) 3% var(--basic-padding);
+  text-align: right;
+}
