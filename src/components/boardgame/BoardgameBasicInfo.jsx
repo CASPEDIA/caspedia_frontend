@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CommonModal from '../../components/modal/CommonModal'
-import BoardgameLikedPerson from '../../components/boardgame/BoardgameLikedPerson';
+import BoardgameLikedUser from './BoardgameLikedUser';
 import './BoardgameBasicInfo.css'
 
 export default function BoardgameBasicInfo() {
@@ -71,12 +71,12 @@ export default function BoardgameBasicInfo() {
         isModalOpen={isLikedModalOpen}
         closeModal={closeLikedModal}
       >
-        <BoardgameLikedPerson />
-        <BoardgameLikedPerson />
-        <BoardgameLikedPerson />
-        <BoardgameLikedPerson />
-        <BoardgameLikedPerson />
-        <BoardgameLikedPerson />
+        <BoardgameLikedUser />
+        <BoardgameLikedUser />
+        <BoardgameLikedUser />
+        <BoardgameLikedUser />
+        <BoardgameLikedUser />
+        <BoardgameLikedUser />
       </CommonModal>
     </div>
   )

@@ -1,8 +1,8 @@
 import React from 'react'
-import './BoardgameLikedPerson.css'
+import './BoardgameLikedUser.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function BoardgameLikedPerson({
+export default function BoardgameLikedUser({
   nanoid="guest",
   nickname="guest",
   image_url="/user_profile/profile_1.png",

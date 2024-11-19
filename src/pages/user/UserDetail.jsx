@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import UserRating from '../../components/user/UserRating'
 import './UserDetail.css'
 import CustomButton from '../../components/common/CustomButton';
+import CommonModal from '../../components/modal/CommonModal';
+import UserLikedBoardgame from '../../components/user/UserLikedBoardgame';
 
 export default function UserDetail() {
   const [introduce, setIntroduce] = useState("");
+  const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const introduceChange = (e) => {
     setIntroduce(e.target.value);
   }
+  const openLikedModal = () => setIsLikedModalOpen(true);
+  const closeLikedModal = () => setIsLikedModalOpen(false);
   const logout = () => {
     console.log("로그아웃");
   }
@@ -39,7 +44,9 @@ export default function UserDetail() {
             <div className='div-inner-card mr-2'>
               <h1><strong>성와니 님이<br />좋아요한 게임들</strong></h1>
               <div style={{"height" : "1rem"}}></div>
-              <h1 style={{"fontSize" : "5.5rem"}}><strong>135</strong></h1>
+              <h1 style={{"fontSize" : "5.5rem"}} onClick={openLikedModal}>
+                <strong>135</strong>
+              </h1>
             </div>  
           </div>
           <div style={{"width" : "49%"}}>
@@ -73,6 +80,18 @@ export default function UserDetail() {
         <UserRating />
         <h3 style={{"color" : "white"}}>리뷰 더보기</h3>
       </div>
+      <CommonModal
+        isModalOpen={isLikedModalOpen}
+        closeModal={closeLikedModal}
+      >
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+        <UserLikedBoardgame />
+      </CommonModal>
     </>
   )
 }
