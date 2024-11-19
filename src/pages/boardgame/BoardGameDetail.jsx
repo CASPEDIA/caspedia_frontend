@@ -1,7 +1,6 @@
 import React from 'react'
 import './BoardGameDetail.css'
 import BoardgameRating from '../../components/boardgame/BoardgameRating'
-
 import BoardgameBasicInfo from '../../components/boardgame/BoardgameBasicInfo';
 import BoardgameTagInfo from '../../components/boardgame/BoardgameTagInfo';
 

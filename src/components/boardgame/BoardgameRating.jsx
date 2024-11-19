@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './BoardgameRating.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CancelButton from '../common/CancelButton';
 
 export default function BoardgameRating({
@@ -11,7 +11,7 @@ export default function BoardgameRating({
   score=10,
   created="2024-11-16T15:47:37.450685",
   updated="2024-11-16T19:24:48.835425",
-  tag_keys=[1,2,3,5,7]
+  tag_info="111110000000000000000000"
 }) {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
