@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Button, InputGroup } from 'react-bootstrap'
+import { InputGroup } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
 
 export default function UserSearchBar() {
   const [userSearchQuery, setUserSearchQuery] = useState('');

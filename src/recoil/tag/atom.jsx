@@ -1,7 +1,7 @@
-import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
+// import { atom } from "recoil";
+// import { recoilPersist } from "recoil-persist";
 
-const { persistAtom } = recoilPersist();
+// const { persistAtom } = recoilPersist();
 
 export const REVIEW_TAGLIST =  [
   "2인베스트✌",

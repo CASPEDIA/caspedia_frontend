@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './RatingCreate.css'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import { REVIEW_TAGLIST } from "../../recoil/tag/atom.jsx";
 
 export default function RatingCreate({
@@ -8,7 +8,7 @@ export default function RatingCreate({
   name_kor = "도미니언 : 약속된 번영",
   name_eng = "Dominion: Prosperity"
 }) {
-  const {boardid} = useParams();
+  // const {boardid} = useParams();
   const default_texts = ["끔찍해요","다시는 안할 것 같아요","별로에요","나쁘지 않아요","평범해요","제법 좋았어요","인상적이에요","추천할 만 해요","정말 재밌었어요","완벽해요"];
   const [score, setScore] = useState(1);
   const [scoreText, setScoreText] = useState("별로에요");
@@ -35,8 +35,8 @@ export default function RatingCreate({
     console.log(tagSelected);
     
     if (curElement.classList.contains("div-custom-review-tag")){
-      if (tagSelectedCount == 5) return
-      if (tagSelectedCount == 4) {
+      if (tagSelectedCount === 5) return
+      if (tagSelectedCount === 4) {
         if (countText) {
           countText.style.color = "red";
         }
@@ -46,7 +46,7 @@ export default function RatingCreate({
       curElement.classList.add("div-custom-review-tag-selected");
       modifyTagSelected(idx,"1");
     } else {
-      if (tagSelectedCount == 0) return
+      if (tagSelectedCount === 0) return
       if (countText) {
         countText.style.color = "black";
       }
