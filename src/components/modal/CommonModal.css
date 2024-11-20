@@ -15,8 +15,12 @@
   width: 80%;
   padding: var(--basic-padding);
   border-radius: var(--basic-border-radius);
-  max-height: 75%;
+  max-height: 75vh;
   text-align: left;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.div-scroll-container {
   overflow-y: scroll;
+  max-height: 68vh;
 }

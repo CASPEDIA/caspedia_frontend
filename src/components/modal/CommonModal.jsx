@@ -11,7 +11,7 @@ const CommonModal = ({
   return (
     <div className='div-modal-overlay' onClick={closeModal}>
       <div className='div-modal-container' >
-        <div className='div-modal-inner'>
+        <div className='div-scroll-container'>
           {children}
         </div>
       </div>
