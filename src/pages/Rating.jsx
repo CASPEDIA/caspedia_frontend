@@ -1,7 +1,11 @@
 import React from 'react'
+import RatingCreate from './rating/RatingCreate'
+import './Rating.css'
 
 export default function Rating() {
   return (
-    <div>Rating</div>
+    <div className='div-rating-background'>
+      <RatingCreate />
+    </div>
   )
 }

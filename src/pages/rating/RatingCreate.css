@@ -1,0 +1,72 @@
+.div-rating-create {
+  padding: var(--basic-padding);
+}
+
+.div-boardgameinfo-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 5%;
+}
+
+.div-ratingstar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+.div-star-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.rating-textarea {
+  width: 100%;
+  background-color: var(--basic-gray-color);
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  border: none;
+  border-radius: var(--basic-border-radius);
+  text-align: left;
+  padding: 2%;
+}
+
+.div-tagselect-container {
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  background-color: var(--basic-mint-color);
+  padding: 2%;
+  border-radius: var(--basic-border-radius);
+  height : 25vh;
+}
+
+.div-tagselect-scroll-container {
+  overflow-y: auto;
+  max-height: 22vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.div-custom-review-tag {
+  background-color: var(--basic-white-color);
+  border-radius: var(--basic-border-radius);
+  width: 46%;
+  margin: 1%;
+  padding: 2% 5% 2% 5%;
+  font-size : 1.2rem;
+  text-align: left;
+}
+
+.div-custom-review-tag-selected {
+  background-color: var(--basic-black-color);
+  color : white;
+  border-radius: var(--basic-border-radius);
+  width: 46%;
+  margin: 1%;
+  padding: 2% 5% 2% 5%;
+  font-size : 1.2rem;
+  text-align: left;
+}
