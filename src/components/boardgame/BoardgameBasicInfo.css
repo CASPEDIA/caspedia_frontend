@@ -15,7 +15,7 @@
 }
 
 .div-boardgame-title-info > div > span {
-  font-size : x-large;
+  font-size : 1.5rem;
   font-weight: bold;
 }
 
@@ -34,7 +34,7 @@
 
 .div-cast-info > div > div{
   text-align: center;
-  font-size: xxx-large;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -55,7 +55,7 @@
 
 .div-boardgame-more-info > tr > td {
   border : 1px solid #c6c6c7;
-  font-size: xx-large;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -66,5 +66,5 @@
 }
 
 .table-inner-info{
-  font-size: medium;
+  font-size: 1rem;
 }

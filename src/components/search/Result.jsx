@@ -17,24 +17,25 @@ export default function Result({
     <tr>
       <td width="20%">
         <Link to={`/boardgame/${id}`}>
-          <img src={imageUrl} alt="noImage" width="70%"/>
+          <img src={imageUrl} alt="noImage" width="80vw"/>
         </Link>
       </td>
-      <td>
+      <td width="30%" style={{textAlign:"left"}}>
         <Link to={`/boardgame/${id}`}>
-          {nameKor}<br />{'('}{nameEng}{')'}{'('}{yearPublished}{')'}
+          {nameKor}
+          {/* {'('}{nameEng}{')'} */}
+          {'('}{yearPublished}{')'}
         </Link>
         </td>
-      <td>
+      <td width="15%">
         {liked}&nbsp;
-        <img src="/img/F2_heart_liked.png" alt="heart" width="16%" />
+        <img src="/img/F2_heart_liked.png" alt="heart" width="16vw" />
       </td>
-      <td>
-        {geekScore} &nbsp;
-        <img src="/img/F2_geek_logo.png" alt="logo" width="13%" />
+      <td width="15%">
+        {geekScore}&nbsp;<img src="/img/F2_geek_logo.png" alt="logo" width="13vw" />
       </td>
-      <td>{castScore} &nbsp;
-        <img src="/img/F2_cast_rating_logo.png" alt="logo" width="13%" />
+      <td width="15%">
+        {castScore} &nbsp;<img src="/img/F2_cast_rating_logo.png" alt="logo" width="13vw" />
       </td>
     </tr>
   )

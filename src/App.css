@@ -13,7 +13,6 @@
 :root {
   /* --primary-color: #3498db; */
   /* --secondary-color: #2ecc71; */
-  /* --font-size-base: 16px; */
   --navbar-height: 7vh;
   --navbar-font-color: white;
   --navigation-height: 7vh;
@@ -27,6 +26,7 @@
   --basic-margin: 3%;
   --basic-padding: 5%;
   --basic-border-radius: 8px;
+  --font-size-base: 1rem;
 }
 
 /* ::-webkit-scrollbar{

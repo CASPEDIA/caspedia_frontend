@@ -14,16 +14,16 @@ export default function SearchResult() {
       {queryValue === "none" ?
         <>
           <Table bordered hover responsive="md">
-          <thead>
-            <tr>
-              <th></th>
-              <th className='wide-column'>이름</th>
-              <th>좋아요</th>
-              <th>BGG 평점</th>
-              <th>CAST 평점</th>
-            </tr>
-            </thead>
-            <tbody>
+            <thead>
+              <tr>
+                <th></th>
+                <th>이름</th>
+                <th>좋아요</th>
+                <th>BGG 평점</th>
+                <th>CAST 평점</th>
+              </tr>
+              </thead>
+              <tbody>
             </tbody>
           </Table>
           <div className='no-results'>
@@ -46,8 +46,8 @@ export default function SearchResult() {
               <th></th>
               <th className='wide-column'>이름</th>
               <th>좋아요</th>
-              <th>BGG 평점</th>
-              <th>CAST 평점</th>
+              <th>BGG<br />평점</th>
+              <th>CAST<br />평점</th>
             </tr>
           </thead>
           <tbody>

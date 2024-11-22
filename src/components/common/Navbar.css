@@ -7,7 +7,7 @@
   color: var(--navbar-font-color);
   z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   align-items: center;
   padding: var(--basic-padding);
 }
