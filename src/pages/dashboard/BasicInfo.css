@@ -1,6 +1,8 @@
-.index_introduction{
+.div-index_introduction{
   color:white;
   text-align: center;
   background-color: rgba(95,95,95,0.6);
   border-radius: var(--basic-border-radius);
+  padding: var(--basic-padding);
+  margin: var(--basic-margin);
 }
