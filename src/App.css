@@ -13,7 +13,7 @@
 :root {
   /* --primary-color: #3498db; */
   /* --secondary-color: #2ecc71; */
-  --font-size-base: 16px;
+  /* --font-size-base: 16px; */
   --navbar-height: 7vh;
   --navbar-font-color: white;
   --navigation-height: 7vh;
@@ -67,8 +67,8 @@
 .component-background {
   background-image: url('/public/img/F1_main_background.jpg'); /* 배경 이미지 경로 */
   background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
-  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
-  background-position: center;  /* 이미지를 가운데 정렬 */
+  background-repeat: repeat; /* 이미지를 반복하지 않음 */
+  background-position: top;
   height: auto;                 /* 높이는 비율 유지 */
   max-width: 800px;                 
   max-height: 100%;             /* 높이가 화면 높이를 넘지 않도록 제한 */

@@ -1,13 +1,15 @@
 /* 상단 고정 네비게이션 */
 .custom-navbar {
-  /* position: fixed; */
   top: 0;
   left: 0;
   max-width: var(--max-width);
-  height: var(--navbar-height); /* 원하는 높이 설정 */
-  /* background-color: #333; */
+  height: var(--navbar-height); 
   color: var(--navbar-font-color);
   z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: var(--basic-padding);
 }
 
 .search-icon{

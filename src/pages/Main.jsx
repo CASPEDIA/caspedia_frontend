@@ -1,12 +1,12 @@
 import React  from 'react'
 import { Routes, Route } from "react-router-dom";
-import BoardGameDetail from "./boardgame/BoardGameDetail";
-import BasicInfo from "./dashboard/BasicInfo";
-import NotFound from "./NotFound";
-import Rating from "./Rating";
-import SearchResult from "./search/SearchResult";
-import SignIn from "./user/SignIn";
-import UserDetail from "./user/UserDetail";
+import BoardGameDetail from "pages/boardgame/BoardGameDetail";
+import BasicInfo from "pages/dashboard/BasicInfo";
+import NotFound from "pages/NotFound";
+import Rating from "pages/Rating";
+import SearchResult from "pages/search/SearchResult";
+import SignIn from "pages/user/SignIn";
+import UserDetail from "pages/user/UserDetail";
 
 
 export default function Main() {

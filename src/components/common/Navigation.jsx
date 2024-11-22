@@ -1,26 +1,16 @@
 import React from 'react'
 import "./Navigation.css"
-import { Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+// import { Col, Row } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function Navigation() {
-
+  const navigate = useNavigate();
   return (
-    <div className='custom-navigation p-3'>
-      <Row className='justify-content-md-center align-items-center'>
-        <Col>
-          <Link to="/">
-            <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" />
-          </Link>
-        </Col>
-        <Col />
-        <Col>
-          <Link to="/user/3">
-            <img src="/img/F5_toMypage.png" alt="My Page" className="nav-icon" />
-          </Link>
-        </Col>
-      </Row>
+    <div className='custom-navigation'>
+      <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" onClick={() => navigate('/')}/>
+      <div></div>
+      <img src="/img/F5_toMypage.png" alt="My Page" className="nav-icon" onClick={() => navigate('/user/3')}/>
     </div>
   )
 }
