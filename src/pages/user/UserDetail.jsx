@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import UserRating from '../../components/user/UserRating'
+import UserRating from 'components/user/UserRating'
 import './UserDetail.css'
-import CustomButton from '../../components/common/CustomButton';
-import CommonModal from '../../components/modal/CommonModal';
-import UserLikedBoardgame from '../../components/user/UserLikedBoardgame';
+import CustomButton from 'components/common/CustomButton';
+import CommonModal from 'components/modal/CommonModal';
+import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
 
 export default function UserDetail() {
   const [introduce, setIntroduce] = useState("");

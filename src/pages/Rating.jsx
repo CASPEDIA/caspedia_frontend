@@ -1,5 +1,5 @@
 import React from 'react'
-import RatingCreate from './rating/RatingCreate'
+import RatingCreate from 'pages/rating/RatingCreate'
 import './Rating.css'
 
 export default function Rating() {

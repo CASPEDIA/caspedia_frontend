@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import CommonModal from '../../components/modal/CommonModal'
-import BoardgameLikedUser from './BoardgameLikedUser';
+import CommonModal from 'components/modal/CommonModal'
+import BoardgameLikedUser from 'components/boardgame/BoardgameLikedUser';
 import './BoardgameBasicInfo.css'
 
 export default function BoardgameBasicInfo() {

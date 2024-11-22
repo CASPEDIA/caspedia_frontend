@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './UserRating.css'
 import { useNavigate } from 'react-router-dom'
-import CancelButton from '../common/CancelButton';
+import CancelButton from 'components/common/CancelButton';
 
 export default function UserRating({
   nanoid="guest",

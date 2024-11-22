@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './BoardgameRating.css'
 import { useNavigate } from 'react-router-dom'
-import CancelButton from '../common/CancelButton';
+import CancelButton from 'components/common/CancelButton';
 
 export default function BoardgameRating({
   nanoid="guest",

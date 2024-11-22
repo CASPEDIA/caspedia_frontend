@@ -1,9 +1,9 @@
 import React from 'react'
 import './SearchResult.css'
 import { Pagination, Table } from 'react-bootstrap'
-import Result from '../../components/search/Result'
+import Result from 'components/search/Result'
 import { useLocation } from 'react-router-dom'
-import CustomCard from '../../components/common/CustomCard'
+import CustomCard from 'components/common/CustomCard'
 
 export default function SearchResult() {
   const location = useLocation();

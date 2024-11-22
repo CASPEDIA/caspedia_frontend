@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './RatingCreate.css'
 // import { useParams } from 'react-router-dom'
-import { REVIEW_TAGLIST } from "../../recoil/tag/atom.jsx";
+import { REVIEW_TAGLIST } from "recoil/tag/atom.jsx";
 
 export default function RatingCreate({
   review_img = "https://cf.geekdo-images.com/fEawLvevkxPv9AQ3mSiwVQ__itemrep/img/6UJpoKwtjxUm965dI017XMrgGDE=/fit-in/246x300/filters:strip_icc()/pic1747320.jpg",
