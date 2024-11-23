@@ -26,7 +26,6 @@
   --basic-margin: 3%;
   --basic-padding: 5%;
   --basic-border-radius: 8px;
-  --font-size-base: 1rem;
 }
 
 /* ::-webkit-scrollbar{
@@ -90,6 +89,13 @@
   /* margin-bottom: var(--navigation-height); */
   /* overflow-y: auto; */
   overflow: auto;
+  font-size: 3vw;
+}
+
+@media screen and (min-width: 800px){
+  .main-content{
+    font-size: 24px;
+  }
 }
 
 .App {

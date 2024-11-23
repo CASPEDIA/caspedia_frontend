@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './RatingCreate.css'
 // import { useParams } from 'react-router-dom'
 import { REVIEW_TAGLIST } from "recoil/tag/atom.jsx";
+import CancelButton from 'components/common/CancelButton';
+import CustomButton from 'components/common/CustomButton';
 
 export default function RatingCreate({
   review_img = "https://cf.geekdo-images.com/fEawLvevkxPv9AQ3mSiwVQ__itemrep/img/6UJpoKwtjxUm965dI017XMrgGDE=/fit-in/246x300/filters:strip_icc()/pic1747320.jpg",
@@ -32,7 +34,7 @@ export default function RatingCreate({
     const countText = document.getElementById("currentSelectedCount");
     const idx = Number(curElement.getAttribute("idx"));
 
-    console.log(tagSelected);
+    // console.log(tagSelected);
     
     if (curElement.classList.contains("div-custom-review-tag")){
       if (tagSelectedCount === 5) return
@@ -106,6 +108,10 @@ export default function RatingCreate({
             </div>
           )}
         </div>
+      </div>
+      <div className='div-rating-button-container'>
+        <CancelButton text="평가 삭제"/>
+        <CustomButton text="평가 수정"/>
       </div>
     </div>
   )

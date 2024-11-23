@@ -53,17 +53,15 @@ export default function BoardgameBasicInfo() {
         </tr>
         <tr>
           <td>Age: 13+</td>
-          <td className='td-weight-info'>
-            <table className='table-inner-info'>
-              <tr>
-                <td><img src="/img/F3_geek_logo.png" alt="logo" width="30%" /></td>
-                <td style={{textAlign: 'left'}}>긱 평점&nbsp;&nbsp;&nbsp;&nbsp;  6.7 / 5</td>
-              </tr>
-              <tr>
-                <td><img src="/img/F3_geek_logo.png" alt="logo" width="30%" /></td>
-                <td style={{textAlign: 'left'}}>긱 웨이트&nbsp;  2.47 / 5</td>
-              </tr>
-            </table>
+          <td>
+            <tr>
+              <td><img src="/img/F3_geek_logo.png" alt="logo" width="30%" /></td>
+              <td style={{textAlign: 'left'}} className='td-weight-info'>평점&nbsp;&nbsp;&nbsp;&nbsp;  6.7 / 5</td>
+            </tr>
+            <tr>
+              <td><img src="/img/F3_geek_logo.png" alt="logo" width="30%" /></td>
+              <td style={{textAlign: 'left'}} className='td-weight-info'>웨이트&nbsp;  2.47 / 5</td>
+            </tr>
           </td>
         </tr>
       </table>

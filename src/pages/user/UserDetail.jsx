@@ -22,12 +22,12 @@ export default function UserDetail() {
         <div className='div-user-name-info'>
           <img src="/user_profile/profile_1.png" width="23%" alt="이미지" />
           <div className='div-user-inner-info'>
-            <h1 className='h1-nickname'>
-              성와니&nbsp;
+            <div className='div-nickname'>
+              <strong>성와니&nbsp;</strong>
               <img src="/img/F1_edit_pencil.png" width="5%" alt="" />
-            </h1>
+            </div>
             <div className='div-name-info'>
-              <h3>박성완</h3>
+              박성완
               <CustomButton text="로그아웃" onClick={logout} />
             </div>
           </div>
@@ -40,33 +40,33 @@ export default function UserDetail() {
           className='custom-textarea'
         />
         <div className='div-calculated-infos'>
-          <div className='div-outer-card' style={{"height" : "17rem", "width" : "49%"}}>
+          <div className='div-outer-card' style={{"height" : "32vw", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>
-              <h1><strong>성와니 님이<br />좋아요한 게임들</strong></h1>
-              <div style={{"height" : "1rem"}}></div>
-              <h1 style={{"fontSize" : "5.5rem"}} onClick={openLikedModal}>
+              <div style={{"fontSize" : "1.5em"}}><strong>성와니 님이<br />좋아요한 게임들</strong></div>
+              {/* <div style={{"height" : "1rem"}}></div> */}
+              <h1 style={{"fontSize" : "4em"}} onClick={openLikedModal}>
                 <strong>135</strong>
               </h1>
             </div>  
           </div>
           <div style={{"width" : "49%"}}>
-            <div className='div-outer-card' style={{"height" : "8rem", "marginBottom" : "1rem"}}>
+            <div className='div-outer-card' style={{"height" : "15vw", "marginBottom" : "2vw"}}>
               <div className='div-inner-card'>
-                <h3><strong>리뷰</strong></h3>
-                <div style={{"height" : "1rem"}}></div>
-                <h3><strong>26</strong></h3>
+                <div style={{"fontSize" : "1.3em"}}><strong>리뷰</strong></div>
+                {/* <div style={{"height" : "1em"}}></div> */}
+                <div style={{"fontSize" : "1.3em"}}><strong>26</strong></div>
               </div>
             </div>
-            <div className='div-outer-card' style={{"height" : "8rem"}}>
+            <div className='div-outer-card' style={{"height" : "15vw"}}>
               <div className='div-inner-card'>
-                <h3><strong>평균 평점</strong></h3>
-                <div style={{"height" : "1rem"}}></div>
-                <h3><strong>9.3</strong></h3>
+                <h3 style={{"fontSize" : "1.3em"}}><strong>평균 평점</strong></h3>
+                {/* <div style={{"height" : "1em"}}></div> */}
+                <h3 style={{"fontSize" : "1.3em"}}><strong>9.3</strong></h3>
               </div>
             </div>
           </div>
         </div>
-        <h1 className='h1-review-name'>성와니 님의 리뷰</h1>
+        <div className='div-review-name'>성와니 님의 리뷰</div>
       </div>
       <div className='div-review-background'>
         <div className='div-sort-tabs'>
@@ -78,7 +78,7 @@ export default function UserDetail() {
         <UserRating />
         <UserRating />
         <UserRating />
-        <h3 style={{"color" : "white"}}>리뷰 더보기</h3>
+        <div style={{"color" : "white"}}>리뷰 더보기</div>
       </div>
       <CommonModal
         isModalOpen={isLikedModalOpen}

@@ -12,10 +12,8 @@ export default function ToRatingEditBtn({
     if(imageRef.current){
       if ( width < 800) {
         imageRef.current.style.right = "20px";
-        console.log("hello")
       } else {
         imageRef.current.style.right = (( width - 800) / 2 + 20) + "px";        
-        console.log("bye")
       }
     }
   }

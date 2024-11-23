@@ -13,11 +13,12 @@
   width : 65%;
 }
 
-.h1-nickname {
+.div-nickname {
   text-align: left;
   margin-bottom : 2%;
   display: flex;
   justify-content: left;
+  font-size: 1.5em;
   align-items: start;
 }
 
@@ -50,9 +51,10 @@
   color:white;
 }
 
-.h1-review-name {
+.div-review-name {
   padding: 2% 0 2% 0;
   text-align: left;
+  font-weight: bold;
 }
 
 .div-review-background {
