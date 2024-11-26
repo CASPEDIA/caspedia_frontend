@@ -4,6 +4,7 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
+import { userLogout } from 'hooks/userHooks';
 
 export default function UserDetail() {
   const [introduce, setIntroduce] = useState("");
@@ -13,9 +14,6 @@ export default function UserDetail() {
   }
   const openLikedModal = () => setIsLikedModalOpen(true);
   const closeLikedModal = () => setIsLikedModalOpen(false);
-  const logout = () => {
-    console.log("로그아웃");
-  }
   return (
     <>
       <div className='div-user-basic-info'>
@@ -28,7 +26,7 @@ export default function UserDetail() {
             </div>
             <div className='div-name-info'>
               박성완
-              <CustomButton text="로그아웃" onClick={logout} />
+              <CustomButton text="로그아웃" onClick={userLogout} />
             </div>
           </div>
         </div>
