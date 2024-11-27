@@ -27,6 +27,7 @@ export default function RatingCreate({
 
   const modifyTagSelected = (index, newChar) => {
     setTagSelected((prev) => prev.slice(0, index) + newChar + prev.slice(index + 1));
+    console.log(tagSelected);
   }
 
   const tagClicked = (e) => {

@@ -5,8 +5,10 @@ import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
 import { userLogout } from 'hooks/userHooks';
+import { useCookies } from 'react-cookie';
 
 export default function UserDetail() {
+  const [,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
   const [introduce, setIntroduce] = useState("");
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const introduceChange = (e) => {
@@ -26,7 +28,7 @@ export default function UserDetail() {
             </div>
             <div className='div-name-info'>
               박성완
-              <CustomButton text="로그아웃" onClick={userLogout} />
+              <CustomButton text="로그아웃" onClick={() => userLogout(removeCookie)} />
             </div>
           </div>
         </div>

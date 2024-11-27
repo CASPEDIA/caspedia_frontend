@@ -3,8 +3,10 @@ import './Signin.css'
 import CustomButton from 'components/common/CustomButton'
 import { hasAuth, userLogin } from "hooks/userHooks"
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 export default function SignIn() {
+  const [cookies, setCookie ,] = useCookies(["jwtToken", "nanoid"]);
   const idInputRef = useRef(null);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -20,18 +22,18 @@ export default function SignIn() {
 
   const loginKeyDown = (e) => {
     if (e.key === 'Enter') {
-      userLogin(id,password);
+      userLogin(id,password,setCookie);
     }
   }
 
   useEffect(() => {
-    if (hasAuth()) {
+    if (hasAuth(cookies)) {
       navigate('/');
     }
     else if (idInputRef.current) {
       idInputRef.current.focus();
     }
-  }, [])
+  }, [cookies, navigate])
   return (
     <div className='div-signin'>
       <img src="/img/F5_main_logo.png" style={{height:"30vh", width:"auto"}}  alt="메인 로고" />
@@ -60,7 +62,7 @@ export default function SignIn() {
         <CustomButton
           text="로그인"
           onClick={
-            () => {userLogin(id,password)}
+            () => {userLogin(id,password,setCookie)}
           }
         />
       </div>
