@@ -36,7 +36,7 @@ export function userLogout (removeCookie){
 
 export function userJoin (){
   http
-  .post('/api/admin/join', {
+  .post('/admin/join', {
     "id":"test2",
     "name":"test",
     "password":"test",
@@ -58,4 +58,29 @@ export function hasAuth (cookies) {
   const nanoid = cookies.nanoid;
   if (token && nanoid) return true;
   else return false;
+}
+
+
+export async function getUserBasicInfo (nanoid) {
+  try {
+    const { data } = await http
+      .get(`/user/${nanoid}`);
+    return data;
+  } catch (e) {
+    // console.log(e);
+    throw e;
+  }
+}
+
+export async function setUserIntroduction (newIntroduction) {
+  try {
+    const { data } = await http
+      .put(`/user/introduction`, {
+        "new_introduction" : newIntroduction
+      });
+    return data;
+  } catch (e) {
+    // console.log(e);
+    throw e;
+  }
 }

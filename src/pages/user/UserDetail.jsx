@@ -1,21 +1,63 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import UserRating from 'components/user/UserRating'
 import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { userLogout } from 'hooks/userHooks';
+import { getUserBasicInfo, setUserIntroduction, userLogout } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
+import { debounce } from 'lodash';
 
 export default function UserDetail() {
-  const [,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
-  const [introduce, setIntroduce] = useState("");
+  const [cookie,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
-  const introduceChange = (e) => {
-    setIntroduce(e.target.value);
+  const {nanoid} = useParams();
+  // const [id, setId] = useState('');
+  const [introduction, setIntroduction] = useState("");
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [userImageKey, setUserImageKey] = useState('');
+  const [isMyPage, setIsMyPage] = useState(false);
+
+  const debouncedIntroductionChange = useCallback(
+    debounce((newIntroduction) => setUserIntroduction(newIntroduction), 500),
+    []
+  );
+
+  const introductionChange = (e) => {
+    const newIntroduction = e.target.value;
+    setIntroduction(newIntroduction);
+    debouncedIntroductionChange(newIntroduction);
   }
+
+
   const openLikedModal = () => setIsLikedModalOpen(true);
   const closeLikedModal = () => setIsLikedModalOpen(false);
+
+  useEffect(() => {
+    getUserBasicInfo(nanoid)
+      .then((data) => {
+        // setId(data.id);
+        setIntroduction(data.introduction);
+        setName(data.name);
+        setNickname(data.nickname);
+        setUserImageKey(data.user_image_key);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [nanoid])
+
+  useEffect(() => {
+    if (cookie.nanoid === nanoid) {
+      setIsMyPage(true);
+      console.log("its my page");
+    } else {
+      setIsMyPage(false);
+      console.log("its other page");
+    }
+  }, [cookie, nanoid, isMyPage])
   return (
     <>
       <div className='div-user-basic-info'>
@@ -23,22 +65,31 @@ export default function UserDetail() {
           <img src="/user_profile/profile_1.png" width="23%" alt="이미지" />
           <div className='div-user-inner-info'>
             <div className='div-nickname'>
-              <strong>성와니&nbsp;</strong>
+              <strong>{nickname}&nbsp;</strong>
               <img src="/img/F1_edit_pencil.png" width="5%" alt="" />
             </div>
             <div className='div-name-info'>
-              박성완
+              {name}
               <CustomButton text="로그아웃" onClick={() => userLogout(removeCookie)} />
             </div>
           </div>
         </div>
-        <textarea 
-          value={introduce}
-          onChange={introduceChange}
-          rows="5"
-          placeholder="자기소개를 입력하세요."
-          className='custom-textarea'
-        />
+        { isMyPage 
+          ?
+          <>
+            <textarea 
+              value={introduction}
+              onChange={introductionChange}
+              rows="5"
+              placeholder="자기소개를 입력하세요."
+              className='custom-textarea'
+            />
+          </>
+        :
+          <div className='div-other-introduction'>
+            {introduction}
+          </div>
+        }
         <div className='div-calculated-infos'>
           <div className='div-outer-card' style={{"height" : "32vw", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>

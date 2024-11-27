@@ -34,7 +34,13 @@
   margin-bottom: var(--basic-margin);
   border: 2px solid black;
   border-radius: var(--basic-border-radius);
-  text-align: center;
+  text-align: left;
+}
+
+.div-other-introduction {
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  text-align: left;
 }
 
 .div-calculated-infos {
