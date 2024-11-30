@@ -1,7 +1,7 @@
 .div-modal-overlay{
   position:fixed;
   top:0;
-  width: var(--max-width) ;
+  /* width: var(--max-width) ; */
   height: 100vh;
   background: rgba(0,0,0,0.5);
   display: flex;

@@ -56,6 +56,7 @@
   border-radius: var(--basic-border-radius);
   background-color: var(--basic-white-color);
   text-align: left;
+  font-size: 0.8em;
 }
 
 .div-collapse-rating{

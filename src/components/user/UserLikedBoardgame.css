@@ -1,6 +1,6 @@
 .div-boardgame-liked {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: left;
   align-items: center;
   padding: 5%;
 }
