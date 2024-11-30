@@ -180,17 +180,17 @@ export default function UserDetail() {
             return (
               <UserRating 
                 key={index}
-                rating_key={item.ratingKey}
+                ratingKey={item.ratingKey}
                 score={item.score}
                 comment={item.comment}
-                boardgame_key={item.boardgameKey}
+                boardgameKey={item.boardgameKey}
                 nanoid={nanoid}
-                name_eng={item.nameEng}
-                name_kor={item.nameKor}
-                tag_key={item.tagKey}
-                image_url={item.imageUrl}
-                created_at={item.createdAt}
-                updated_at={item.updatedAt}
+                nameEng={item.nameEng}
+                nameKor={item.nameKor}
+                tagKey={item.tagKey}
+                imageUrl={item.imageUrl}
+                createdAt={item.createdAt}
+                updatedAt={item.updatedAt}
               />
             )
           })}
@@ -206,10 +206,10 @@ export default function UserDetail() {
             <UserLikedBoardgame
               key={index}
               nanoid={nanoid}
-              boardgame_key={item.boardgameKey}
-              name_eng={item.nameEng}
-              name_kor={item.nameKor}
-              image_url={item.imageUrl}
+              boardgameKey={item.boardgameKey}
+              nameEng={item.nameEng}
+              nameKor={item.nameKor}
+              imageUrl={item.imageUrl}
               date={item.createdAt}
             />
           );
