@@ -8,21 +8,35 @@ import { useCookies } from 'react-cookie';
 export default function SignIn() {
   const [cookies, setCookie ,] = useCookies(["jwtToken", "nanoid"]);
   const idInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [loginComment, setLoginComment] = useState("");
   const navigate = useNavigate();
 
   const idChange = (e) => {
     setId(e.target.value);
   }
-
+  
   const passwordChange = (e) => {
     setPassword(e.target.value);
   }
 
+  const handleLogin = () => {
+    userLogin(id,password,setCookie)
+      .catch((e) => {
+        setLoginComment("아이디 혹은 비밀번호가 잘못되었습니다.");
+        setId("");
+        setPassword("");
+        idInputRef.current.value = "";
+        passwordInputRef.current.value = "";
+        idInputRef.current.focus();
+      });
+  }
+
   const loginKeyDown = (e) => {
     if (e.key === 'Enter') {
-      userLogin(id,password,setCookie);
+      handleLogin();
     }
   }
 
@@ -55,14 +69,16 @@ export default function SignIn() {
         <input 
           className='custom-input'
           type="password"
+          ref={passwordInputRef}
           onChange={passwordChange}
           onKeyDown={loginKeyDown}
           placeholder='비밀번호 입력...'
         />
+        <div style={{"color" : "red"}} >{loginComment}</div>
         <CustomButton
           text="로그인"
           onClick={
-            () => {userLogin(id,password,setCookie)}
+            () => {handleLogin()}
           }
         />
       </div>
