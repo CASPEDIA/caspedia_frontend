@@ -44,7 +44,7 @@ const CommonModal = forwardRef(({
       className='div-modal-overlay'
       onClick={closeModal}
     >
-      <div className='div-modal-container'>
+      <div className='div-modal-container' onClick={(e) => e.stopPropagation()}>
         <div className='div-scroll-container'>
           {children}
         </div>
