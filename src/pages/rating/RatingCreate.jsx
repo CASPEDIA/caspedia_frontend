@@ -1,25 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './RatingCreate.css'
 // import { useParams } from 'react-router-dom'
 import { REVIEW_TAGLIST } from "recoil/tag/atom.jsx";
 import CancelButton from 'components/common/CancelButton';
 import CustomButton from 'components/common/CustomButton';
+import CommonModal from 'components/modal/CommonModal';
+import { useNavigate } from 'react-router-dom';
 
 export default function RatingCreate({
-  review_img = "https://cf.geekdo-images.com/fEawLvevkxPv9AQ3mSiwVQ__itemrep/img/6UJpoKwtjxUm965dI017XMrgGDE=/fit-in/246x300/filters:strip_icc()/pic1747320.jpg",
-  name_kor = "도미니언 : 약속된 번영",
-  name_eng = "Dominion: Prosperity"
+  review_img = "/img/F2_no_image.png",
+  nameKor = "이름 없음",
+  nameEng = "noName"
 }) {
   // const {boardid} = useParams();
+  const navigate = useNavigate();
   const default_texts = ["끔찍해요","다시는 안할 것 같아요","별로에요","나쁘지 않아요","평범해요","제법 좋았어요","인상적이에요","추천할 만 해요","정말 재밌었어요","완벽해요"];
   const [score, setScore] = useState(1);
   const [scoreText, setScoreText] = useState("별로에요");
+  const [isCreateMode, setIsCreateMode] = useState(true);
   const [comment, setComment] = useState("");
   const empty_star = "/img/F4_rating_star_empty.png";
   const fill_star = "/img/F4_rating_star_fill.png";
   const tags = REVIEW_TAGLIST;
   const [tagSelected, setTagSelected] = useState("000000000000000000000000");
   const [tagSelectedCount, setTagSelectedCount] = useState(0);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const createModalRef = useRef(null);
+  const modifyModalRef = useRef(null);
+  const deleteModalRef = useRef(null);
+  const cancelModalRef = useRef(null);
+
 
   const commentChange = (e) => {
     setComment(e.target.value);
@@ -66,54 +79,218 @@ export default function RatingCreate({
     setScoreText(default_texts[num-1]);
   }
 
+  // 평가 등록 확인 모달
+  const openCreateModal = () => {
+    setIsCreateModalOpen(true);
+    if (createModalRef.current) {
+      createModalRef.current.handleResize();
+    }
+  }
+  
+  const closeCreateModal = () => {
+    setIsCreateModalOpen(false);
+  }
+
+  // 평가 수정 확인 모달
+  const openModifyModal = () => {
+    setIsModifyModalOpen(true);
+    if (modifyModalRef.current) {
+      modifyModalRef.current.handleResize();
+    }
+  }
+  
+  const closeModifyModal = () => {
+    setIsModifyModalOpen(false);
+  }
+
+  // 평가 삭제 확인 모달
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+    if (deleteModalRef.current) {
+      deleteModalRef.current.handleResize();
+    }
+  }
+  
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  }
+
+  // 평가 작업 취소 확인 모달
+  const openCancelModal = () => {
+    setIsCancelModalOpen(true);
+    if (cancelModalRef.current) {
+      cancelModalRef.current.handleResize();
+    }
+  }
+  
+  const closeCancelModal = () => {
+    setIsCancelModalOpen(false);
+  }
+
+  const handleRatingCreate = () => {
+    console.log("평가 제출");
+  }
+  
+  const handleRatingModify = () => {
+    console.log("평가 수정");
+  }
+  
+  const handleRatingRemove = () => {
+    console.log("평가 삭제");
+  }
+  
+  const handleRatingCancel = () => {
+    console.log("취소");
+  }
+
+
+
   return (
-    <div className='div-rating-create'>
-      <div className='div-boardgameinfo-container'>
-        <img src={review_img} width="30%" alt="noImage" />
-        <h2 style={{"marginLeft":"5%"}}>{name_kor}</h2>
-      </div>
-      <div className='div-ratingstar-container'>
-        <h5 style={{"marginRight":"5%"}}><strong>평점</strong></h5>
-        <div>
-          <div className='div-star-continer'>
-            <img src={score > 0 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(1)}/>
-            <img src={score > 1 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(2)}/>
-            <img src={score > 2 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(3)}/>
-            <img src={score > 3 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(4)}/>
-            <img src={score > 4 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(5)}/>
-            <img src={score > 5 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(6)}/>
-            <img src={score > 6 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(7)}/>
-            <img src={score > 7 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(8)}/>
-            <img src={score > 8 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(9)}/>
-            <img src={score > 9 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(10)}/>
-          </div>
-          <div style={{"textAlign" : "left", "marginTop" : "2%"}}>
-            {scoreText}
-          </div>
+    <div>
+      <div className='div-rating-create'>
+        <div className='div-boardgameinfo-container'>
+          <img src={review_img} width="30%" alt="noImage" />
+          <h2 style={{"marginLeft":"5%"}}>{nameKor || nameEng}</h2>
         </div>
-      </div>
-      <h5 style={{"textAlign" : "left"}}><strong>한줄평</strong>&nbsp;&nbsp;(선택 / 300자 이내)</h5>
-      <textarea 
-        value={comment}
-        onChange={commentChange}
-        rows="5"
-        placeholder="한줄평을 입력하세요."
-        className='rating-textarea'
-      />
-      <h5 style={{"textAlign" : "left"}}><strong>태그 선택</strong>&nbsp;&nbsp;<span id="currentSelectedCount">({tagSelectedCount}/5)</span></h5>
-      <div className='div-tagselect-container'>
-        <div className='div-tagselect-scroll-container'>
-          {tags.map((item, index) => 
-            <div className='div-custom-review-tag' idx={index} key={index} onClick={tagClicked}>
-              {item}
+        <div className='div-ratingstar-container'>
+          <h5 style={{"marginRight":"5%"}}><strong>평점</strong></h5>
+          <div>
+            <div className='div-star-continer'>
+              <img src={score > 0 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(1)}/>
+              <img src={score > 1 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(2)}/>
+              <img src={score > 2 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(3)}/>
+              <img src={score > 3 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(4)}/>
+              <img src={score > 4 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(5)}/>
+              <img src={score > 5 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(6)}/>
+              <img src={score > 6 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(7)}/>
+              <img src={score > 7 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(8)}/>
+              <img src={score > 8 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(9)}/>
+              <img src={score > 9 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(10)}/>
             </div>
-          )}
+            <div style={{"textAlign" : "left", "marginTop" : "2%"}}>
+              {scoreText}
+            </div>
+          </div>
         </div>
+        <h5 style={{"textAlign" : "left"}}><strong>한줄평</strong>&nbsp;&nbsp;(선택 / 300자 이내)</h5>
+        <textarea 
+          value={comment}
+          onChange={commentChange}
+          rows="5"
+          placeholder="한줄평을 입력하세요."
+          className='rating-textarea'
+        />
+        <h5 style={{"textAlign" : "left"}}><strong>태그 선택</strong>&nbsp;&nbsp;<span id="currentSelectedCount">({tagSelectedCount}/5)</span></h5>
+        <div className='div-tagselect-container'>
+          <div className='div-tagselect-scroll-container'>
+            {tags.map((item, index) => 
+              <div className='div-custom-review-tag' idx={index} key={index} onClick={tagClicked}>
+                {item}
+              </div>
+            )}
+          </div>
+        </div>
+        {isCreateMode ?
+          <div className='div-rating-button-container'>
+            <div></div>
+            <CustomButton 
+              text="평가 제출"
+              onClick={openCreateModal}
+              />
+          </div>
+          :
+          <div className='div-rating-button-container'>
+            <CancelButton 
+              text="평가 삭제"
+              onClick={openDeleteModal}
+              />
+            <CustomButton 
+              text="평가 수정"
+              onClick={openModifyModal}
+            />
+          </div>
+        }
       </div>
-      <div className='div-rating-button-container'>
-        <CancelButton text="평가 삭제"/>
-        <CustomButton text="평가 수정"/>
-      </div>
+      <CommonModal
+        isModalOpen={isCreateModalOpen}
+        closeModal={closeCreateModal}
+        ref={createModalRef}
+        >
+        <div>
+          <div>평가를 제출하시겠습니까?</div>
+        </div>
+        <div className='div-modal-button-container'>
+          <CancelButton 
+            onClick={closeCreateModal}
+            text="취소"
+            />
+          <div></div>
+          <CustomButton 
+            onClick={handleRatingCreate}
+            text="제출"
+            />
+        </div>
+      </CommonModal>
+      <CommonModal
+        isModalOpen={isModifyModalOpen}
+        closeModal={closeModifyModal}
+        ref={modifyModalRef}
+        >
+        <div>
+          <div>평가를 수정하시겠습니까?</div>
+        </div>
+        <div className='div-modal-button-container'>
+          <CancelButton 
+            onClick={closeModifyModal}
+            text="취소"
+            />
+          <div></div>
+          <CustomButton 
+            onClick={handleRatingModify}
+            text="수정"
+            />
+        </div>
+      </CommonModal>
+      <CommonModal
+        isModalOpen={isDeleteModalOpen}
+        closeModal={closeDeleteModal}
+        ref={deleteModalRef}
+        >
+        <div>
+          <div>평가를 삭제하시겠습니까?</div>
+        </div>
+        <div className='div-modal-button-container'>
+          <CancelButton 
+            onClick={closeDeleteModal}
+            text="취소"
+          />
+          <div></div>
+          <CustomButton 
+            onClick={handleRatingRemove}
+            text="삭제"
+            />
+        </div>
+      </CommonModal>
+      <CommonModal
+        isModalOpen={isCancelModalOpen}
+        closeModal={closeCancelModal}
+        ref={cancelModalRef}
+        >
+        <div>
+          <div>현재 창에서 나가면 지금까지 작성한 내용이 사라집니다. 정말 나가시겠습니까?</div>
+        </div>
+        <div className='div-modal-button-container'>
+          <CancelButton 
+            onClick={closeCancelModal}
+            text="취소"
+            />
+          <div></div>
+          <CustomButton 
+            onClick={handleRatingCancel}
+            text="예"
+            />
+        </div>
+      </CommonModal>
     </div>
   )
 }
