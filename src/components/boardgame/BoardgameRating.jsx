@@ -1,28 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BoardgameRating.css'
 import { useNavigate } from 'react-router-dom'
 import CancelButton from 'components/common/CancelButton';
+import { REVIEW_TAGLIST } from 'recoil/tag/atom';
 
 export default function BoardgameRating({
   nanoid="guest",
   nickname="guest",
-  image_url="/user_profile/profile_1.png",
+  userImageKey=1,
   comment="좋았어요!!",
   score=10,
-  created="2024-11-16T15:47:37.450685",
-  updated="2024-11-16T19:24:48.835425",
-  tag_info="111110000000000000000000"
+  createdAt="2024-11-16T15:47:37.450685",
+  updatedAt="2024-11-16T19:24:48.835425",
+  tagKeys="111110000000000000000000"
 }) {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [tagList, setTagList] = useState([]);
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
   };
+
+  useEffect(() => {
+    var tmpList = []
+    for (let i = 0; i < tagKeys.length; i++){
+      if(tagKeys[i] === '1') {
+        tmpList.push(REVIEW_TAGLIST[i]);
+      } 
+    }
+    setTagList(tmpList);
+  }, [])
   return (
     <div className='div-boardgame-rating-card'>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
-          <img src={image_url} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
+          <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
           <div style={{"textAlign":"left", "padding":"1rem"}}>
             <strong onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
             <br />
@@ -45,9 +57,14 @@ export default function BoardgameRating({
       {isExpanded ?
         <>
           <div className='div-tag-container'>
-            <SelectedTag text="3인 베스트🤟"/>
-            <SelectedTag text="숙련자들이 즐기는👨🏻‍🎓"/>
-            <SelectedTag text="또 해보고 싶은💘"/>
+            {tagList.map((item, index) => {
+              return(
+                <SelectedTag
+                  key={index}
+                  text={item}
+                />
+              )
+            })}
           </div>
           <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}

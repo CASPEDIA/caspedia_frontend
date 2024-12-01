@@ -32,12 +32,14 @@
   border-radius: var(--basic-border-radius);
   background-color: var(--basic-gray-color);
   display: flex;
+  justify-content: space-between;
   align-items: left;
   text-align: left;
   color: black;
   /* font-size: 1rem; */
   border : 2px solid black;
 }
+
 .div-boardgame-ratings{
   flex-grow: 1;
 }

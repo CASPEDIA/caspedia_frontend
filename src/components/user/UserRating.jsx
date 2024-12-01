@@ -40,7 +40,7 @@ export default function UserRating({
         <div className='div-user-rating'>
           <img src={imageUrl} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
           <div style={{"textAlign":"left", "padding":"1rem"}}>
-            <strong onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor === "" ? nameEng : nameKor}</strong>
+            <strong onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
         </div>
         <div className='rating-circle'>

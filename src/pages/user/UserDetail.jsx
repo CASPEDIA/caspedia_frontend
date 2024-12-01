@@ -19,9 +19,10 @@ export default function UserDetail() {
   const [nickname, setNickname] = useState('');
   const [userImageKey, setUserImageKey] = useState('');
   const [isMyPage, setIsMyPage] = useState(false);
+  const [likedCount, setLikedCount] = useState(0);
   const [likedBoardgames, setLikedBoardgames] = useState([]);
   const [ratedBoardgames, setRatedBoardgames] = useState([]);
-  const [reviewCount, setReviewCount] = useState(0);
+  const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
   const modalRef = useRef(null);
 
@@ -38,11 +39,29 @@ export default function UserDetail() {
 
 
   const openLikedModal = () => {
+    if (likedCount === 0) return null;
     setIsLikedModalOpen(true);
     if (modalRef.current) {
       modalRef.current.handleResize();
     }
 
+  }
+  const closeLikedModal = () => setIsLikedModalOpen(false);
+  
+  
+  useEffect(() => {
+    getUserBasicInfo(nanoid)
+    .then((data) => {
+      // setId(data.id);
+      setIntroduction(data.introduction);
+      setName(data.name);
+      setNickname(data.nickname);
+      setUserImageKey(data.user_image_key);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
     getLikedBoardgames(nanoid)
       .then((data) => {
         const parsedData = data.map((item) => ({
@@ -52,27 +71,12 @@ export default function UserDetail() {
           nameEng: item.name_eng,
           nameKor: item.name_kor
         }));
+        setLikedCount(parsedData.length);
         setLikedBoardgames(parsedData);
       })
       .catch((err) => {
         console.log(err);
       })
-  }
-  const closeLikedModal = () => setIsLikedModalOpen(false);
-
-
-  useEffect(() => {
-    getUserBasicInfo(nanoid)
-      .then((data) => {
-        // setId(data.id);
-        setIntroduction(data.introduction);
-        setName(data.name);
-        setNickname(data.nickname);
-        setUserImageKey(data.user_image_key);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
       
     getRatedBoardgames(nanoid)
     .then((data) => {
@@ -94,7 +98,7 @@ export default function UserDetail() {
           updatedAt: item.updated_at
         }
       });
-      setReviewCount(tmpCount);
+      setratingCount(tmpCount);
       setAverageScore(tmpSum/tmpCount);
       setRatedBoardgames(parsedData);
     })
@@ -110,7 +114,7 @@ export default function UserDetail() {
     <>
       <div className='div-user-basic-info'>
         <div className='div-user-name-info'>
-          <img src="/user_profile/profile_1.png" width="23%" alt="이미지" />
+          <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} width="23%" alt="이미지" />
           <div className='div-user-inner-info'>
             <div className='div-nickname'>
               <strong>{nickname}&nbsp;</strong>
@@ -127,6 +131,7 @@ export default function UserDetail() {
             </div>
           </div>
         </div>
+        <div style={{"fontSize": "0.7em","textAlign" : "left", "marginTop" : "0.7em"}}>자기소개</div>
         { isMyPage 
           ?
           <>
@@ -146,10 +151,10 @@ export default function UserDetail() {
         <div className='div-calculated-infos'>
           <div className='div-outer-card' style={{"height" : "32vw", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>
-              <div style={{"fontSize" : "1.5em"}}><strong>성와니 님이<br />좋아요한 게임들</strong></div>
+              <div style={{"fontSize" : "1.5em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
               {/* <div style={{"height" : "1rem"}}></div> */}
               <h1 style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
-                <strong>135</strong>
+                <strong>{likedCount}</strong>
               </h1>
             </div>  
           </div>
@@ -158,7 +163,7 @@ export default function UserDetail() {
               <div className='div-inner-card'>
                 <div style={{"fontSize" : "1.3em"}}><strong>리뷰</strong></div>
                 {/* <div style={{"height" : "1em"}}></div> */}
-                <div style={{"fontSize" : "1.3em"}}><strong>{reviewCount}</strong></div>
+                <div style={{"fontSize" : "1.3em"}}><strong>{ratingCount}</strong></div>
               </div>
             </div>
             <div className='div-outer-card' style={{"height" : "15vw"}}>

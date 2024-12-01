@@ -40,6 +40,11 @@
 
 .basic-boardgame-comment {
   height : 30%;
+  display: -webkit-box; 
+  -webkit-line-clamp: 4;      
+  -webkit-box-orient: vertical;
+  overflow: hidden;           
+  text-overflow: ellipsis; 
 }
 
 .div-boardgame-more-info {
@@ -49,11 +54,11 @@
   background-color: #e7e7e9;
 }
 
-.div-boardgame-more-info > tr {
+.div-boardgame-more-info > tbody > tr {
   height: 6vh;
 }
 
-.div-boardgame-more-info > tr > td {
+.div-boardgame-more-info > tbody > tr > td {
   border : 1px solid #c6c6c7;
   font-size: 1.5em;
   font-weight: bold;
