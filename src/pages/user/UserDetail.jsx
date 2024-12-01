@@ -4,19 +4,22 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setUserIntroduction, userLogout } from 'hooks/userHooks';
+import { getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setUserIntroduction, userLogout } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
+import ChangeNicknameModal from 'components/modal/ChangeNicknameModal';
 
 export default function UserDetail() {
   const [cookies,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
+  const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const {nanoid} = useParams();
   // const [id, setId] = useState('');
   const [introduction, setIntroduction] = useState("");
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
+  const [newNickname, setNewNickname] = useState('');
   const [userImageKey, setUserImageKey] = useState('');
   const [isMyPage, setIsMyPage] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
@@ -24,7 +27,9 @@ export default function UserDetail() {
   const [ratedBoardgames, setRatedBoardgames] = useState([]);
   const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
-  const modalRef = useRef(null);
+  const likedModalRef = useRef(null);
+  const nicknameModalRef = useRef(null);
+  const changeNicknameRef = useRef(null);
 
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => setUserIntroduction(newIntroduction), 500),
@@ -41,13 +46,46 @@ export default function UserDetail() {
   const openLikedModal = () => {
     if (likedCount === 0) return null;
     setIsLikedModalOpen(true);
-    if (modalRef.current) {
-      modalRef.current.handleResize();
+    if (likedModalRef.current) {
+      likedModalRef.current.handleResize();
     }
 
   }
   const closeLikedModal = () => setIsLikedModalOpen(false);
+
+  const openNicknameModal = () => {
+    setIsNicknameModalOpen(true);
+    if (nicknameModalRef.current) {
+      nicknameModalRef.current.handleResize();
+    }
+  }
+  const closeNicknameModal = () => setIsNicknameModalOpen(false);
   
+
+  const handleChangeNickname = () => {
+    openNicknameModal();
+  }
+
+  const handleChangeNewNickname = (e) => {
+    setNewNickname(e.target.value);
+  }
+
+  const handleSetMyNewNickname = () => {
+    setMyNewNickname(newNickname)
+      .then((data) => {
+        setNickname(newNickname);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    closeNicknameModal();
+  }
+
+  function keyPress(e){
+    if(e.key === 'Enter') {
+      handleSetMyNewNickname();
+    }
+  }
   
   useEffect(() => {
     getUserBasicInfo(nanoid)
@@ -56,6 +94,7 @@ export default function UserDetail() {
       setIntroduction(data.introduction);
       setName(data.name);
       setNickname(data.nickname);
+      setNewNickname(data.nickname);
       setUserImageKey(data.user_image_key);
     })
     .catch((err) => {
@@ -110,6 +149,13 @@ export default function UserDetail() {
   useEffect(() => {
     setIsMyPage(isMyInfo(cookies, nanoid));
   }, [cookies, nanoid, isMyPage]);
+
+  useEffect(() => {
+    if (isNicknameModalOpen && changeNicknameRef.current) {
+      changeNicknameRef.current.focus();
+    }
+  }, [isNicknameModalOpen]);
+
   return (
     <>
       <div className='div-user-basic-info'>
@@ -120,7 +166,7 @@ export default function UserDetail() {
               <strong>{nickname}&nbsp;</strong>
               { isMyPage 
                 ? 
-                <img src="/img/F1_edit_pencil.png" width="5%" alt="" />
+                <img src="/img/F1_edit_pencil.png" width="5%" alt="" onClick={handleChangeNickname}/>
                 : 
                 <></> 
               }
@@ -141,6 +187,7 @@ export default function UserDetail() {
               rows="5"
               placeholder="자기소개를 입력하세요."
               className='custom-textarea'
+              maxLength="300"
             />
           </>
         :
@@ -204,7 +251,7 @@ export default function UserDetail() {
       <CommonModal
         isModalOpen={isLikedModalOpen}
         closeModal={closeLikedModal}
-        ref={modalRef}
+        ref={likedModalRef}
       >
         {likedBoardgames.map((item, index) => {
           return(
@@ -220,6 +267,25 @@ export default function UserDetail() {
           );
         })}
       </CommonModal>
+      <ChangeNicknameModal
+        isModalOpen={isNicknameModalOpen}
+        closeModal={closeNicknameModal}
+        ref={nicknameModalRef}
+      >
+        <div>새로운 닉네임을 입력하세요</div>
+        <input
+          value={newNickname}
+          onChange={handleChangeNewNickname}
+          rows="5"
+          placeholder="닉네임을 입력하세요"
+          className='nickname-input'
+          ref={changeNicknameRef}
+          onKeyDown={keyPress}
+        />
+        <div onClick={handleSetMyNewNickname}>
+          입력 완료
+        </div>
+      </ChangeNicknameModal>
     </>
   )
 }

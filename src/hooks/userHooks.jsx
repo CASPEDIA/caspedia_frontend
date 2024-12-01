@@ -153,3 +153,14 @@ export async function getRatedBoardgames (nanoid) {
     throw e;
   }
 }
+
+export async function setMyNewNickname(newNickname) {
+  try {
+    const { data } = await http
+      .put(`/user/nickname`, {
+        "new_nickname" : newNickname
+      })
+  } catch (e) {
+    throw e;
+  }
+}

@@ -73,3 +73,12 @@
   padding: 3% var(--basic-padding) 3% var(--basic-padding);
   text-align: right;
 }
+
+.nickname-input {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: center;
+}
