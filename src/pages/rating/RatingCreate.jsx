@@ -5,15 +5,19 @@ import { REVIEW_TAGLIST } from "recoil/tag/atom.jsx";
 import CancelButton from 'components/common/CancelButton';
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addRating, getMyRating, removeRating, setRating } from 'hooks/ratingHooks';
 
 export default function RatingCreate({
-  review_img = "/img/F2_no_image.png",
+  reviewImg = "/img/F2_no_image.png",
   nameKor = "이름 없음",
   nameEng = "noName"
 }) {
-  // const {boardid} = useParams();
+  const {boardid} = useParams();
   const navigate = useNavigate();
+  const [reviewImgState, setReviewImgState] = useState(reviewImg);
+  const [nameKorState, setNameKorState] = useState(nameKor);
+  const [nameEngState, setNameEngState] = useState(nameEng);
   const default_texts = ["끔찍해요","다시는 안할 것 같아요","별로에요","나쁘지 않아요","평범해요","제법 좋았어요","인상적이에요","추천할 만 해요","정말 재밌었어요","완벽해요"];
   const [score, setScore] = useState(1);
   const [scoreText, setScoreText] = useState("별로에요");
@@ -40,7 +44,7 @@ export default function RatingCreate({
 
   const modifyTagSelected = (index, newChar) => {
     setTagSelected((prev) => prev.slice(0, index) + newChar + prev.slice(index + 1));
-    console.log(tagSelected);
+    // console.log(tagSelected);
   }
 
   const tagClicked = (e) => {
@@ -77,6 +81,39 @@ export default function RatingCreate({
   function changeStar(num) {
     setScore(num);
     setScoreText(default_texts[num-1]);
+  }
+
+  const setReviewTagState = (tagCode) => {
+    if (!tagCode || tagCode.length !== tags.length) {
+      console.error("Invalid tagCode");
+      return;
+    }
+
+    const tagElements = document.querySelectorAll(".div-review-tags");
+    // console.log(tagElements);
+    let count = 0;
+
+    tagElements.forEach((element, index) => {
+      const isActive = tagCode[index] === "1";
+      if (isActive) count++;
+      if (isActive && element.classList.contains("div-custom-review-tag")) {
+        element.classList.remove("div-custom-review-tag");
+        element.classList.add("div-custom-review-tag-selected");
+      } 
+      else if (!isActive && element.classList.contains("div-custom-review-tag-selected")) {
+        element.classList.remove("div-custom-review-tag-selected");
+        element.classList.add("div-custom-review-tag");
+      }
+    });
+
+    // console.log(count);
+
+    setTagSelectedCount(count);
+
+    const countText = document.getElementById("currentSelectedCount");
+    if (countText) {
+      countText.style.color = count === 5 ? "red" : "black";
+    }
   }
 
   // 평가 등록 확인 모달
@@ -128,29 +165,69 @@ export default function RatingCreate({
   }
 
   const handleRatingCreate = () => {
-    console.log("평가 제출");
+    addRating(boardid, score, comment, tagSelected)
+      .then((data) => {
+        navigate(`/boardgame/${boardid}`);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
   
   const handleRatingModify = () => {
-    console.log("평가 수정");
+    setRating(boardid, score, comment, tagSelected)
+      .then((data) => {
+        navigate(`/boardgame/${boardid}`);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
   
   const handleRatingRemove = () => {
-    console.log("평가 삭제");
+    removeRating(boardid)
+      .then((data) => {
+        navigate(`/boardgame/${boardid}`);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
   
   const handleRatingCancel = () => {
     console.log("취소");
   }
 
-
+  useEffect(() => {
+    getMyRating(boardid)
+      .then((data) => {
+        if(data.rating_exist){
+          setIsCreateMode(false);
+          setScore(data.score);
+          setComment(data.comment);
+          setReviewImgState(data.image_url);
+          setNameKorState(data.name_kor);
+          setNameEngState(data.name_eng);
+          setScoreText(default_texts[data.score < 1 ? 0 : data.score-1]);
+          setTagSelected(data.tag_key);
+          setReviewTagState(data.tag_key);
+        } else {
+          setReviewImgState(data.image_url);
+          setNameKorState(data.name_kor);
+          setNameEngState(data.name_eng);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }, [boardid])
 
   return (
     <div>
       <div className='div-rating-create'>
         <div className='div-boardgameinfo-container'>
-          <img src={review_img} width="30%" alt="noImage" />
-          <h2 style={{"marginLeft":"5%"}}>{nameKor || nameEng}</h2>
+          <img src={reviewImgState} width="30%" alt="noImage" />
+          <h2 style={{"marginLeft":"5%"}}>{nameKorState || nameEngState}</h2>
         </div>
         <div className='div-ratingstar-container'>
           <h5 style={{"marginRight":"5%"}}><strong>평점</strong></h5>
@@ -184,7 +261,7 @@ export default function RatingCreate({
         <div className='div-tagselect-container'>
           <div className='div-tagselect-scroll-container'>
             {tags.map((item, index) => 
-              <div className='div-custom-review-tag' idx={index} key={index} onClick={tagClicked}>
+              <div className='div-review-tags div-custom-review-tag' idx={index} key={index} onClick={tagClicked}>
                 {item}
               </div>
             )}
