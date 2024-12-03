@@ -60,8 +60,10 @@ export default function BoardgameReviewInfo() {
         });
       });
       
-      const indexedCount = count.map((value, index) => ({index, value}))
-        .sort((a,b) => b.value - a.value);
+      const indexedCount = count
+      .map((value, index) => ({ index, value }))
+      .filter((item) => item.value > 0) // value가 0인 항목 제거
+      .sort((a, b) => b.value - a.value);
 
       setTopTags(indexedCount.slice(0,5));
     }
@@ -73,22 +75,28 @@ export default function BoardgameReviewInfo() {
         <div className='div-title-tag'>
           CAST가 고른 태그
         </div>
-        {topTags.map((item, index) => {
+        {topTags && topTags.length > 0 ? 
+          topTags.map((item, index) => {
           return (
             <BestTag
               key={index} 
               text={REVIEW_TAGLIST[item.index]}
               count={item.value}
             />
-
-          )
-        })}
+          )})
+          :
+          <BestTag
+            text="정보 없음"
+            count=""
+          />
+        }
       </div>
       <div className='div-boardgame-ratings'>
-        {ratedUsers.map((item,index) => {
+        { ratedUsers.map((item,index) => {
           return (
             <BoardgameRating 
               key={index}
+              boardgameKey={boardid}
               nanoid={item.nanoid}
               nickname={item.nickname}
               userImageKey={item.userImageKey}

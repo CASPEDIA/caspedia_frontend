@@ -60,3 +60,24 @@ export async function getBoardgameRatings(boardgameKey) {
   }
   
 }
+
+export async function autoFillBoardgame(query) {
+  try {
+    const { data } = await http
+      .get(`/boardgame/autofill?q=${query}`)
+    return data;
+  } catch (e) {
+    throw e
+  }  
+}
+
+export async function getBoardgameSearchResult(query, page) {
+  try {
+    const {data} = await http
+      .get(`/boardgame/search?q=${query}&page=${page}`)
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+  
+}
