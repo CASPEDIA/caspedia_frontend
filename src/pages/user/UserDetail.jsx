@@ -32,7 +32,15 @@ export default function UserDetail() {
   const changeNicknameRef = useRef(null);
 
   const debouncedIntroductionChange = useCallback(
-    debounce((newIntroduction) => setUserIntroduction(newIntroduction), 500),
+    debounce((newIntroduction) => 
+      setUserIntroduction(newIntroduction)
+        .then((data) => {
+          
+        })
+        .catch((e) => {
+          console.log(e);
+        }) 
+        , 500),
     []
   );
 
@@ -138,8 +146,12 @@ export default function UserDetail() {
         }
       });
       setratingCount(tmpCount);
-      setAverageScore(tmpSum/tmpCount);
-      setRatedBoardgames(parsedData);
+      if (tmpCount === 0){
+        setAverageScore(0);
+      } else {
+        setAverageScore(Math.round((tmpSum/tmpCount)*100)/100);
+      }
+        setRatedBoardgames(parsedData);
     })
     .catch((err) => {
       console.log(err);

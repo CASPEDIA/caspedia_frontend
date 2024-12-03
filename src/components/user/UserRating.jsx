@@ -3,6 +3,8 @@ import './UserRating.css'
 import { useNavigate } from 'react-router-dom'
 import CancelButton from 'components/common/CancelButton';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
+import { useCookies } from 'react-cookie';
+import { isMyInfo } from 'hooks/userHooks';
 
 export default function UserRating({
   ratingKey=10,
@@ -17,6 +19,7 @@ export default function UserRating({
   createdAt="2024-11-16T15:47:37.450685",
   updatedAt="2024-11-16T19:24:48.835425",
 }) {
+  const [cookies,,] = useCookies(["nanoid"]);
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [tagList, setTagList] = useState([]);
@@ -39,9 +42,15 @@ export default function UserRating({
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
           <img src={imageUrl} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
-          <div style={{"textAlign":"left", "padding":"1rem"}}>
+          <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
             <strong onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
+          {
+            isMyInfo(cookies, nanoid) ?
+            <img src="/img/F1_edit_pencil.png" width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
+            :
+            <></>
+          }
         </div>
         <div className='rating-circle'>
           {score}

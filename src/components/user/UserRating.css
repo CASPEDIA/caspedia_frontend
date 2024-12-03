@@ -15,7 +15,7 @@
 .div-user-rating {
   display: flex;
   justify-content: left;
-  align-items: flex-start;
+  align-items: start;
 }
 
 .rating-circle{
@@ -23,11 +23,11 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 4vw;
   color: white;
   background-color: #394955;
-  min-width:4rem;
-  min-height:4rem;
+  min-width:10vw;
+  min-height:10vw;
   border-radius: 50%;
 }
 

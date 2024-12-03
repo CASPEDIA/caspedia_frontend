@@ -154,13 +154,28 @@ export async function getRatedBoardgames (nanoid) {
   }
 }
 
+/**
+ * 닉네임 변경
+ * @param {새 닉네임} newNickname 
+ */
 export async function setMyNewNickname(newNickname) {
   try {
     const { data } = await http
       .put(`/user/nickname`, {
         "new_nickname" : newNickname
       })
+    return data;
   } catch (e) {
     throw e;
   }
+}
+
+export async function autoFillUser(query) {
+  try {
+    const { data } = await http
+      .get(`/user/autofill?q=${query}`)
+    return data;
+  } catch (e) {
+    throw e
+  }  
 }
