@@ -3,32 +3,30 @@ import './Result.css'
 import { Link } from 'react-router-dom'
 
 export default function Result({
-  id=36218,
+  boardgameKey=36218,
   imageUrl = "/img/F2_no_image.png",
   nameKor = "도미니언",
   nameEng = "Dominion",
   yearPublished = 2008,
-  liked = 777,
+  likes = 777,
   geekScore = 7.6,
   castScore = 8.0
-  
 }) {
   return (
     <tr>
       <td width="20%">
-        <Link to={`/boardgame/${id}`}>
-          <img src={imageUrl} alt="noImage" width="80vw"/>
+        <Link to={`/boardgame/${boardgameKey}`}>
+          <img src={imageUrl} alt="noImage" height="70vw"/>
         </Link>
       </td>
       <td width="30%" style={{textAlign:"left"}}>
-        <Link to={`/boardgame/${id}`}>
-          {nameKor}
-          {/* {'('}{nameEng}{')'} */}
+        <Link to={`/boardgame/${boardgameKey}`}>
+          {nameKor || nameEng}
           {'('}{yearPublished}{')'}
         </Link>
         </td>
       <td width="15%">
-        {liked}&nbsp;
+        {likes}&nbsp;
         <img src="/img/F2_heart_liked.png" alt="heart" width="16vw" />
       </td>
       <td width="15%">
