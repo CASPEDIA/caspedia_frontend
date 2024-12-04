@@ -85,7 +85,8 @@ export default function BoardgameSearchBar() {
     setBoardgameQuery('');
     setIsOpen(false);
     setActiveIndex(-1);
-    navigate(`/boardgame/${boardgameKey}`)
+    navigate(`/boardgame/${boardgameKey}`);
+    // inputRef.current.blur();
   };
 
   const resetSearch = () => {

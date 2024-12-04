@@ -16,7 +16,7 @@ export default function Result({
     <tr>
       <td width="20%">
         <Link to={`/boardgame/${boardgameKey}`}>
-          <img src={imageUrl} alt="noImage" height="70vw"/>
+          <img src={imageUrl} alt="noImage" style={{"maxHeight":"15vw", "maxWidth":"90%"}}/>
         </Link>
       </td>
       <td width="30%" style={{textAlign:"left"}}>

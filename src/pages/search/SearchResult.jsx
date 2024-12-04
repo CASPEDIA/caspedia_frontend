@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './SearchResult.css'
-import { Table } from 'react-bootstrap'
 import Result from 'components/search/Result'
 import { useLocation, useNavigate } from 'react-router-dom'
 import CustomCard from 'components/common/CustomCard'
@@ -12,8 +11,11 @@ export default function SearchResult() {
   const params = new URLSearchParams(location.search);
   const query = params.get("query");
   const page = params.get("page");
-  const [pagination, setPagination] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [curPage, setCurPage] = useState(0);
+  const [lastPage, setLastPage ] = useState(0);
   const [searchResult, setSearchResult] = useState([]);
+  const [pagination, setPagination] = useState([]);
 
   useEffect(() => {
     if (query && !page) {
@@ -25,12 +27,16 @@ export default function SearchResult() {
   useEffect(() => {
     getBoardgameSearchResult(query,page)
       .then((data) => {
-        const paginationData = {
-          total: data.pagination.total,
-          page: data.pagination.page,
-          lastPage: data.pagination.last_page,
-        };
-        setPagination(paginationData);
+        setTotal(data.pagination.total);
+        setCurPage(data.pagination.page);
+        setLastPage(data.pagination.last_page);
+
+        var tmpList = []
+        for (let i = Math.max(1,data.pagination.page-3); i <= Math.min(data.pagination.last_page, data.pagination.page+3); i++){
+          tmpList.push(i);
+        }
+
+        setPagination(tmpList);
       
         const resultData = data.data.map((item) => {
           return {
@@ -44,7 +50,7 @@ export default function SearchResult() {
           }
         });
         setSearchResult(resultData);
-        console.log(resultData);
+        // console.log(resultData);
         
       })
       .catch((e) => {
@@ -54,14 +60,14 @@ export default function SearchResult() {
 
   return (
     <div className='custom-search-result'>
-      <Table bordered hover responsive="md">
+      <table className='table-searchresult'>
         <thead>
           <tr>
-            <th></th>
+            <th>total {total}</th>
             <th className='wide-column'>이름</th>
             <th>좋아요</th>
-            <th>BGG<br />평점</th>
-            <th>CAST<br />평점</th>
+            <th>BGG 평점</th>
+            <th>CAST 평점</th>
           </tr>
         </thead>
         <tbody>
@@ -81,8 +87,8 @@ export default function SearchResult() {
             )
           })}
         </tbody>
-      </Table>
-      {searchResult.length == 0 ? 
+      </table>
+      {searchResult.length === 0 ? 
         <div className='no-results'>
           <img 
             src="/img/F2_no_result.png" 
@@ -99,7 +105,31 @@ export default function SearchResult() {
         <></>  
       }
       <div className='div-pagination'>
-        페이지네이션
+        { page !== 1 && (
+          <img src="/img/F2_first_page.svg" width="6%" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
+        )}
+        { page !== 1 && (
+          <img src="/img/F2_prev_page.svg" width="6%" alt="prev" />
+        )}
+        <div className='div-pagination-numbers-container'>
+          { pagination.map((item) => {
+            return(
+              <span 
+                key={item}
+                className={`span-pagination-item ${page == item ? 'current-page' : ''}`}
+                onClick={() => navigate(`/search?query=${query}&page=${item}`)}
+              >
+                {item}
+              </span>
+            )
+          })}
+        </div>
+        { page !== lastPage && (
+          <img src="/img/F2_next_page.svg" width="6%" alt="next" />
+        )}
+        { page !== lastPage && (
+          <img src="/img/F2_last_page.svg" width="6%" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
+        )}
       </div>
     </div>
   )
