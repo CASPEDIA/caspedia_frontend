@@ -2,4 +2,5 @@
   background-color: var(--basic-white-color);
   display: flex;
   flex-direction: column; /* 세로 방향 정렬 */
+  min-height: 100%;
 }

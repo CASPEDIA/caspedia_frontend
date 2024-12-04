@@ -16,9 +16,9 @@ export default function UserLikedBoardgame({
     <div className='div-boardgame-liked'>
       <img src={imageUrl} width="20%" alt={nameKor} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
       <div style={{"width": "4vw"}}></div>
-      <h1 onClick={() => navigate("/boardgame/" + boardgameKey)}>
+      <h3 onClick={() => navigate("/boardgame/" + boardgameKey)}>
         <strong>{ nameKor || nameEng }</strong>
-      </h1>
+      </h3>
     </div>
   )
 }

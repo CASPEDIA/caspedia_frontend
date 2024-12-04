@@ -121,7 +121,7 @@ export default function BoardgameBasicInfo() {
       .catch((e) => {
         console.log(e);
       })
-  }, [boardid]);
+  }, [boardid, likedCount]);
   return (
     <div>
       <div className='div-boardgame-image pt-4 pb-3'>
