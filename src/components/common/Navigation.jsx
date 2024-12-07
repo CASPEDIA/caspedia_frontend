@@ -18,7 +18,7 @@ export default function Navigation() {
   }
   return (
     <div className='custom-navigation'>
-      <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" onClick={() => navigate('/')}/>
+      <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" style={{"cursor" : "pointer"}} onClick={() => navigate('/')}/>
       <div></div>
       <img src="/img/F5_toMypage.png" alt="My Page" className="nav-icon" onClick={() => handleMyPage()}/>
     </div>

@@ -14,7 +14,7 @@ export default function Navbar() {
         </>
         :
         <>
-          <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" style={{"marginRight" : "2%"}} onClick={() => navigate('/')}/>
+          <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" style={{"marginRight" : "2%" , "cursor" : "pointer"}} onClick={() => navigate('/')}/>
           { location.pathname.includes('/user') ? <UserSearchBar /> : 
             location.pathname.includes('/rating') ? <></> :
             <BoardgameSearchBar />

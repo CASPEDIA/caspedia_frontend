@@ -43,3 +43,12 @@
 .div-boardgame-ratings{
   flex-grow: 1;
 }
+
+.div-to-create-rating {
+  margin-top: var(--basic-margin);
+  color: blue;
+}
+
+.div-to-create-rating:hover {
+  cursor: pointer;
+}

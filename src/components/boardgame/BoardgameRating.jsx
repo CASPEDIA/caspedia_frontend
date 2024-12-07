@@ -15,7 +15,7 @@ export default function BoardgameRating({
   score=10,
   createdAt="2024-11-16T15:47:37.450685",
   updatedAt="2024-11-16T19:24:48.835425",
-  tagKeys="111110000000000000000000"
+  tagKeys="111110000000000000000000",
 }) {
   const navigate = useNavigate();
   const [cookies,,] = useCookies(["nanoid"]);
@@ -38,11 +38,11 @@ export default function BoardgameRating({
     <div className='div-boardgame-rating-card'>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
-          <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
+          <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} style={{"cursor" : "pointer"}} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
-            <strong style={{"paddingRight":"0.5rem"}} onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
+            <strong style={{"paddingRight":"0.5rem" , "cursor" : "pointer"}} onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
             {isMyInfo(cookies, nanoid) ?
-              <img src="/img/F1_edit_pencil.png" width="7%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
+              <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="7%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
               :
               <></>
             }

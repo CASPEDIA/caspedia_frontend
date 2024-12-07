@@ -41,13 +41,13 @@ export default function UserRating({
     <div className='div-user-rating-card'>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
-          <img src={imageUrl} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+          <img src={imageUrl} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
-            <strong onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
+            <strong style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
           {
             isMyInfo(cookies, nanoid) ?
-            <img src="/img/F1_edit_pencil.png" width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
+            <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
             :
             <></>
           }

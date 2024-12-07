@@ -14,9 +14,9 @@ export default function UserLikedBoardgame({
   const navigate = useNavigate();
   return (
     <div className='div-boardgame-liked'>
-      <img src={imageUrl} width="20%" alt={nameKor} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+      <img src={imageUrl} width="20%" alt={nameKor} style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
       <div style={{"width": "4vw"}}></div>
-      <h3 onClick={() => navigate("/boardgame/" + boardgameKey)}>
+      <h3 style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>
         <strong>{ nameKor || nameEng }</strong>
       </h3>
     </div>

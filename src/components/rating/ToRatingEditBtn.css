@@ -4,5 +4,6 @@
   position: fixed;
   width: 60px;
   bottom: calc(var(--navigation-height) + 1rem);
+  cursor: pointer;
   /* right: calc((100% - var(--max-width)) / 2 + 2rem); */
 }
