@@ -256,6 +256,7 @@ export default function RatingCreate({
           rows="5"
           placeholder="한줄평을 입력하세요."
           className='rating-textarea'
+          maxLength="299"
         />
         <h5 style={{"textAlign" : "left"}}><strong>태그 선택</strong>&nbsp;&nbsp;<span id="currentSelectedCount">({tagSelectedCount}/5)</span></h5>
         <div className='div-tagselect-container'>

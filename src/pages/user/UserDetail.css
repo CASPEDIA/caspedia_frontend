@@ -77,8 +77,21 @@
 .nickname-input {
   width: 100%;
   margin-top: var(--basic-margin);
-  margin-bottom: var(--basic-margin);
+  margin-bottom: 1%;
   border: 2px solid black;
   border-radius: var(--basic-border-radius);
   text-align: center;
+}
+
+.div-new-nickname-message {
+  font-size: 0.8em;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-nickname-confirm {
+  color: blue;
+}
+
+.div-nickname-wrong {
+  color: red;
 }

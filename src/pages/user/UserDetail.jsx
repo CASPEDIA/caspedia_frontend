@@ -20,11 +20,14 @@ export default function UserDetail() {
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [newNickname, setNewNickname] = useState('');
+  const [newNicknameMessage, setNewNicknameMessage] = useState('');
+  const [newNicknameClassname, setNewNicknameClassname] = useState('');
   const [userImageKey, setUserImageKey] = useState('');
   const [isMyPage, setIsMyPage] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
   const [likedBoardgames, setLikedBoardgames] = useState([]);
   const [ratedBoardgames, setRatedBoardgames] = useState([]);
+  const [sortOrder, setSortOrder] = useState({ type: "updatedAt", direction: "desc" }); // 초기 정렬: 작성순 ▼
   const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
   const likedModalRef = useRef(null);
@@ -35,7 +38,7 @@ export default function UserDetail() {
     debounce((newIntroduction) => 
       setUserIntroduction(newIntroduction)
         .then((data) => {
-          
+          // console.log(data);
         })
         .catch((e) => {
           console.log(e);
@@ -49,6 +52,41 @@ export default function UserDetail() {
     setIntroduction(newIntroduction);
     debouncedIntroductionChange(newIntroduction);
   }
+
+  // 정렬 함수
+  const sortRatedBoardgames = (type, direction) => {
+    const sorted = [...ratedBoardgames].sort((a, b) => {
+      if (type === "score") {
+        if (a.score !== b.score) {
+          return direction === "desc" ? b.score - a.score : a.score - b.score;
+        }
+        // 점수가 같을 경우 updatedAt로 정렬
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return direction === "desc" ? dateB - dateA : dateA - dateB;
+      } else if (type === "updatedAt") {
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return direction === "desc" ? dateB - dateA : dateA - dateB;
+      }
+      return 0;
+    });
+    setRatedBoardgames(sorted);
+  };
+
+  // 작성순 클릭 핸들러
+  const handleSortByDate = () => {
+    const newDirection = sortOrder.type === "updatedAt" && sortOrder.direction === "desc" ? "asc" : "desc";
+    setSortOrder({ type: "updatedAt", direction: newDirection });
+    sortRatedBoardgames("updatedAt", newDirection);
+  };
+
+  // 평점순 클릭 핸들러
+  const handleSortByScore = () => {
+    const newDirection = sortOrder.type === "score" && sortOrder.direction === "desc" ? "asc" : "desc";
+    setSortOrder({ type: "score", direction: newDirection });
+    sortRatedBoardgames("score", newDirection);
+  };
 
 
   const openLikedModal = () => {
@@ -76,22 +114,80 @@ export default function UserDetail() {
 
   const handleChangeNewNickname = (e) => {
     setNewNickname(e.target.value);
+    handleSetMyNewNickname(e.target.value);
   }
 
-  const handleSetMyNewNickname = () => {
-    setMyNewNickname(newNickname)
+  const checkValidateNickname = (newState) => {
+    // 한글 초성만 허용 (ㄱ-ㅎ)
+    const hangulInitialRegex = /[ㄱ-ㅎ가-힣]/;
+    const englishRegex = /[a-zA-Z]/;
+    // 기본 패턴: 한글 초성, 영어, 숫자, '_', '.'만 허용
+    const basePattern = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_.]+$/;
+
+    // 길이 조건 확인
+    if (!basePattern.test(newState)) {
+      setNewNicknameClassname('div-nickname-wrong');
+      setNewNicknameMessage("닉네임에 허용되지 않는 문자가 포함되어 있습니다.");
+      return false;
+    }
+    
+    const hangulCount = (newState.match(hangulInitialRegex) || []).length;
+    const englishCount = (newState.match(englishRegex) || []).length;
+    
+    if (hangulCount > 0 && englishCount === 0 && newState.length > 10) {
+      setNewNicknameClassname('div-nickname-wrong');
+      setNewNicknameMessage("한글만 사용한 경우 10자 이하로 작성해야 합니다.");
+      return false;
+    }
+    
+    if (newState.length > 20) {
+      setNewNicknameClassname('div-nickname-wrong');
+      setNewNicknameMessage("닉네임은 최대 20자 이하로 작성해야 합니다.");
+      return false;
+    }
+    return true;
+  }
+
+  // 동적 스타일
+  const getTabStyle = (type) => ({
+    color: sortOrder.type === type ? "black" : "white",
+    WebkitTextStroke: sortOrder.type === type ? "1px white" : "",
+    fontWeight: sortOrder.type === type ? "bold" : "",
+    padding: "5px",
+    cursor: "pointer",
+  });
+
+  const putNewNickname = (newState) => {
+    setMyNewNickname(newState)
       .then((data) => {
-        setNickname(newNickname);
+        console.log(data);
+        // setNickname(newState);
+        setNewNicknameClassname('div-nickname-confirm');
+        setNewNicknameMessage("사용 가능한 닉네임입니다.");
       })
       .catch((e) => {
-        console.log(e);
+        if (e.response && e.response.status === 400) {
+          setNewNicknameClassname('div-nickname-wrong');
+          setNewNicknameMessage(e.response.data.message);
+        }
       });
-    closeNicknameModal();
   }
 
+  const handleSetMyNewNickname = (newState) => {
+    if(checkValidateNickname(newState)){
+      putNewNickname(newState);
+    }
+  }
+    
+  const handleNicknameChangeConfirmMessage = () => {
+    setNickname(newNickname);
+    closeNicknameModal();
+  }
+  
   function keyPress(e){
     if(e.key === 'Enter') {
-      handleSetMyNewNickname();
+      setNickname(newNickname);
+      closeNicknameModal();
     }
   }
   
@@ -126,36 +222,36 @@ export default function UserDetail() {
       })
       
     getRatedBoardgames(nanoid)
-    .then((data) => {
-      var tmpCount = 0;
-      var tmpSum = 0.0;
-      const parsedData = data.map((item) => {
-        tmpCount++;
-        tmpSum+= item.score;
-        return {
-          ratingKey: item.rating_key,
-          score: item.score,
-          comment: item.comment,
-          boardgameKey: item.boardgame_key,
-          nameEng: item.name_eng,
-          nameKor: item.name_kor,
-          tagKey: item.tag_key,
-          imageUrl: item.image_url,
-          createdAt: item.created_at,
-          updatedAt: item.updated_at
+      .then((data) => {
+        var tmpCount = 0;
+        var tmpSum = 0.0;
+        const parsedData = data.map((item) => {
+          tmpCount++;
+          tmpSum+= item.score;
+          return {
+            ratingKey: item.rating_key,
+            score: item.score,
+            comment: item.comment,
+            boardgameKey: item.boardgame_key,
+            nameEng: item.name_eng,
+            nameKor: item.name_kor,
+            tagKey: item.tag_key,
+            imageUrl: item.image_url,
+            createdAt: item.created_at,
+            updatedAt: item.updated_at
+          }
+        });
+        setratingCount(tmpCount);
+        if (tmpCount === 0){
+          setAverageScore(0);
+        } else {
+          setAverageScore(Math.round((tmpSum/tmpCount)*100)/100);
         }
-      });
-      setratingCount(tmpCount);
-      if (tmpCount === 0){
-        setAverageScore(0);
-      } else {
-        setAverageScore(Math.round((tmpSum/tmpCount)*100)/100);
-      }
-        setRatedBoardgames(parsedData);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+        setRatedBoardgames(parsedData.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }, [nanoid]);
 
   useEffect(() => {
@@ -178,18 +274,20 @@ export default function UserDetail() {
               <strong>{nickname}&nbsp;</strong>
               { isMyPage 
                 ? 
-                <img src="/img/F1_edit_pencil.png" width="5%" alt="" onClick={handleChangeNickname}/>
+                <img src="/img/F1_edit_pencil.png" style={{"cursor":"pointer"}} width="5%" alt="" onClick={handleChangeNickname}/>
                 : 
                 <></> 
               }
             </div>
             <div className='div-name-info'>
               {name}
+              {isMyPage ?
               <CustomButton text="로그아웃" onClick={() => userLogout(removeCookie)} />
+              : ""}
             </div>
           </div>
         </div>
-        <div style={{"fontSize": "0.7em","textAlign" : "left", "marginTop" : "0.7em"}}>자기소개</div>
+        <div style={{"fontSize": "0.7em","textAlign" : "left", "marginTop" : "0.7em"}}>자기소개 {isMyPage ? `(최대 300자)` : ``}</div>
         { isMyPage 
           ?
           <>
@@ -199,7 +297,7 @@ export default function UserDetail() {
               rows="5"
               placeholder="자기소개를 입력하세요."
               className='custom-textarea'
-              maxLength="300"
+              maxLength="299"
             />
           </>
         :
@@ -238,7 +336,19 @@ export default function UserDetail() {
       </div>
       <div className='div-review-background'>
         <div className='div-sort-tabs'>
-          <span>최신순</span> / <span>평점순</span>
+          <span
+            onClick={handleSortByDate}
+            style={getTabStyle("updatedAt")}
+          >
+            작성순 {sortOrder.type === "updatedAt" ? (sortOrder.direction === "desc" ? "▼" : "▲") : ""}
+          </span>
+            {" "}/{" "}
+          <span
+            onClick={handleSortByScore}
+            style={getTabStyle("score")}
+          >
+            평점순 {sortOrder.type === "score" ? (sortOrder.direction === "desc" ? "▼" : "▲") : ""}
+          </span>
         </div>
           {ratedBoardgames.map((item,index) => {
             return (
@@ -258,7 +368,7 @@ export default function UserDetail() {
               />
             )
           })}
-        <div style={{"color" : "white"}}>리뷰 더보기</div>
+        {/* <div style={{"color" : "white"}}>리뷰 더보기</div> */}
       </div>
       <CommonModal
         isModalOpen={isLikedModalOpen}
@@ -294,8 +404,9 @@ export default function UserDetail() {
           ref={changeNicknameRef}
           onKeyDown={keyPress}
         />
-        <div onClick={handleSetMyNewNickname}>
-          입력 완료
+        <div className={`div-new-nickname-message ${newNicknameClassname}`}>{newNicknameMessage}</div>
+        <div onClick={handleNicknameChangeConfirmMessage}>
+          확인
         </div>
       </ChangeNicknameModal>
     </>
