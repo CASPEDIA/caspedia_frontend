@@ -14,6 +14,7 @@ export default function BoardgameReviewInfo() {
   const [cookies,,] = useCookies(["nanoid"]);
   const [ratingCount, setRatingCount] = useState(0);
   const [ratedUsers, setRatedUsers] = useState([]);
+  const [myRateInfo, setMyRateInfo] = useState({});
   const [tagKeys, setTagKeys] = useState([]);
   const [topTags, setTopTags] = useState([]);
   const [alreadyRated, setAlreadyRated] = useState(false);
@@ -23,23 +24,40 @@ export default function BoardgameReviewInfo() {
       .then((data) => {
         var tmpCount = 0;
         var tmpList = [];
-        const parsedData = data.map((item) => {
+        var parsedData = [];
+        var myRate = {};
+        
+
+        data.forEach((item) => {
           tmpCount++;
           tmpList.push(item.tag_keys);
+          
           if(isMyInfo(cookies,item.nanoid)) {
             setAlreadyRated(true);
-          }
-          return {
-            nanoid: item.nanoid,
-            nickname: item.nickname,
-            userImageKey: item.user_image_key,
-            comment: item.comment,
-            score: item.score,
-            createdAt: item.created_at,
-            updatedAt: item.updated_at,
-            tagKeys: item.tag_keys,
+            myRate = {
+              nanoid: item.nanoid,
+              nickname: item.nickname,
+              userImageKey: item.user_image_key,
+              comment: item.comment,
+              score: item.score,
+              createdAt: item.created_at,
+              updatedAt: item.updated_at,
+              tagKeys: item.tag_keys,
+            }
+          } else {
+            parsedData.push({
+              nanoid: item.nanoid,
+              nickname: item.nickname,
+              userImageKey: item.user_image_key,
+              comment: item.comment,
+              score: item.score,
+              createdAt: item.created_at,
+              updatedAt: item.updated_at,
+              tagKeys: item.tag_keys,
+            });
           }
         });
+        setMyRateInfo(myRate);
         setRatingCount(tmpCount);
         setTagKeys(tmpList);
         setRatedUsers(parsedData);
@@ -92,6 +110,27 @@ export default function BoardgameReviewInfo() {
         }
       </div>
       <div className='div-boardgame-ratings'>
+        { alreadyRated ? 
+          <BoardgameRating 
+            boardgameKey={boardid}
+            nanoid={myRateInfo.nanoid}
+            nickname={myRateInfo.nickname}
+            userImageKey={myRateInfo.userImageKey}
+            comment={myRateInfo.comment}
+            score={myRateInfo.score}
+            createdAt={myRateInfo.createdAt}
+            updatedAt={myRateInfo.updatedAt}
+            tagKeys={myRateInfo.tagKeys}
+          />
+        :
+        <div 
+          className='div-to-create-rating'
+          style={{"cursor" : "pointer"}}
+          onClick={() => navigate(`/rating/${boardid}`)}
+        >
+          리뷰 작성하기
+        </div>
+        }
         { ratedUsers.map((item,index) => {
           return (
             <BoardgameRating 
@@ -109,14 +148,15 @@ export default function BoardgameReviewInfo() {
           )
         })}
       </div>
-      { alreadyRated ? 
+      {/* { alreadyRated ? 
         <></>
       :
         <ToRatingEditBtn 
           src="/img/F3_create_review.png" 
+          style={{"cursor" : "pointer"}}
           onClick={() => navigate(`/rating/${boardid}`)}
         />  
-      }
+      } */}
     </div>
   )
 }
