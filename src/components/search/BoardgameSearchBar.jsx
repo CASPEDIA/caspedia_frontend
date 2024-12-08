@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { debounce } from 'lodash';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './BoardgameSearchBar.css'
 import { autoFillBoardgame } from 'hooks/boardgameHooks';
 
 export default function BoardgameSearchBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [boardgameQuery, setBoardgameQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1); // 활성화된 항목 인덱스
@@ -111,6 +112,14 @@ export default function BoardgameSearchBar() {
       document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [])
+  
+  useEffect(() => {
+    if(location.pathname.includes('/search')){
+      setBoardgameQuery('');
+      setSearchResults([]);
+    }
+  }, [location])
+
 
   return (
     <div className='div-boardgamesearch-container' ref={containerRef}>
