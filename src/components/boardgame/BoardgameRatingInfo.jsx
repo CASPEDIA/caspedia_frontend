@@ -88,7 +88,7 @@ export default function BoardgameReviewInfo() {
   }, [tagKeys])
   
   return (
-    <div>
+    <div className='div-rating-info-container'>
       <div className='div-boardgame-best-tags'>
         <div className='div-title-tag'>
           CAST가 고른 태그
