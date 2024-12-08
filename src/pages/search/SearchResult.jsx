@@ -12,7 +12,7 @@ export default function SearchResult() {
   const query = params.get("query");
   const page = params.get("page");
   const [total, setTotal] = useState(0);
-  const [curPage, setCurPage] = useState(0);
+  // const [curPage, setCurPage] = useState(0);
   const [lastPage, setLastPage ] = useState(0);
   const [searchResult, setSearchResult] = useState([]);
   const [pagination, setPagination] = useState([]);
@@ -28,7 +28,7 @@ export default function SearchResult() {
     getBoardgameSearchResult(query,page)
       .then((data) => {
         setTotal(data.pagination.total);
-        setCurPage(data.pagination.page);
+        // setCurPage(data.pagination.page);
         setLastPage(data.pagination.last_page);
 
         var tmpList = []
@@ -116,7 +116,7 @@ export default function SearchResult() {
             return(
               <span 
                 key={item}
-                className={`span-pagination-item ${page == item ? 'current-page' : ''}`}
+                className={`span-pagination-item ${page === item ? 'current-page' : ''}`}
                 style={{"cursor" : "pointer"}}
                 onClick={() => navigate(`/search?query=${query}&page=${item}`)}
               >

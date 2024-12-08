@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './BoardgameRating.css'
 import { useNavigate } from 'react-router-dom'
-import CancelButton from 'components/common/CancelButton';
+// import CancelButton from 'components/common/CancelButton';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
 import { isMyInfo } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
