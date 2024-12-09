@@ -35,7 +35,7 @@ export default function BoardgameRating({
     setTagList(tmpList);
   }, [])
   return (
-    <div className='div-boardgame-rating-card' onClick={toggleExpand}>
+    <div className={`div-boardgame-rating-card ${isMyInfo(cookies, nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
           <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} style={{"cursor" : "pointer"}} width="15%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>

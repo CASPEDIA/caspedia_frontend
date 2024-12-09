@@ -7,6 +7,7 @@ import { getBoardgameRatings } from 'hooks/boardgameHooks';
 import { useCookies } from 'react-cookie';
 import { isMyInfo } from 'hooks/userHooks';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
+import CustomCard from 'components/common/CustomCard';
 
 export default function BoardgameReviewInfo() {
   const navigate = useNavigate();
@@ -123,13 +124,20 @@ export default function BoardgameReviewInfo() {
             tagKeys={myRateInfo.tagKeys}
           />
         :
-        <div 
-          className='div-to-create-rating'
-          style={{"cursor" : "pointer"}}
-          onClick={() => navigate(`/rating/${boardid}`)}
-        >
-          리뷰 작성하기
-        </div>
+          <div className='div-to-create-rating-container' style={{"cursor" : "pointer"}} onClick={() => navigate(`/rating/${boardid}`)}>
+            <div className='div-to-create-rating-inner'>
+              <img src="/img/F1_edit_pencil.png" width="10%" alt="수정하기" />
+              <span className='span-to-create-rating' >
+                내 한줄평이 없습니다.<br />리뷰를 작성해주세요.</span>
+            </div>
+          </div>
+        // <div 
+        //   className='div-to-create-rating'
+        //   style={{"cursor" : "pointer"}}
+        //   onClick={() => navigate(`/rating/${boardid}`)}
+        // >
+        //   리뷰 작성하기
+        // </div>
         }
         { ratedUsers.map((item,index) => {
           return (

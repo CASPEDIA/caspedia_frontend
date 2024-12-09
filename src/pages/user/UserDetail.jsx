@@ -118,35 +118,37 @@ export default function UserDetail() {
   }
 
   const checkValidateNickname = (newState) => {
-    // 한글 초성만 허용 (ㄱ-ㅎ)
-    const hangulInitialRegex = /[ㄱ-ㅎ가-힣]/;
-    const englishRegex = /[a-zA-Z]/;
-    // 기본 패턴: 한글 초성, 영어, 숫자, '_', '.'만 허용
-    const basePattern = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_.]+$/;
-
-    // 길이 조건 확인
+    const basePattern = /^[가-힣a-zA-Z0-9_.]+$/;
+  
+    // 기본 패턴 확인
     if (!basePattern.test(newState)) {
       setNewNicknameClassname('div-nickname-wrong');
       setNewNicknameMessage("닉네임에 허용되지 않는 문자가 포함되어 있습니다.");
       return false;
     }
-    
-    const hangulCount = (newState.match(hangulInitialRegex) || []).length;
-    const englishCount = (newState.match(englishRegex) || []).length;
-    
-    if (hangulCount > 0 && englishCount === 0 && newState.length > 10) {
+  
+    // 가중치 계산: 한글은 2, 영어는 1로 설정
+    let weightedLength = 0;
+    for (const char of newState) {
+      if (/[가-힣]/.test(char)) {
+        weightedLength += 2; // 한글은 2
+      } else if (/[a-zA-Z]/.test(char)) {
+        weightedLength += 1; // 영어는 1
+      } else {
+        weightedLength += 1; // 숫자, '_', '.'는 1로 계산
+      }
+    }
+  
+    // 길이 조건 확인
+    if (weightedLength > 20) {
       setNewNicknameClassname('div-nickname-wrong');
-      setNewNicknameMessage("한글만 사용한 경우 10자 이하로 작성해야 합니다.");
+      setNewNicknameMessage("닉네임의 가중치 합이 20을 초과할 수 없습니다.");
       return false;
     }
-    
-    if (newState.length > 20) {
-      setNewNicknameClassname('div-nickname-wrong');
-      setNewNicknameMessage("닉네임은 최대 20자 이하로 작성해야 합니다.");
-      return false;
-    }
+  
     return true;
-  }
+  };
+  
 
   // 동적 스타일
   const getTabStyle = (type) => ({

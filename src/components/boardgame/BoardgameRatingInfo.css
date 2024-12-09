@@ -56,3 +56,27 @@
 .div-to-create-rating:hover {
   cursor: pointer;
 }
+
+.div-to-create-rating-container{
+  margin: var(--basic-margin);
+  background-color: var(--basic-gray-color);
+  border-radius: var(--basic-border-radius);
+  padding: 2%;
+}
+
+.div-to-create-rating-inner {
+  background-color: white;
+  border-radius: var(--basic-border-radius);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 1% 5% 1% 5%;
+}
+
+.span-to-create-rating {
+  font-weight : bold;
+  color : var(--basic-gray-color);
+  display: flex;
+  margin-left: 4%;
+  font-size: 1.3em;
+}
