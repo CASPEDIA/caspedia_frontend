@@ -155,6 +155,22 @@ export async function getRatedBoardgames (nanoid) {
 }
 
 /**
+ * 닉네임 중복 확인
+ * @param {새 닉네임} newNickname 
+ */
+export async function checkMyNewNickname(newNickname) {
+  try {
+    const { data } = await http
+      .post(`/user/nickname`, {
+        "new_nickname" : newNickname
+      })
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+/**
  * 닉네임 변경
  * @param {새 닉네임} newNickname 
  */

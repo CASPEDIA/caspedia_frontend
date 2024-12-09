@@ -4,7 +4,7 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setUserIntroduction, userLogout } from 'hooks/userHooks';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setUserIntroduction, userLogout } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
@@ -162,10 +162,8 @@ export default function UserDetail() {
   const putNewNickname = (newState) => {
     setMyNewNickname(newState)
       .then((data) => {
-        console.log(data);
-        // setNickname(newState);
-        setNewNicknameClassname('div-nickname-confirm');
-        setNewNicknameMessage("사용 가능한 닉네임입니다.");
+        setNickname(newNickname);
+        closeNicknameModal();
       })
       .catch((e) => {
         if (e.response && e.response.status === 400) {
@@ -177,19 +175,28 @@ export default function UserDetail() {
 
   const handleSetMyNewNickname = (newState) => {
     if(checkValidateNickname(newState)){
-      putNewNickname(newState);
+      checkMyNewNickname(newState)
+        .then((data) => {
+          // setNickname(newState);
+          setNewNicknameClassname('div-nickname-confirm');
+          setNewNicknameMessage("사용 가능한 닉네임입니다.");
+        })
+        .catch((e) => {
+          if (e.response && e.response.status === 400) {
+            setNewNicknameClassname('div-nickname-wrong');
+            setNewNicknameMessage(e.response.data.message);
+          }
+        });
     }
   }
-    
+  
   const handleNicknameChangeConfirmMessage = () => {
-    setNickname(newNickname);
-    closeNicknameModal();
+    putNewNickname(newNickname);
   }
   
   function keyPress(e){
     if(e.key === 'Enter') {
-      setNickname(newNickname);
-      closeNicknameModal();
+      putNewNickname(newNickname);
     }
   }
   
@@ -408,7 +415,7 @@ export default function UserDetail() {
         />
         <div className={`div-new-nickname-message ${newNicknameClassname}`}>{newNicknameMessage}</div>
         <div onClick={handleNicknameChangeConfirmMessage}>
-          확인
+          변경하기
         </div>
       </ChangeNicknameModal>
     </>
