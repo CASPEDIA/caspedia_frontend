@@ -76,11 +76,11 @@ const App = createBrowserRouter([
           </RequireAuth>
         ),
       },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
     ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
   },
 ]);
 
