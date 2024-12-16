@@ -61,13 +61,14 @@ export default function BoardgameSearchBar() {
   }
 
   const handleKeyDown = (e) => {
-    if (!isOpen) return;
-
+    
     if (e.key === 'ArrowDown') {
+      if (!isOpen) return;
       setActiveIndex((prevIndex) =>
         prevIndex < searchResults.length - 1 ? prevIndex + 1 : 0
-      );
-    } else if (e.key === 'ArrowUp') {
+    );
+  } else if (e.key === 'ArrowUp') {
+      if (!isOpen) return;
       setActiveIndex((prevIndex) =>
         prevIndex > 0 ? prevIndex - 1 : searchResults.length - 1
       );

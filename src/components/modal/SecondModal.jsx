@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import PropTypes from "prop-types";
-import './ChangeNicknameModal.css';
+import './SecondModal.css';
 
-const ChangeNicknameModal = forwardRef(({
+const SecondModal = forwardRef(({
   isModalOpen,
   closeModal,
   children
@@ -51,10 +51,10 @@ const ChangeNicknameModal = forwardRef(({
   );
 });
 
-ChangeNicknameModal.propTypes = {
+SecondModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
 
-export default ChangeNicknameModal;
+export default SecondModal;
