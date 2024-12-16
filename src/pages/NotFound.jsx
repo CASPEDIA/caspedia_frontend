@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './NotFound.css'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function NotFound() {
-  const navigate = useNavigate();
-
   return (
     <div className='div-notfound-background'>
       <br />
