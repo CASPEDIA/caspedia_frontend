@@ -5,6 +5,14 @@
   background-color: var(--basic-gray-color);
 }
 
+.div-my-rating {
+  /* 1안 */
+  background-color: var(--basic-mint-color);
+  /* 2안 */
+  /* background-color: black; */
+  /* color:white; */
+}
+
 .div-boardgame-rating-basic-info {
   display: flex;
   justify-content: space-between;
