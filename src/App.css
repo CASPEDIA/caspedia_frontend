@@ -65,7 +65,7 @@
 
 
 .component-background {
-  background-image: url('/public/img/F1_main_background.jpg'); /* 배경 이미지 경로 */
+  background-image: url('/public/img/F1_main_background.png'); /* 배경 이미지 경로 */
   background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
   background-repeat: repeat; /* 이미지를 반복하지 않음 */
   background-position: top;
