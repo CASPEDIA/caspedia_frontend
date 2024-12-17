@@ -186,6 +186,31 @@ export async function setMyNewNickname(newNickname) {
   }
 }
 
+/**
+ * 비밀번호 변경
+ * @param {이전 비밀번호} oldPassword 
+ * @param {새 비밀번호} newPassword 
+ * @returns 
+ */
+export async function setMyNewPassword(oldPassword, newPassword) {
+  try {
+    const { data } = await http
+      .put(`/user/password`, {
+        "old_password" : oldPassword,
+        "new_password" : newPassword
+      })
+    return data;
+  } catch (e) {
+    throw e;
+  }
+  
+}
+
+/**
+ * 유저 검색 자동 완성성
+ * @param {쿼리} query 
+ * @returns 
+ */
 export async function autoFillUser(query) {
   try {
     const { data } = await http

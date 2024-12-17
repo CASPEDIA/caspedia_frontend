@@ -4,24 +4,36 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setUserIntroduction, userLogout } from 'hooks/userHooks';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setMyNewPassword, setUserIntroduction, userLogout } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
-import ChangeNicknameModal from 'components/modal/ChangeNicknameModal';
+import SecondModal from 'components/modal/SecondModal';
+import CancelButton from 'components/common/CancelButton';
 
 export default function UserDetail() {
   const [cookies,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+
   const {nanoid} = useParams();
   // const [id, setId] = useState('');
   const [introduction, setIntroduction] = useState("");
   const [name, setName] = useState('');
+
   const [nickname, setNickname] = useState('');
+
   const [newNickname, setNewNickname] = useState('');
   const [newNicknameMessage, setNewNicknameMessage] = useState('');
   const [newNicknameClassname, setNewNicknameClassname] = useState('');
+  
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPasswordMessage, setNewPasswordMessage] = useState('');
+  const [newPasswordClassname, setNewPasswordClassname] = useState('');
+
   const [userImageKey, setUserImageKey] = useState('');
   const [isMyPage, setIsMyPage] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
@@ -30,9 +42,14 @@ export default function UserDetail() {
   const [sortOrder, setSortOrder] = useState({ type: "updatedAt", direction: "desc" }); // 초기 정렬: 작성순 ▼
   const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
+
   const likedModalRef = useRef(null);
   const nicknameModalRef = useRef(null);
+  const passwordModalRef = useRef(null);
   const changeNicknameRef = useRef(null);
+  const currentPasswordRef = useRef(null);
+  const newPasswordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
 
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => 
@@ -106,7 +123,59 @@ export default function UserDetail() {
     }
   }
   const closeNicknameModal = () => setIsNicknameModalOpen(false);
+
+  const openPasswordModal = () => {
+    setIsPasswordModalOpen(true);
+
+  }
+
+  const closePasswordModal = () => setIsPasswordModalOpen(false);
   
+  const handleChangeCurrentPassword = (e) => {
+    setCurrentPassword(e.target.value);
+  }
+
+  const handleChangeNewPassword = (e) => {
+    setNewPassword(e.target.value);
+  }
+
+  const handleChangeConfirmPassword = (e) => {
+    const newValue = e.target.value;
+    setConfirmPassword(newValue);
+    if (newValue.length !== 0 ) {
+      if (newValue === newPassword) {
+        setNewPasswordClassname('div-password-confirm');
+        setNewPasswordMessage("사용 가능한 비밀번호입니다.");
+      } else {
+        setNewPasswordClassname("div-password-wrong");
+        setNewPasswordMessage("새 비밀번호가 일치하지 않습니다.");
+      }
+    }
+    
+  }
+
+  const checkValidatePassword = (newState) => {
+    if (newState.length < 8 || newState.length > 64) {
+      return false;
+    } else return true;
+  }
+
+  const putNewPassword = (oldPassword, newPassword) => {
+    setMyNewPassword(oldPassword, newPassword)
+      .then((data) => {
+        closePasswordModal();
+      })
+      .catch((e) => {
+        if (e.response && e.response.status === 400) {
+          setNewPasswordClassname('div-password-wrong');
+          setNewPasswordMessage(e.response.data.message);
+        }
+      })
+  }
+
+  const handlePutNewPassword = () => {
+    putNewPassword(currentPassword, newPassword);
+  }
 
   const handleChangeNickname = () => {
     openNicknameModal();
@@ -291,7 +360,16 @@ export default function UserDetail() {
             <div className='div-name-info'>
               {name}
               {isMyPage ?
-              <CustomButton text="로그아웃" onClick={() => userLogout(removeCookie)} />
+              <>
+                <CancelButton
+                  text="비밀번호 변경"
+                  onClick={() => openPasswordModal()}
+                  />
+                <CustomButton 
+                  text="로그아웃" 
+                  onClick={() => userLogout(removeCookie)} 
+                  />
+              </>
               : ""}
             </div>
           </div>
@@ -398,7 +476,7 @@ export default function UserDetail() {
           );
         })}
       </CommonModal>
-      <ChangeNicknameModal
+      <SecondModal
         isModalOpen={isNicknameModalOpen}
         closeModal={closeNicknameModal}
         ref={nicknameModalRef}
@@ -417,7 +495,48 @@ export default function UserDetail() {
         <div onClick={handleNicknameChangeConfirmMessage}>
           변경하기
         </div>
-      </ChangeNicknameModal>
+      </SecondModal>
+      <SecondModal
+        isModalOpen={isPasswordModalOpen}
+        closeModal={closePasswordModal}
+        ref={passwordModalRef}
+      >
+        <div>새 비밀번호를 설정하기 위한 정보를 입력하세요</div>
+        <input
+          value={currentPassword}
+          onChange={handleChangeCurrentPassword}
+          type="password"
+          placeholder="현재 비밀번호를 입력하세요"
+          className='password-input'
+          ref={currentPasswordRef}
+          // minLength="8"
+          maxLength="64"
+          />
+        <input
+          value={newPassword}
+          onChange={handleChangeNewPassword}
+          type="password"
+          placeholder="새 비밀번호를 입력하세요"
+          className='password-input'
+          ref={newPasswordRef}
+          // minLength="8"
+          maxLength="64"
+          />
+        <input
+          value={confirmPassword}
+          onChange={handleChangeConfirmPassword}
+          type="password"
+          placeholder="새 비밀번호를 다시 입력하세요"
+          className='password-input'
+          ref={confirmPasswordRef}
+          // minLength="8"
+          maxLength="64"
+        />
+        <div className={`div-new-password-message ${newPasswordClassname}`}>{newPasswordMessage}</div>
+        <div onClick={handlePutNewPassword}>
+          변경하기
+        </div>
+      </SecondModal>
     </>
   )
 }

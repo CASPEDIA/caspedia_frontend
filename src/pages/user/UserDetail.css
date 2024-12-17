@@ -28,6 +28,11 @@
   align-items: center;
 }
 
+.div-buttons {
+  display: flex;
+  
+}
+
 .custom-textarea {
   width: 100%;
   margin-top: var(--basic-margin);
@@ -93,5 +98,27 @@
 }
 
 .div-nickname-wrong {
+  color: red;
+}
+
+.password-input {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: 1%;
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: center;
+}
+
+.div-new-password-message {
+  font-size: 0.8em;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-password-confirm {
+  color: blue;
+}
+
+.div-password-wrong {
   color: red;
 }

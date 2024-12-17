@@ -6,6 +6,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
+  white-space: nowrap;
 }
 
 .div-cancel-button:hover {
