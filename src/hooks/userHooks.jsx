@@ -1,4 +1,5 @@
 import http from "api/http";
+import { zip } from "lodash";
 
 /**
  * 로그인 로직 처리
@@ -219,4 +220,21 @@ export async function autoFillUser(query) {
   } catch (e) {
     throw e
   }  
+}
+
+/**
+ * 이미지 변경
+ * @param {새 이미지 키} newImageKey 
+ * @returns 
+ */
+export async function setMyNewProfile(newImageKey) {
+  try {
+    const { data } = await http
+      .put(`/user/image`, {
+        "new_image_key" : newImageKey
+      })
+    return data;
+  } catch (e) {
+    throw e;
+  }
 }

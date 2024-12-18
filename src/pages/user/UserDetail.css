@@ -13,6 +13,28 @@
   width : 65%;
 }
 
+.div-profile-select-container {
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  background-color: rgba(95,95,95,0.6);
+  padding: 2%;
+  border-radius: var(--basic-border-radius);
+  /* height : 33vh; */
+}
+
+/* .div-profile-select-scroll-container {
+  overflow-y: auto;
+  max-height: 30vh;
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.div-profile-item {
+  width: 31%;
+  margin: 1%;
+  padding: 2% 5% 2% 5%;
+}
+
 .div-nickname {
   text-align: left;
   margin-bottom : 2%;

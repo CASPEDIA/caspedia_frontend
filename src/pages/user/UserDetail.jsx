@@ -4,16 +4,18 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setMyNewPassword, setUserIntroduction, userLogout } from 'hooks/userHooks';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, userLogout } from 'hooks/userHooks';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
 import CancelButton from 'components/common/CancelButton';
+import { PROFILE_LIST } from 'recoil/profile/atom';
 
 export default function UserDetail() {
   const [cookies,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
@@ -43,6 +45,7 @@ export default function UserDetail() {
   const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
 
+  const profileModalRef = useRef(null);
   const likedModalRef = useRef(null);
   const nicknameModalRef = useRef(null);
   const passwordModalRef = useRef(null);
@@ -50,6 +53,21 @@ export default function UserDetail() {
   const currentPasswordRef = useRef(null);
   const newPasswordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+
+  const profiles = PROFILE_LIST;
+
+  const userImageStyle = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
+    backgroundSize: 'cover',    // 이미지 크기 조정
+    backgroundPosition: 'center', // 이미지 위치 조정
+    backgroundRepeat: 'no-repeat', // 이미지 반복 방지
+    width: '20vw',
+    height: '20vw',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '10vw',
+  };
 
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => 
@@ -116,6 +134,21 @@ export default function UserDetail() {
   }
   const closeLikedModal = () => setIsLikedModalOpen(false);
 
+  const openProfileModal = () => setIsProfileModalOpen(true);
+
+  const closeProfileModal = () => setIsProfileModalOpen(false);
+
+  const handleChangeProfile = (newImageKey) => {
+    setMyNewProfile(newImageKey)
+      .then((data) => {
+        closeProfileModal();
+        setUserImageKey(newImageKey);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
   const openNicknameModal = () => {
     setIsNicknameModalOpen(true);
     if (nicknameModalRef.current) {
@@ -126,7 +159,6 @@ export default function UserDetail() {
 
   const openPasswordModal = () => {
     setIsPasswordModalOpen(true);
-
   }
 
   const closePasswordModal = () => setIsPasswordModalOpen(false);
@@ -143,7 +175,10 @@ export default function UserDetail() {
     const newValue = e.target.value;
     setConfirmPassword(newValue);
     if (newValue.length !== 0 ) {
-      if (newValue === newPassword) {
+      if (!checkValidatePassword(newValue)) {
+        setNewPasswordClassname("div-password-wrong");
+        setNewPasswordMessage("비밀번호 길이는 8자 이상 64자 이하입니다.");
+      } else if (newValue === newPassword) {
         setNewPasswordClassname('div-password-confirm');
         setNewPasswordMessage("사용 가능한 비밀번호입니다.");
       } else {
@@ -346,7 +381,10 @@ export default function UserDetail() {
     <>
       <div className='div-user-basic-info'>
         <div className='div-user-name-info'>
-          <img src={`/user_profile/profile_${userImageKey}.png` || "/user_profile/profile_1.png"} width="23%" alt="이미지" />
+          {/* <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} width="23%" alt="이미지" /> */}
+          <div style={userImageStyle} onClick={() => openProfileModal()}>
+            <img src="/img/F1_change_profile.png" alt="changeprofile" width="35%" />
+          </div>
           <div className='div-user-inner-info'>
             <div className='div-nickname'>
               <strong>{nickname}&nbsp;</strong>
@@ -476,6 +514,26 @@ export default function UserDetail() {
           );
         })}
       </CommonModal>
+      <SecondModal
+        isModalOpen={isProfileModalOpen}
+        closeModal={closeProfileModal}
+        ref={profileModalRef}
+      >
+        <div>캐스피디아에서<br />나를 대표할 이미지를 선택하세요!</div>
+          <div className='div-profile-select-container'>
+            <div className='div-profile-select-scroll-container'>
+              {profiles.map((item, index) => 
+                <img
+                  className='div-profile-item'
+                  key={index} 
+                  src={`/user_profile/${item["url"]}`} 
+                  alt={`프로필 ${item["id"]}`}
+                  onClick={() => handleChangeProfile(item["id"])}
+                />
+              )}
+            </div>
+          </div>
+      </SecondModal>
       <SecondModal
         isModalOpen={isNicknameModalOpen}
         closeModal={closeNicknameModal}
