@@ -5,9 +5,14 @@ import './CommonModal.css';
 const CommonModal = forwardRef(({
   isModalOpen,
   closeModal,
-  children
+  children,
+  option = "scroll",
 }, ref) => {
   const overlayRef = useRef(null);
+
+  const style = {
+    overflowY : option
+  };
 
   const handleResize = () => {
     const width = window.innerWidth;
@@ -45,7 +50,7 @@ const CommonModal = forwardRef(({
       onClick={closeModal}
     >
       <div className='div-modal-container' onClick={(e) => e.stopPropagation()}>
-        <div className='div-scroll-container'>
+        <div className='div-scroll-container' style={style}>
           {children}
         </div>
       </div>

@@ -13,6 +13,8 @@ import UserDetail from 'pages/user/UserDetail';
 import RequireAuth from 'hooks/RequireAuth';
 import ScrollToTop from 'pages/ScrollToTop';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RequireAdmin from 'hooks/RequireAdmin';
+import AdminPage from 'pages/admin/AdminPage';
 
 const App = createBrowserRouter([
   {
@@ -75,6 +77,15 @@ const App = createBrowserRouter([
             <Rating />
           </RequireAuth>
         ),
+      },
+      {
+        path: 'admin',
+        element: (
+          <RequireAdmin>
+            <ScrollToTop />
+            <AdminPage />
+          </RequireAdmin>
+        )
       },
       {
         path: '*',

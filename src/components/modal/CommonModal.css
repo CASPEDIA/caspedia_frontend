@@ -22,6 +22,6 @@
 }
 
 .div-scroll-container {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   max-height: 68vh;
 }

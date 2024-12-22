@@ -1,0 +1,54 @@
+.div-admin-user-list {
+  width: 100%;  
+  min-height: 100%;
+  background-color: var(--basic-white-color);
+  /* font-size: 0.8rem; */
+}
+
+.no-results{
+  text-align: center;
+}
+
+.table-user-list {
+  width: 100%;
+  /* border-collapse: collapse;  */
+}
+
+.table-user-list th {
+  background-color: var(--basic-mint-color);
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+
+.table-user-list th,
+.table-user-list td {
+  border-top: 1px solid black; /* 가로선 추가 */
+  border-bottom: 1px solid black; /* 가로선 추가 */
+  padding: 2%;
+  text-align: center;
+  position: relative; 
+}
+
+.table-user-list th::after,
+.table-user-list td::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  width: 0.5px; 
+  height: 50%; 
+  background-color: black;
+}
+
+/* 첫 번째 셀의 왼쪽 세로선 제거 */
+.table-user-list th:first-child::after,
+.table-user-list td:first-child::after {
+  content: none;
+}
+
+/* 마지막 셀의 오른쪽 세로선 제거 */
+.table-user-list th:last-child::before,
+.table-user-list td:last-child::before {
+  content: none;
+}

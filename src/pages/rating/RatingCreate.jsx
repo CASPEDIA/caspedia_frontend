@@ -293,6 +293,7 @@ export default function RatingCreate({
         isModalOpen={isCreateModalOpen}
         closeModal={closeCreateModal}
         ref={createModalRef}
+        option="hidden"
         >
         <div>
           <div>평가를 제출하시겠습니까?</div>
@@ -313,6 +314,7 @@ export default function RatingCreate({
         isModalOpen={isModifyModalOpen}
         closeModal={closeModifyModal}
         ref={modifyModalRef}
+        option="hidden"
         >
         <div>
           <div>평가를 수정하시겠습니까?</div>
@@ -333,6 +335,7 @@ export default function RatingCreate({
         isModalOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
         ref={deleteModalRef}
+        option="hidden"
         >
         <div>
           <div>평가를 삭제하시겠습니까?</div>
@@ -353,6 +356,7 @@ export default function RatingCreate({
         isModalOpen={isCancelModalOpen}
         closeModal={closeCancelModal}
         ref={cancelModalRef}
+        option="hidden"
         >
         <div>
           <div>현재 창에서 나가면 지금까지 작성한 내용이 사라집니다. 정말 나가시겠습니까?</div>
