@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './UserRating.css'
 import { useNavigate } from 'react-router-dom'
-// import CancelButton from 'components/common/CancelButton';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
-import { useCookies } from 'react-cookie';
-import { isMyInfo } from 'hooks/userHooks';
+import { useIsMyInfo } from 'hooks/userHooks';
 
 export default function UserRating({
   ratingKey=10,
@@ -19,7 +17,7 @@ export default function UserRating({
   createdAt="2024-11-16T15:47:37.450685",
   updatedAt="2024-11-16T19:24:48.835425",
 }) {
-  const [cookies,,] = useCookies(["nanoid"]);
+  const isMyInfo = useIsMyInfo();
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [tagList, setTagList] = useState([]);
@@ -46,7 +44,7 @@ export default function UserRating({
             <strong style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
           {
-            isMyInfo(cookies, nanoid) ?
+            isMyInfo(nanoid) ?
             <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
             :
             <></>

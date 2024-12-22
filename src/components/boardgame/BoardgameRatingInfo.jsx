@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './BoardgameRatingInfo.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import BoardgameRating from './BoardgameRating';
-import ToRatingEditBtn from 'components/rating/ToRatingEditBtn';
 import { getBoardgameRatings } from 'hooks/boardgameHooks';
 import { useCookies } from 'react-cookie';
-import { isMyInfo } from 'hooks/userHooks';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
-import CustomCard from 'components/common/CustomCard';
+import { useIsMyInfo } from 'hooks/userHooks';
 
 export default function BoardgameReviewInfo() {
   const navigate = useNavigate();
   const {boardid} = useParams();
-  const [cookies,,] = useCookies(["nanoid"]);
+  const isMyInfo = useIsMyInfo();
   const [ratingCount, setRatingCount] = useState(0);
   const [ratedUsers, setRatedUsers] = useState([]);
   const [myRateInfo, setMyRateInfo] = useState({});
@@ -33,7 +31,7 @@ export default function BoardgameReviewInfo() {
           tmpCount++;
           tmpList.push(item.tag_keys);
           
-          if(isMyInfo(cookies,item.nanoid)) {
+          if(isMyInfo(item.nanoid)) {
             setAlreadyRated(true);
             myRate = {
               nanoid: item.nanoid,

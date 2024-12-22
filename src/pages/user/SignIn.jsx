@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Signin.css'
 import CustomButton from 'components/common/CustomButton'
-import { hasAuth, userLogin } from "hooks/userHooks"
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import { useHasAuth, useUserLogin } from 'hooks/userHooks';
 
 export default function SignIn() {
-  const [cookies, setCookie ,] = useCookies(["jwtToken", "nanoid"]);
+  const userLogin = useUserLogin();
+  const hasAuth = useHasAuth();
   const idInputRef = useRef(null);
   const passwordInputRef = useRef(null);
   const [id, setId] = useState('');
@@ -23,7 +23,7 @@ export default function SignIn() {
   }
 
   const handleLogin = () => {
-    userLogin(id,password,setCookie)
+    userLogin(id,password)
       .catch((e) => {
         setLoginComment("아이디 혹은 비밀번호가 잘못되었습니다.");
         setId("");
@@ -41,13 +41,13 @@ export default function SignIn() {
   }
 
   useEffect(() => {
-    if (hasAuth(cookies)) {
+    if (hasAuth()) {
       navigate('/');
     }
     else if (idInputRef.current) {
       idInputRef.current.focus();
     }
-  }, [cookies, navigate])
+  }, [navigate])
   return (
     <div className='div-signin'>
       <img src="/img/F5_main_logo.png" style={{height:"30vh", width:"auto"}}  alt="메인 로고" />

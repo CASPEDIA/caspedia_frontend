@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './BoardgameRating.css'
 import { useNavigate } from 'react-router-dom'
-// import CancelButton from 'components/common/CancelButton';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
-import { isMyInfo } from 'hooks/userHooks';
-import { useCookies } from 'react-cookie';
+import { useIsMyInfo } from 'hooks/userHooks';
 
 export default function BoardgameRating({
   boardgameKey=1,
@@ -18,7 +16,7 @@ export default function BoardgameRating({
   tagKeys="111110000000000000000000",
 }) {
   const navigate = useNavigate();
-  const [cookies,,] = useCookies(["nanoid"]);
+  const isMyInfo = useIsMyInfo();
   const [isExpanded, setIsExpanded] = useState(false);
   const [tagList, setTagList] = useState([]);
   const toggleExpand = () => {
@@ -35,13 +33,13 @@ export default function BoardgameRating({
     setTagList(tmpList);
   }, [])
   return (
-    <div className={`div-boardgame-rating-card ${isMyInfo(cookies, nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
+    <div className={`div-boardgame-rating-card ${isMyInfo(nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
           <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"cursor" : "pointer", "borderRadius": "8vw", "width" : "16vw", "height" : "16vw"}} alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
             <strong style={{"paddingRight":"0.5rem" , "cursor" : "pointer"}} onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
-            {isMyInfo(cookies, nanoid) ?
+            {isMyInfo(nanoid) ?
               <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="7%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
               :
               <></>

@@ -1,17 +1,18 @@
 import React from 'react'
 import "./Navigation.css"
-// import { Col, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { useCookies } from 'react-cookie';
-import { hasAuth } from 'hooks/userHooks';
+import { useHasAuth } from 'hooks/userHooks';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'recoil/userstate/atom';
 
 
 export default function Navigation() {
-  const [cookies,,] = useCookies(["jwtToken", "nanoid"]);
+  const hasAuth = useHasAuth();
   const navigate = useNavigate();
+  const user = useRecoilValue(userState);
   const handleMyPage = () => {
-    if(hasAuth(cookies)){
-      navigate(`/user/${cookies.nanoid}`)
+    if(hasAuth()){
+      navigate(`/user/${user.nanoid}`)
     } else {
       alert("로그인 후 이용하세요");
     }

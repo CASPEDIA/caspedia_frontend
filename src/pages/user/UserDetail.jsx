@@ -4,16 +4,19 @@ import './UserDetail.css'
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, isMyInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, userLogout } from 'hooks/userHooks';
-import { useCookies } from 'react-cookie';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo, useUserLogout } from 'hooks/userHooks';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
 import CancelButton from 'components/common/CancelButton';
 import { PROFILE_LIST } from 'recoil/profile/atom';
+import { useRecoilValue } from 'recoil';
+import { userState } from 'recoil/userstate/atom';
 
 export default function UserDetail() {
-  const [cookies,,removeCookie] = useCookies(["jwtToken", "nanoid"]);
+  const user = useRecoilValue(userState);
+  const userLogout = useUserLogout();
+  const isMyInfo = useIsMyInfo();
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
@@ -368,8 +371,8 @@ export default function UserDetail() {
     }, [nanoid]);
 
   useEffect(() => {
-    setIsMyPage(isMyInfo(cookies, nanoid));
-  }, [cookies, nanoid, isMyPage]);
+    setIsMyPage(isMyInfo(nanoid));
+  }, [user, nanoid, isMyPage, isMyInfo]);
 
   useEffect(() => {
     if (isNicknameModalOpen && changeNicknameRef.current) {
@@ -405,7 +408,7 @@ export default function UserDetail() {
                   />
                 <CustomButton 
                   text="로그아웃" 
-                  onClick={() => userLogout(removeCookie)} 
+                  onClick={() => userLogout()} 
                   />
               </>
               : ""}

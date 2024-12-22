@@ -1,48 +1,47 @@
 import http from "api/http";
-import { zip } from "lodash";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { UNLOGINED_USER, userState } from "recoil/userstate/atom";
 
-/**
- * 로그인 로직 처리
- * @param {아이디} id 
- * @param {비밀번호} password 
- * @param {쿠키 설정을 위한 메소드} setCookie 
- */
-export async function userLogin (id,password,setCookie) {
-  try {
-    const { data } = await http
-      .post('/user/login', {
-        "id" : id,
-        "password" : password
+
+export function useUserLogin() {
+  const [user, setUser] = useRecoilState(userState);
+  const userLogin = async (id, password) => {
+    try {
+      const { data } = await http
+        .post('/user/login', {
+          "id" : id,
+          "password" : password
+        })
+      setUser({
+        hasLogin: true,
+        id: id,
+        nanoid: data.nanoid,
+        jwtToken: data.token,
+        authority: data.authority,
       });
-    setCookie("jwtToken", data.token, { path: "/", secure: true, sameSite: "strict"})
-    setCookie("nanoid", data.nanoid, { path: "/", secure: true, sameSite: "strict"})
-    // localStorage.setItem("jwtToken", data.token);
-    // localStorage.setItem("nanoid",data.nanoid);
-    window.location.href="/";
-  } catch (e) {
-    // console.log(e);
-    throw e;
-  }
+      window.location.href="/";
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  return userLogin;
 }
 
-/**
- * 로그아웃
- * @param {쿠키 삭제를 위한 메소드} removeCookie 
- */
-export function userLogout (removeCookie){
-  http
-  .post('/user/logout')
-  .then(({data}) => {
-    console.log("logout");
-    removeCookie("jwtToken", { path: "/" });
-    removeCookie("nanoid", { path: "/" });
-    // localStorage.removeItem('jwtToken');
-    // localStorage.removeItem('nanoid'); 
-    window.location.href='/signin';
-  })
-  .catch((e) => {
-    console.log(e);
-  })
+export function useUserLogout () {
+  const [user, setUser] = useRecoilState(userState);
+  const userLogout = async () => {
+    try {
+      const { data } = await http
+        .post('/user/logout');
+      setUser(UNLOGINED_USER);    
+      window.location.href='/signin';
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  return userLogout;
 }
 
 /**
@@ -67,28 +66,23 @@ export function userJoin (){
   })
 }
 
-/**
- * 로그인 상태 확인
- * @param {쿠키 상태 확인} cookies 
- * @returns 
- */
-export function hasAuth (cookies) {
-  const token = cookies.jwtToken;
-  const nanoid = cookies.nanoid;
-  if (token && nanoid) return true;
-  else return false;
+export function useHasAuth() {
+  const user = useRecoilValue(userState);
+  const hasAuth = () => {
+    return user.hasLogin;
+  };
+  return hasAuth;
 }
 
 
-/**
- * 내 정보인지 확인
- * @param {쿠키} cookies 
- * @param {확인하고자 하는 유저 } nanoid 
- * @returns 
- */
-export function isMyInfo (cookies, nanoid) {
-  if (cookies.nanoid === nanoid) return true;
-  else return false;
+export function useIsMyInfo() {
+  const user = useRecoilValue(userState);
+  
+  const isMyInfo = (nanoid) => {
+    if (user.nanoid === nanoid) return true;
+    else return false;
+  };
+  return isMyInfo;
 }
 
 /**

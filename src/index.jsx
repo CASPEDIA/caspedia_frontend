@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import { RouterProvider } from 'react-router-dom';
+import InterceptorInitializer from 'hooks/InterceptorInitializer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <RecoilRoot>
+    <InterceptorInitializer />
     <React.StrictMode>
       <RouterProvider router={App} />
     </React.StrictMode>
