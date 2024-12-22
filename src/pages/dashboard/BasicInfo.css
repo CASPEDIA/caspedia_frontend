@@ -6,3 +6,10 @@
   padding: var(--basic-padding);
   margin: var(--basic-margin);
 }
+
+.div-recent-info {
+  /* padding: var(--basic-padding); */
+  /* margin: var(--basic-margin); */
+  display: flex;
+  justify-content: start;
+}

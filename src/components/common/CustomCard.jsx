@@ -6,12 +6,16 @@ const CustomCard = ({
   height, 
   children, 
   padding = "5%",
+  margin = "3%",
   justifyContent = "center",
+  alignItems = "center",
 }) => {
   const style = {
     height: height, // 동적으로 전달된 높이
     padding: padding,
-    justifyContent: justifyContent
+    margin: margin,
+    justifyContent: justifyContent,
+    alignItems: alignItems,
   };
 
   return <div style={style} className="custom-card">{children}</div>;
