@@ -72,6 +72,19 @@ export default function UserDetail() {
     borderRadius: '10vw',
   };
 
+  const otherImageStyle = {
+    backgroundImage: `url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
+    backgroundSize: 'cover',    // 이미지 크기 조정
+    backgroundPosition: 'center', // 이미지 위치 조정
+    backgroundRepeat: 'no-repeat', // 이미지 반복 방지
+    width: '20vw',
+    height: '20vw',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '10vw',
+  };
+
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => 
       setUserIntroduction(newIntroduction)
@@ -384,10 +397,13 @@ export default function UserDetail() {
     <>
       <div className='div-user-basic-info'>
         <div className='div-user-name-info'>
-          {/* <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} width="23%" alt="이미지" /> */}
-          <div style={userImageStyle} onClick={() => openProfileModal()}>
-            <img src="/img/F1_change_profile.png" alt="changeprofile" width="35%" />
-          </div>
+          { isMyPage ?
+            <div style={userImageStyle} onClick={() => openProfileModal()}>
+              <img src="/img/F1_change_profile.png" alt="changeprofile" width="35%" />
+            </div>
+            :
+            <div style={otherImageStyle} />            
+          }
           <div className='div-user-inner-info'>
             <div className='div-nickname'>
               <strong>{nickname}&nbsp;</strong>
