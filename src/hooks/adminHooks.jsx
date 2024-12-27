@@ -12,7 +12,7 @@ export async function getUsers() {
   }
 }
 
-export async function addUser(newUser) {
+export async function addUserByAdmin(newUser) {
   try {
     const { data } = await http
       .post(`/admin/join`, {
@@ -32,7 +32,7 @@ export async function addUser(newUser) {
   }
 }
 
-export async function setUser(userData) {
+export async function setUserByAdmin(userData) {
   try {
     const { data } = await http
       .put(`/admin/user`, {
