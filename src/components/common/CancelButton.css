@@ -1,0 +1,15 @@
+.div-cancel-button{
+  background-color: var(--basic-mint-color);
+  border:none;
+  padding:2% 4%;
+  border-radius: var(--basic-border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.div-cancel-button:hover {
+  background-color: var(--hover-mint-color);
+  transform: scale(1.05);
+}

@@ -1,0 +1,7 @@
+.div-notfound-background {
+  width: 100%;  
+  min-height: 100%;
+  background-color: var(--basic-white-color);
+  font-size: 4vw;
+  padding: var(--basic-padding);
+}
