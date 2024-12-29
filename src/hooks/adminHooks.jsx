@@ -17,14 +17,10 @@ export async function addUserByAdmin(newUser) {
     const { data } = await http
       .post(`/admin/join`, {
         "id" : newUser.id,
-        "password" : newUser.password,
-        "nickname" : newUser.nickname,
         "name" : newUser.name,
-        "introduction" : newUser.introduction,
         "student_id" : newUser.studentId,
-        "enabled" : true,
-        "authority_key" : 2,
-        "user_image_key" : 1,
+        "enabled" : newUser.enabled,
+        "authority_key" : newUser.authorityKey,
       })
     return data;
   } catch (e) {
@@ -38,9 +34,7 @@ export async function setUserByAdmin(userData) {
       .put(`/admin/user`, {
         "nanoid" : userData.nanoid,
         "nickname" : userData.nickname,
-        "name" : userData.name,
         "introduction" : userData.introduction,
-        "user_image_key" : userData.userImageKey,
         "enabled" : userData.enabled,
         "authority_key" : userData.authorityKey,
       })

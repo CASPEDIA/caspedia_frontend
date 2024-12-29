@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './AdminPage.css'
 import UserItem from './UserItem'
-import { getUsers, resetPassword, setUserByAdmin } from 'hooks/adminHooks';
+import { addUserByAdmin, getUsers, resetPassword, setUserByAdmin } from 'hooks/adminHooks';
 import CustomButton from 'components/common/CustomButton';
 import { useNavigate } from 'react-router-dom';
 import CommonModal from 'components/modal/CommonModal';
@@ -77,7 +77,6 @@ export default function AdminPage() {
   }
   
   const handleModifyUserModal = ( userData ) => {
-    console.log("hello");
     setIsCreateMode(false);
     openUserModal();
     setCurrentUser(userData);
@@ -149,42 +148,7 @@ export default function AdminPage() {
       })
   }
 
-  const handleUserCreate = () => {
-    const userData = {
-      "id": curId,
-      // "password" : curPassword,
-      "nickname": curNickname,
-      "name": curName,
-      "introduction": "",
-      "student_id": curStudentId,
-      "enabled": curEnabled,
-      "authority_key": curAuthorityKey,
-      "user_image_key": 1,
-    }
-
-  }
-
-  const handleUserModify = () => {
-    const userData = {
-      "nanoid": curNanoid,
-      "nickname": curNickname,
-      "name": curName,
-      "introduction": curIntroduction,
-      "user_image_key": curUserImageKey,
-      "enabled": curEnabled,
-      "authority_key": curAuthorityKey,
-    }
-    setUserByAdmin(userData)
-      .then((data) => {
-        closeUserModal();
-        window.location.reload();
-      })
-      .catch((e) => {
-        console.log(e);
-      })
-  }
-
-  useEffect(() => {
+  const reloadUserLists = () => {
     getUsers()
       .then((data) => {
         const parsedData = data.map((item) => ({
@@ -203,6 +167,46 @@ export default function AdminPage() {
       .catch((e) => {
         console.log(e);
       })
+  }
+
+  const handleUserCreate = () => {
+    const userData = {
+      "id": curId,
+      "name": curName,
+      "studentId": curStudentId,
+      "enabled": curEnabled,
+      "authorityKey": curAuthorityKey,
+    };
+    addUserByAdmin(userData)
+      .then((data) => {
+        reloadUserLists();
+        closeUserModal();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  const handleUserModify = () => {
+    const userData = {
+      "nanoid": curNanoid,
+      "nickname": curNickname,
+      "introduction": curIntroduction,
+      "enabled": curEnabled,
+      "authorityKey": curAuthorityKey,
+    }
+    setUserByAdmin(userData)
+      .then((data) => {
+        closeUserModal();
+        reloadUserLists();
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
+  useEffect(() => {
+    reloadUserLists();
   }, [])
   return (
     <div className='div-admin-user-list'>
@@ -260,7 +264,7 @@ export default function AdminPage() {
                 value={curName}
                 onChange={handleNameChange}
                 autoComplete='off'
-                // disabled={!isCreateMode}
+                disabled={!isCreateMode}
                 />
               </td>
             </tr>
@@ -292,6 +296,7 @@ export default function AdminPage() {
                 />
               </td>
             </tr>
+            {!isCreateMode ?
             <tr>
               <td>닉네임</td>
               <td>
@@ -302,16 +307,35 @@ export default function AdminPage() {
                 value={curNickname}
                 onChange={handleNicknameChange}
                 autoComplete='off'
-                disabled={!isCreateMode}
                 />
               </td>
             </tr>
+            :
+            <></>
+            }
             <tr>
               <td></td>
               <td>
                 <div className={`div-new-nickname-message ${newNicknameClassname}`}>{newNicknameMessage}</div>
               </td>
             </tr>
+            {!isCreateMode ?
+            <tr>
+              <td>자기소개</td>
+              <td>
+                <textarea 
+                  value={curIntroduction} 
+                  onChange={handleIntroductionChange}
+                  rows="5"
+                  placeholder="자기소개를 입력하세요."
+                  className='custom-textarea'
+                  maxLength="299"
+                />  
+              </td>
+            </tr>
+            :
+            <></>
+            }
             <tr>
               <td>권한</td>
               <td>
@@ -349,16 +373,10 @@ export default function AdminPage() {
             </div>
             :
             <div>
-              <div className='div-password-reset'>
-                <CustomButton 
-                  onClick={() => handlePasswordReset(curNanoid)}
-                  text='비밀번호 초기화'
-                  />
-              </div>
               <div className='div-modify-user'>
                 <CancelButton
-                  onClick={() => console.log('유저 삭제')}
-                  text='유저 삭제'
+                  onClick={() => handlePasswordReset(curNanoid)}
+                  text='비밀번호 초기화'
                   />
                 <CustomButton
                   onClick={() => handleUserModify()}
