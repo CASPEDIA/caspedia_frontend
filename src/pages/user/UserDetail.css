@@ -1,0 +1,146 @@
+.div-user-basic-info {
+  background-color: var(--basic-white-color);
+  padding : var(--basic-padding) var(--basic-padding) 1% var(--basic-padding);
+}
+
+.div-user-name-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-user-inner-info {
+  width : 65%;
+}
+
+.div-profile-select-container {
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  background-color: rgba(95,95,95,0.6);
+  padding: 2%;
+  border-radius: var(--basic-border-radius);
+  /* height : 33vh; */
+}
+
+/* .div-profile-select-scroll-container {
+  overflow-y: auto;
+  max-height: 30vh;
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.div-profile-item {
+  width: 31%;
+  margin: 1%;
+  padding: 2% 5% 2% 5%;
+}
+
+.div-nickname {
+  text-align: left;
+  margin-bottom : 2%;
+  display: flex;
+  justify-content: left;
+  font-size: 1.5em;
+  align-items: start;
+}
+
+.div-name-info {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-buttons {
+  display: flex;
+  
+}
+
+.custom-textarea {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: left;
+}
+
+.div-other-introduction {
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+  text-align: left;
+}
+
+.div-calculated-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.div-inner-card {
+  background-image: url("/public/img/F3_best_tags_background.png");
+  height:100%;
+  border-radius: var(--basic-border-radius);
+  padding: 5%;
+  color:white;
+}
+
+.div-review-name {
+  padding: 2% 0 2% 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.div-review-background {
+  background-color: rgba(255,255,255,0.2);
+  padding-bottom: var(--basic-padding);
+}
+
+.div-sort-tabs {
+  color:white;
+  padding: 3% var(--basic-padding) 3% var(--basic-padding);
+  text-align: right;
+}
+
+.nickname-input {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: 1%;
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: center;
+}
+
+.div-new-nickname-message {
+  font-size: 0.8em;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-nickname-confirm {
+  color: blue;
+}
+
+.div-nickname-wrong {
+  color: red;
+}
+
+.password-input {
+  width: 100%;
+  margin-top: var(--basic-margin);
+  margin-bottom: 1%;
+  border: 2px solid black;
+  border-radius: var(--basic-border-radius);
+  text-align: center;
+}
+
+.div-new-password-message {
+  font-size: 0.8em;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-password-confirm {
+  color: blue;
+}
+
+.div-password-wrong {
+  color: red;
+}

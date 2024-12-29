@@ -1,0 +1,26 @@
+.div-modal-second-overlay{
+  position:fixed;
+  top:0;
+  /* width: var(--max-width) ; */
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:2000;
+}
+
+.div-modal-second-container {
+  background-image: url('/public/img/F1_liked_games_background.jpg');
+  background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
+  background-repeat: repeat; /* 이미지를 반복하지 않음 */
+  background-position: top;
+  color: white;
+  text-align: center;
+  width: 80%;
+  padding: var(--basic-padding);
+  border-radius: var(--basic-border-radius);
+  max-height: 75vh;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 2001;
+}

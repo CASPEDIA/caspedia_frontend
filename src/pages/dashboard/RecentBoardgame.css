@@ -1,0 +1,12 @@
+.div-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-boardgame-item{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 5%;
+}

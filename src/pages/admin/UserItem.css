@@ -1,0 +1,7 @@
+td {
+  vertical-align: middle;
+}
+
+tr:hover {
+  background-color: var(--basic-gray-color);
+}

@@ -1,3 +1,104 @@
+#root {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+  /* background-color: #61dafb; */
+  border-left : 1px solid black;
+  border-right : 1px solid black;
+}
+
+
+/* 전역 CSS 변수 선언 */
+:root {
+  /* --primary-color: #3498db; */
+  /* --secondary-color: #2ecc71; */
+  --navbar-height: 7vh;
+  --navbar-font-color: white;
+  --navigation-height: 7vh;
+  --navigation-font-color: black;
+  --max-width: 800px;
+  --basic-white-color: #fafafa;
+  --basic-black-color: #000000;
+  --basic-mint-color: #E1F1FF;
+  --hover-mint-color: #b4cade;
+  --basic-gray-color: #dbdbdb;
+  --basic-pink-color: #ffe7f7;
+  --basic-margin: 3%;
+  --basic-padding: 5%;
+  --basic-border-radius: 8px;
+}
+
+/* ::-webkit-scrollbar{
+  display: none;
+} */
+
+/* ** Box3 스크롤바 설정 ** */
+::-webkit-scrollbar{
+  display:unset;
+}
+/* 스크롤바 설정*/
+::-webkit-scrollbar{
+  background-color:transparent;
+  width:1rem;
+}
+/* 스크롤바 막대 설정*/
+::-webkit-scrollbar-thumb{
+  background-color:var(--basic-gray-color);
+  border-radius:16px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color:#a0a0a5;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+::-webkit-scrollbar-track{
+  border-radius: 10px;
+  background-color:black;
+}
+::-webkit-scrollbar-track:hover{
+  background-color:rgb(44, 43, 43);
+}
+::-webkit-scrollbar-button {
+  display:none;
+}
+
+
+.component-background {
+  background-image: url('/public/img/F1_main_background.png'); /* 배경 이미지 경로 */
+  background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
+  background-repeat: repeat; /* 이미지를 반복하지 않음 */
+  background-position: top;
+  height: auto;                 /* 높이는 비율 유지 */
+  max-width: 800px;                 
+  max-height: 100%;             /* 높이가 화면 높이를 넘지 않도록 제한 */
+}
+
+
+/* 전체 컨테이너 스타일 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 중앙 메인 콘텐츠 영역 */
+.main-content {
+  flex: 1;
+  /* margin-top: var(--navbar-height);  */
+  /* margin-bottom: var(--navigation-height); */
+  /* overflow-y: auto; */
+  overflow: auto;
+  font-size: 3vw;
+}
+
+@media screen and (min-width: 800px){
+  .main-content{
+    font-size: 24px;
+  }
+}
+
 .App {
   text-align: center;
 }

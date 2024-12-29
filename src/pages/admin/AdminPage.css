@@ -1,0 +1,96 @@
+.div-admin-user-list {
+  width: 100%;  
+  min-height: 100%;
+  background-color: var(--basic-white-color);
+  /* font-size: 0.8rem; */
+}
+
+.input-user{
+  width: 100%;
+  padding: 0.3em 0.7em 0.3em 0.7em;
+  border: 1px solid #ccc;
+  border-radius: var(--basic-border-radius);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.select-custom {
+  width: 100%;
+  padding: 0.3em 0.7em 0.3em 0.7em;
+  border: 1px solid #ccc;
+  border-radius: var(--basic-border-radius);
+  text-align: left;
+}
+
+.table-user-list {
+  width: 100%;
+  /* border-collapse: collapse;  */
+}
+
+.table-user-list th {
+  background-color: var(--basic-mint-color);
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+
+.table-user-list th,
+.table-user-list td {
+  border-top: 1px solid black; /* 가로선 추가 */
+  border-bottom: 1px solid black; /* 가로선 추가 */
+  padding: 2%;
+  text-align: center;
+  position: relative; 
+}
+
+.table-user-list th::after,
+.table-user-list td::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  width: 0.5px; 
+  height: 50%; 
+  background-color: black;
+}
+
+/* 첫 번째 셀의 왼쪽 세로선 제거 */
+.table-user-list th:first-child::after,
+.table-user-list td:first-child::after {
+  content: none;
+}
+
+/* 마지막 셀의 오른쪽 세로선 제거 */
+.table-user-list th:last-child::before,
+.table-user-list td:last-child::before {
+  content: none;
+}
+
+.div-password-reset, .div-new-user {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: var(--basic-margin);
+  margin-bottom: var(--basic-margin);
+}
+
+.div-modify-user {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8%;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-new-nickname-message {
+  font-size: 0.8em;
+  margin-bottom: var(--basic-margin);
+}
+
+.div-nickname-confirm {
+  color: blue;
+}
+
+.div-nickname-wrong {
+  color: red;
+}

@@ -1,0 +1,82 @@
+.div-rating-info-container {
+  margin-bottom: var(--basic-margin);
+}
+
+.div-boardgame-best-tags {
+  background-image: url('/public/img/F3_best_tags_background.png'); /* 배경 이미지 경로 */
+  background-size: 100vw auto; /* 너비를 100vw로 고정, 비율 유지 */
+  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
+  background-position: top;  /* 이미지를 상단 정렬 */
+  height: auto;                 /* 높이는 비율 유지 */
+  max-width: 800px;                 
+  max-height: 100%;             /* 높이가 화면 높이를 넘지 않도록 제한 */
+  margin: var(--basic-margin) var(--basic-margin) 0 var(--basic-margin);
+  padding: 4%;
+  border-radius: var(--basic-border-radius);
+  color: white;
+}
+
+
+.div-title-tag{
+  margin: 2% 2% 4% 2%;
+  padding: 1% 4% 1% 3%;
+  border-radius: var(--basic-border-radius);
+  background-color: var(--basic-gray-color);
+  display: flex;
+  align-items: left;
+  text-align: left;
+  color: black;
+  font-size: 1.2em;
+  border : 2px solid black;
+}
+
+.div-selected-tag{
+  margin: 1% var(--basic-margin) 1% var(--basic-margin);
+  padding: 1% 4% 1% 3%;
+  border-radius: var(--basic-border-radius);
+  background-color: var(--basic-gray-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  text-align: left;
+  color: black;
+  /* font-size: 1rem; */
+  border : 2px solid black;
+}
+
+.div-boardgame-ratings{
+  flex-grow: 1;
+}
+
+.div-to-create-rating {
+  margin-top: var(--basic-margin);
+  color: blue;
+}
+
+.div-to-create-rating:hover {
+  cursor: pointer;
+}
+
+.div-to-create-rating-container{
+  margin: var(--basic-margin);
+  background-color: var(--basic-gray-color);
+  border-radius: var(--basic-border-radius);
+  padding: 2%;
+}
+
+.div-to-create-rating-inner {
+  background-color: white;
+  border-radius: var(--basic-border-radius);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 1% 5% 1% 5%;
+}
+
+.span-to-create-rating {
+  font-weight : bold;
+  color : var(--basic-gray-color);
+  display: flex;
+  margin-left: 4%;
+  font-size: 1.3em;
+}
