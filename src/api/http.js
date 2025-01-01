@@ -6,8 +6,8 @@ import { UNLOGINED_USER, userState } from "recoil/userstate/atom";
 axios.defaults.withCredentials = true;
 // axios 객체 생성
 const http = axios.create({
-  baseURL: 'http://localhost:8080/api',
-  // baseURL: import.meta.env.APP_API_URL,
+  // baseURL: 'http://localhost:8080/api',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json;charset=utf-8",
   },
