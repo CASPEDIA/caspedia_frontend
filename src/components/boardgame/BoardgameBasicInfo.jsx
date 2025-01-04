@@ -77,6 +77,9 @@ export default function BoardgameBasicInfo() {
           geekScore: data.geek_score,
           castScore: data.cast_score,
           age: data.age,
+          designer: data.designer,
+          category: [...data.category],
+          mechanic: [...data.mechanic],
         });
   
         setBoardgame(newBoardGame);
@@ -189,6 +192,29 @@ export default function BoardgameBasicInfo() {
           </tr>
         </tbody>
       </table>
+      <div className='div-additional-info'>
+        작가 : {boardgame.designer}<br />
+        Category<br />
+        <ul style={{marginBottom:0}}>
+          {boardgame.category.map((item,index) => {
+            return (
+              <li key={index}>
+                {item}
+              </li>
+            )
+          })}
+        </ul>
+        Mechanism<br />
+        <ul style={{marginBottom:0}}>
+          {boardgame.mechanic.map((item,index) => {
+            return (
+              <li key={index}>
+                {item}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
       <CommonModal 
         isModalOpen={isLikedModalOpen}
         closeModal={closeLikedModal}
