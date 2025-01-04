@@ -488,7 +488,7 @@ export default function UserDetail() {
             </div>
           </div>
         </div>
-        <div className='div-review-name'>성와니 님의 리뷰</div>
+        <div className='div-review-name'>{nickname} 님의 리뷰</div>
       </div>
       <div className='div-review-background'>
         <div className='div-sort-tabs'>
