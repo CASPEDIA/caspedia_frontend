@@ -171,13 +171,25 @@ export default function UserDetail() {
       nicknameModalRef.current.handleResize();
     }
   }
-  const closeNicknameModal = () => setIsNicknameModalOpen(false);
+  const closeNicknameModal = () => {
+    setIsNicknameModalOpen(false);
+    setNewNickname(nickname);
+    setNewNicknameMessage('');
+    setNewNicknameClassname('');
+  }
 
   const openPasswordModal = () => {
     setIsPasswordModalOpen(true);
   }
 
-  const closePasswordModal = () => setIsPasswordModalOpen(false);
+  const closePasswordModal = () => {
+    setIsPasswordModalOpen(false);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setNewPasswordMessage('');
+    setNewPasswordClassname('');
+  }
   
   const handleChangeCurrentPassword = (e) => {
     setCurrentPassword(e.target.value);
