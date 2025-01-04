@@ -28,7 +28,7 @@ export default function RecentBoardgame() {
   return (
     <div style={{"maxWidth" : "45.5%", "margin":"0% 1.5% 3% 3%"}}>
       <CustomCard 
-        height="150vw" 
+        height="100%" 
         alignItems="start" 
         margin="0px"
         padding="1.5%"

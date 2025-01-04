@@ -27,7 +27,7 @@ export default function RecentUser() {
   return (
     <div style={{"maxWidth" : "45.5%", "margin":"0% 3% 3% 1.5%"}}>
       <CustomCard 
-        height="150vw" 
+        height="100%" 
         alignItems="start" 
         margin="0px"
         padding="1.5%"
