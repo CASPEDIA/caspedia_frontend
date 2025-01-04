@@ -39,7 +39,7 @@ export default function UserRating({
     <div className='div-user-rating-card' onClick={toggleExpand}>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
-          <img src={imageUrl} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+          <img src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
             <strong style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>

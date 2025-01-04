@@ -77,7 +77,7 @@ export function RecentBoardgameItem({
   const navigate = useNavigate();
   return (
     <div className='div-boardgame-item'>
-      <img src={imageUrl} width="20%" alt={nameKor} style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+      <img src={imageUrl || "/img/F2_no_image.png"} width="20%" alt={nameKor} style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
       <div style={{"width": "4vw"}}></div>
       <span style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>
         { nameKor || nameEng }
