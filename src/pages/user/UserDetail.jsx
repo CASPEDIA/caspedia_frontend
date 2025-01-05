@@ -434,10 +434,10 @@ export default function UserDetail() {
                   text="비밀번호 변경"
                   onClick={() => openPasswordModal()}
                   />
-                <CustomButton 
+                {/* <CustomButton 
                   text="로그아웃" 
                   onClick={() => userLogout()} 
-                  />
+                  /> */}
               </>
               : ""}
             </div>

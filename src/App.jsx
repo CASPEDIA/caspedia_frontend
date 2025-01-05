@@ -25,7 +25,7 @@ const App = createBrowserRouter([
         <div className="main-content">
           <Outlet />
         </div>
-        <Navigation />
+        {/* <Navigation /> */}
       </div>
     ),
     children: [
