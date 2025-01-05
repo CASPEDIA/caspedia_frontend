@@ -3,10 +3,12 @@ import "./Navbar.css"
 import { useLocation, useNavigate } from 'react-router-dom'
 import BoardgameSearchBar from 'components/search/BoardgameSearchBar';
 import UserSearchBar from 'components/search/UserSearchBar';
+import { useHasAuth } from 'hooks/userHooks';
 
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const hasAuth = useHasAuth();
 
   const [isRootPath, setIsRootPath] = useState(false);
   const isExtraPage = ['/search', '/boardgame'].some(path => location.pathname.includes(path));
@@ -25,6 +27,13 @@ export default function Navbar() {
           <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" style={{"marginRight" : "2%" , "cursor" : "pointer"}} onClick={() => navigate('/')}/>
           { location.pathname.includes('/user') ? <UserSearchBar /> : 
             isExtraPage || isRootPath ? <BoardgameSearchBar /> : <></>
+          }
+          { hasAuth() ?
+            <>
+              <img src="/img/F5_user_menu.png" alt="Home" className="nav-icon" style={{"marginRight" : "2%" , "cursor" : "pointer"}} onClick={() => navigate('/')}/>
+            </>
+            :
+            <></>
           }
         </>
       }
