@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { addBoardgameLike, checkBoardgameLike, getBoardgameBasicInfo, getBoardgameLikedUsers, removeBoardgameLike } from 'hooks/boardgameHooks';
 import { useRecoilState } from 'recoil';
 import { BoardGame, boardgameState } from 'recoil/boardgame/atom';
+import LoadingProvider from 'components/common/LoadingProvider';
 
 export default function BoardgameBasicInfo() {
   const {boardid} = useParams();
@@ -28,6 +29,8 @@ export default function BoardgameBasicInfo() {
   // const [geekScore, setGeekScore] = useState(0);
   // const [castScore, setCastScore] = useState(0);
   // const [age, setAge] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const openLikedModal = () => {
     if (likedCount === 0) return null;
@@ -60,6 +63,7 @@ export default function BoardgameBasicInfo() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     getBoardgameBasicInfo(boardid)
       .then((data) => {
         const newBoardGame = new BoardGame({
@@ -100,6 +104,11 @@ export default function BoardgameBasicInfo() {
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false); // 로딩 종료
+        }, 200);      
       });
     checkBoardgameLike(boardid)
       .then((data) => {
@@ -228,6 +237,9 @@ export default function BoardgameBasicInfo() {
           )
         })}
       </CommonModal>
+      {isLoading && (
+        <LoadingProvider />
+      )}
     </div>
   )
 }

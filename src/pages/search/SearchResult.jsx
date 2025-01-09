@@ -4,6 +4,7 @@ import Result from 'components/search/Result'
 import { useLocation, useNavigate } from 'react-router-dom'
 import CustomCard from 'components/common/CustomCard'
 import { getBoardgameSearchResult } from 'hooks/boardgameHooks'
+import LoadingProvider from 'components/common/LoadingProvider'
 
 export default function SearchResult() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export default function SearchResult() {
   const [lastPage, setLastPage ] = useState(0);
   const [searchResult, setSearchResult] = useState([]);
   const [pagination, setPagination] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (query && !page) {
@@ -25,10 +27,10 @@ export default function SearchResult() {
   }, [query, page, params, location, navigate]);
 
   useEffect(() => {
+    setIsLoading(true);
     getBoardgameSearchResult(query,page)
       .then((data) => {
         setTotal(data.pagination.total);
-        // setCurPage(data.pagination.page);
         setLastPage(data.pagination.last_page);
 
         var tmpList = []
@@ -49,12 +51,15 @@ export default function SearchResult() {
             castScore: item.cast_score,
           }
         });
-        setSearchResult(resultData);
-        // console.log(resultData);
-        
+        setSearchResult(resultData);        
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false); // 로딩 종료
+        }, 500); // 1초 딜레이
       });
   }, [query, page])
 
@@ -140,6 +145,9 @@ export default function SearchResult() {
           <img src="/img/F2_last_page.svg" style={{"cursor" : "pointer"}} width="6%" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
         }
       </div>
+      { isLoading && (
+        <LoadingProvider />
+      )}
     </div>
   )
 }
