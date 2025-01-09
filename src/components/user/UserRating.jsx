@@ -50,7 +50,7 @@ export default function UserRating({
             <></>
           }
         </div>
-        <div className='rating-circle'>
+        <div className='user-rating-circle'>
           {score}
         </div>
       </div>
@@ -69,12 +69,6 @@ export default function UserRating({
           <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
-          {/* <div className='div-collapse-rating'>
-            <CancelButton 
-              text="접기"
-              onClick={toggleExpand}
-            />
-          </div> */}
         </>
         :
         <>
