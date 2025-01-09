@@ -135,9 +135,6 @@ export default function BoardgameBasicInfo() {
           <span>{boardgame.nameKor === "" ? boardgame.nameEng : boardgame.nameKor} </span>
           ({boardgame.yearPublished})
         </div>
-        <div className='basic-boardgame-comment'>
-          {boardgame.description === "" ? "no description" : boardgame.description}
-        </div>
         <div className='div-cast-info'>
           <div>
             <img src="/img/F3_cast_logo.png" width="35%" alt="캐스트 점수" />
