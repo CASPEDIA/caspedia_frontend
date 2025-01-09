@@ -263,10 +263,10 @@ export default function UserDetail() {
     // 가중치 계산: 한글은 2, 영어는 1로 설정
     let weightedLength = 0;
     for (const char of newState) {
-      if (/[가-힣]/.test(char)) {
-        weightedLength += 2; // 한글은 2
-      } else if (/[a-zA-Z]/.test(char)) {
-        weightedLength += 1; // 영어는 1
+      if (/[가-힣A-Z]/.test(char)) {
+        weightedLength += 2; // 한글 및 영대문자는 2
+      } else if (/[a-z]/.test(char)) {
+        weightedLength += 1; // 영소문자는 1
       } else {
         weightedLength += 1; // 숫자, '_', '.'는 1로 계산
       }
