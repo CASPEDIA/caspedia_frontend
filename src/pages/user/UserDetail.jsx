@@ -58,7 +58,7 @@ export default function UserDetail() {
   const profiles = PROFILE_LIST;
 
   const userImageStyle = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
