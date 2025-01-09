@@ -167,6 +167,7 @@ export default function UserDetail() {
 
   const openNicknameModal = () => {
     setIsNicknameModalOpen(true);
+    setNewNickname(nickname);
     if (nicknameModalRef.current) {
       nicknameModalRef.current.handleResize();
     }
@@ -294,7 +295,7 @@ export default function UserDetail() {
   const putNewNickname = (newState) => {
     setMyNewNickname(newState)
       .then((data) => {
-        setNickname(newNickname);
+        setNickname(newState);
         closeNicknameModal();
       })
       .catch((e) => {
