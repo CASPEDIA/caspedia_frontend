@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import UserRating from 'components/user/UserRating'
 import './UserDetail.css'
-import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo, useUserLogout } from 'hooks/userHooks';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo } from 'hooks/userHooks';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
@@ -15,7 +14,6 @@ import { userState } from 'recoil/userstate/atom';
 
 export default function UserDetail() {
   const user = useRecoilValue(userState);
-  const userLogout = useUserLogout();
   const isMyInfo = useIsMyInfo();
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -88,9 +86,6 @@ export default function UserDetail() {
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => 
       setUserIntroduction(newIntroduction)
-        .then((data) => {
-          // console.log(data);
-        })
         .catch((e) => {
           console.log(e);
         }) 
