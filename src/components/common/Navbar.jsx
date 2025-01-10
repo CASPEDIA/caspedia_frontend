@@ -62,10 +62,10 @@ export default function Navbar() {
           { hasAuth() ?
             <div className='div-user-menu-container'>
               <img 
-                src="/img/F5_user_menu.png" 
+                src={user.userImageKey ? `/user_profile/profile_${user.userImageKey < 10 ? "0" : ""}${user.userImageKey}.png` : "/img/F5_user_menu.png" } 
                 alt="User" 
                 className="nav-icon" 
-                style={{"marginRight" : "2%" , "cursor" : "pointer"}} 
+                style={{"marginRight" : "2%" , "cursor" : "pointer", "borderRadius":"50%"}} 
                 onClick={toggleDropdown}/>
               {isDropdownOpen ? 
                 (

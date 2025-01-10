@@ -9,11 +9,11 @@ import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
 import CancelButton from 'components/common/CancelButton';
 import { PROFILE_LIST } from 'recoil/profile/atom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { userState } from 'recoil/userstate/atom';
 
 export default function UserDetail() {
-  const user = useRecoilValue(userState);
+  const [user, setUser] = useRecoilState(userState);
   const isMyInfo = useIsMyInfo();
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -154,6 +154,10 @@ export default function UserDetail() {
       .then((data) => {
         closeProfileModal();
         setUserImageKey(newImageKey);
+        setUser({
+          ...user,
+          userImageKey: newImageKey,
+        });
       })
       .catch((e) => {
         console.log(e);
