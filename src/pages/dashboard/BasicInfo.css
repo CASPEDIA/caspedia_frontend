@@ -13,3 +13,9 @@
   display: flex;
   justify-content: start;
 }
+
+@supports (-webkit-touch-callout: none) {
+  .div-recent-info {
+    width: 100%;
+  }
+}
