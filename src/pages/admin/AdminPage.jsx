@@ -161,7 +161,8 @@ export default function AdminPage() {
           userImageKey: item.user_image_key,
           enabled: item.enabled,
           authorityKey: item.authority_key
-        }));
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));;
         setUserList(parsedData);
       })
       .catch((e) => {

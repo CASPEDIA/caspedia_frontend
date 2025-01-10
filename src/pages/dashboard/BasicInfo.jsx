@@ -18,6 +18,10 @@ export default function BasicInfo() {
         이용 중 불편하신 점이 있다면 관리자에게 문의 바랍니다. <br />
         <br />
         관리자: 박성완, 박하민, 윤병민, 김고은, 석명진 <br />
+        버그 리포트 :&nbsp;
+        <a href="https://forms.gle/LrPrHjuNeZy6bphc6" target="_blank" style={{color:"#00BFFF"}} rel="noopener noreferrer">
+        구글폼 링크
+        </a>
       </div>
       <div className='div-recent-info'>
         <RecentBoardgame />
