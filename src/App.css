@@ -40,7 +40,7 @@
 /* 스크롤바 설정*/
 ::-webkit-scrollbar{
   background-color:transparent;
-  width:1rem;
+  width:0.5rem;
 }
 /* 스크롤바 막대 설정*/
 ::-webkit-scrollbar-thumb{

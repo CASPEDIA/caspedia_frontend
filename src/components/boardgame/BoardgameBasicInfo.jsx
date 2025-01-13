@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { addBoardgameLike, checkBoardgameLike, getBoardgameBasicInfo, getBoardgameLikedUsers, removeBoardgameLike } from 'hooks/boardgameHooks';
 import { useRecoilState } from 'recoil';
 import { BoardGame, boardgameState } from 'recoil/boardgame/atom';
+import LoadingProvider from 'components/common/LoadingProvider';
 
 export default function BoardgameBasicInfo() {
   const {boardid} = useParams();
@@ -28,6 +29,8 @@ export default function BoardgameBasicInfo() {
   // const [geekScore, setGeekScore] = useState(0);
   // const [castScore, setCastScore] = useState(0);
   // const [age, setAge] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const openLikedModal = () => {
     if (likedCount === 0) return null;
@@ -60,6 +63,7 @@ export default function BoardgameBasicInfo() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     getBoardgameBasicInfo(boardid)
       .then((data) => {
         const newBoardGame = new BoardGame({
@@ -77,6 +81,9 @@ export default function BoardgameBasicInfo() {
           geekScore: data.geek_score,
           castScore: data.cast_score,
           age: data.age,
+          designer: data.designer,
+          category: [...data.category],
+          mechanic: [...data.mechanic],
         });
   
         setBoardgame(newBoardGame);
@@ -97,6 +104,11 @@ export default function BoardgameBasicInfo() {
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false); // 로딩 종료
+        }, 200);      
       });
     checkBoardgameLike(boardid)
       .then((data) => {
@@ -131,9 +143,6 @@ export default function BoardgameBasicInfo() {
         <div>
           <span>{boardgame.nameKor === "" ? boardgame.nameEng : boardgame.nameKor} </span>
           ({boardgame.yearPublished})
-        </div>
-        <div className='basic-boardgame-comment'>
-          {boardgame.description === "" ? "no description" : boardgame.description}
         </div>
         <div className='div-cast-info'>
           <div>
@@ -189,6 +198,29 @@ export default function BoardgameBasicInfo() {
           </tr>
         </tbody>
       </table>
+      <div className='div-additional-info'>
+        작가 : {boardgame.designer}<br />
+        Category<br />
+        <ul style={{marginBottom:0}}>
+          {boardgame.category.map((item,index) => {
+            return (
+              <li key={index}>
+                {item}
+              </li>
+            )
+          })}
+        </ul>
+        Mechanism<br />
+        <ul style={{marginBottom:0}}>
+          {boardgame.mechanic.map((item,index) => {
+            return (
+              <li key={index}>
+                {item}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
       <CommonModal 
         isModalOpen={isLikedModalOpen}
         closeModal={closeLikedModal}
@@ -205,6 +237,9 @@ export default function BoardgameBasicInfo() {
           )
         })}
       </CommonModal>
+      {isLoading && (
+        <LoadingProvider />
+      )}
     </div>
   )
 }

@@ -26,7 +26,7 @@
   align-items: start;
 }
 
-.rating-circle{
+.boardgame-rating-circle{
   display: flex;
   align-items: center;
   justify-content: center;

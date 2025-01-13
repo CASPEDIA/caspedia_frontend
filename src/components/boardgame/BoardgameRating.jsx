@@ -57,7 +57,7 @@ export default function BoardgameRating({
             }
           </div>
         </div>
-        <div className='rating-circle'>
+        <div className='boardgame-rating-circle'>
           {score}
         </div>
       </div>

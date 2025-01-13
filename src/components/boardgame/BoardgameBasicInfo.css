@@ -67,3 +67,9 @@
 .td-weight-info {
   font-size: 0.7em;
 }
+
+.div-additional-info {
+  background-color: #d9d9d9;
+  padding: var(--basic-padding);
+  text-align: left;
+}

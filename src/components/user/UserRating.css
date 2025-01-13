@@ -18,7 +18,7 @@
   align-items: start;
 }
 
-.rating-circle{
+.user-rating-circle{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,8 +26,8 @@
   font-size: 4vw;
   color: white;
   background-color: #394955;
-  min-width:10vw;
-  min-height:10vw;
+  min-width: 10vw;
+  min-height: 10vw; 
   border-radius: 50%;
 }
 

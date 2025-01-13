@@ -1,21 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import UserRating from 'components/user/UserRating'
 import './UserDetail.css'
-import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo, useUserLogout } from 'hooks/userHooks';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo } from 'hooks/userHooks';
 import { useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
 import CancelButton from 'components/common/CancelButton';
 import { PROFILE_LIST } from 'recoil/profile/atom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { userState } from 'recoil/userstate/atom';
 
 export default function UserDetail() {
-  const user = useRecoilValue(userState);
-  const userLogout = useUserLogout();
+  const [user, setUser] = useRecoilState(userState);
   const isMyInfo = useIsMyInfo();
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -60,7 +58,7 @@ export default function UserDetail() {
   const profiles = PROFILE_LIST;
 
   const userImageStyle = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` ,
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
@@ -88,9 +86,6 @@ export default function UserDetail() {
   const debouncedIntroductionChange = useCallback(
     debounce((newIntroduction) => 
       setUserIntroduction(newIntroduction)
-        .then((data) => {
-          // console.log(data);
-        })
         .catch((e) => {
           console.log(e);
         }) 
@@ -159,6 +154,10 @@ export default function UserDetail() {
       .then((data) => {
         closeProfileModal();
         setUserImageKey(newImageKey);
+        setUser({
+          ...user,
+          userImageKey: newImageKey,
+        });
       })
       .catch((e) => {
         console.log(e);
@@ -167,17 +166,30 @@ export default function UserDetail() {
 
   const openNicknameModal = () => {
     setIsNicknameModalOpen(true);
+    setNewNickname(nickname);
     if (nicknameModalRef.current) {
       nicknameModalRef.current.handleResize();
     }
   }
-  const closeNicknameModal = () => setIsNicknameModalOpen(false);
+  const closeNicknameModal = () => {
+    setIsNicknameModalOpen(false);
+    setNewNickname(nickname);
+    setNewNicknameMessage('');
+    setNewNicknameClassname('');
+  }
 
   const openPasswordModal = () => {
     setIsPasswordModalOpen(true);
   }
 
-  const closePasswordModal = () => setIsPasswordModalOpen(false);
+  const closePasswordModal = () => {
+    setIsPasswordModalOpen(false);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setNewPasswordMessage('');
+    setNewPasswordClassname('');
+  }
   
   const handleChangeCurrentPassword = (e) => {
     setCurrentPassword(e.target.value);
@@ -250,10 +262,10 @@ export default function UserDetail() {
     // 가중치 계산: 한글은 2, 영어는 1로 설정
     let weightedLength = 0;
     for (const char of newState) {
-      if (/[가-힣]/.test(char)) {
-        weightedLength += 2; // 한글은 2
-      } else if (/[a-zA-Z]/.test(char)) {
-        weightedLength += 1; // 영어는 1
+      if (/[가-힣A-Z]/.test(char)) {
+        weightedLength += 2; // 한글 및 영대문자는 2
+      } else if (/[a-z]/.test(char)) {
+        weightedLength += 1; // 영소문자는 1
       } else {
         weightedLength += 1; // 숫자, '_', '.'는 1로 계산
       }
@@ -282,7 +294,7 @@ export default function UserDetail() {
   const putNewNickname = (newState) => {
     setMyNewNickname(newState)
       .then((data) => {
-        setNickname(newNickname);
+        setNickname(newState);
         closeNicknameModal();
       })
       .catch((e) => {
@@ -422,10 +434,10 @@ export default function UserDetail() {
                   text="비밀번호 변경"
                   onClick={() => openPasswordModal()}
                   />
-                <CustomButton 
+                {/* <CustomButton 
                   text="로그아웃" 
                   onClick={() => userLogout()} 
-                  />
+                  /> */}
               </>
               : ""}
             </div>
@@ -476,7 +488,7 @@ export default function UserDetail() {
             </div>
           </div>
         </div>
-        <div className='div-review-name'>성와니 님의 리뷰</div>
+        <div className='div-review-name'>{nickname} 님의 리뷰</div>
       </div>
       <div className='div-review-background'>
         <div className='div-sort-tabs'>

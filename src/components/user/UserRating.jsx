@@ -39,7 +39,7 @@ export default function UserRating({
     <div className='div-user-rating-card' onClick={toggleExpand}>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
-          <img src={imageUrl} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+          <img src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
             <strong style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
@@ -50,7 +50,7 @@ export default function UserRating({
             <></>
           }
         </div>
-        <div className='rating-circle'>
+        <div className='user-rating-circle'>
           {score}
         </div>
       </div>
@@ -69,12 +69,6 @@ export default function UserRating({
           <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
-          {/* <div className='div-collapse-rating'>
-            <CancelButton 
-              text="접기"
-              onClick={toggleExpand}
-            />
-          </div> */}
         </>
         :
         <>

@@ -16,6 +16,9 @@ export class BoardGame {
     geekScore = 0,
     castScore = 0,
     age = 0,
+    designer = '',
+    category = [],
+    mechanic = [],
     // isLikePressed = false,
   }) {
     this.boardgameKey = boardgameKey;
@@ -32,6 +35,9 @@ export class BoardGame {
     this.geekScore = geekScore;
     this.castScore = castScore;
     this.age = age;
+    this.designer = designer;
+    this.category = [...category];
+    this.mechanic = [...mechanic];
     // this.isLikePressed = isLikePressed;
   }
 

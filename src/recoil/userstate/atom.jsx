@@ -9,6 +9,7 @@ export const UNLOGINED_USER = {
   nanoid:null,
   jwtToken:null,
   authority: null,
+  userImageKey: null,
 }
 
 export const userState = atom({
