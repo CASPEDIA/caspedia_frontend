@@ -27,7 +27,7 @@ export default function RecentUser() {
   return (
     <div style={{"maxWidth" : "45.5%", "margin":"0% 3% 3% 1.5%"}}>
       <CustomCard 
-        height="150vw" 
+        height="100%" 
         alignItems="start" 
         margin="0px"
         padding="1.5%"
@@ -75,8 +75,8 @@ export function RecentUserItem({
   return (
     <div className='div-user-item'>
       <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} width="20%" alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
-      <div style={{"width": "4vw"}}></div>
-      <span style={{"cursor" : "pointer"}} onClick={() => navigate("/user/" + nanoid)}>
+      {/* <div style={{"width": "4vw"}}></div> */}
+      <span style={{"cursor" : "pointer", "marginLeft" : "10px"}} onClick={() => navigate("/user/" + nanoid)}>
         {nickname}
       </span>
     </div>

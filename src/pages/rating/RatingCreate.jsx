@@ -226,7 +226,7 @@ export default function RatingCreate({
     <div>
       <div className='div-rating-create'>
         <div className='div-boardgameinfo-container'>
-          <img src={reviewImgState} width="30%" alt="noImage" />
+          <img src={reviewImgState || "/img/F2_no_image.png"} width="30%" alt="noImage" />
           <h2 style={{"marginLeft":"5%"}}>{nameKorState || nameEngState}</h2>
         </div>
         <div className='div-ratingstar-container'>

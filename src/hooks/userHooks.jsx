@@ -18,6 +18,7 @@ export function useUserLogin() {
         nanoid: data.nanoid,
         jwtToken: data.token,
         authority: data.authority,
+        userImageKey: data.user_image_key,
       });
       window.location.href="/";
     } catch (e) {
