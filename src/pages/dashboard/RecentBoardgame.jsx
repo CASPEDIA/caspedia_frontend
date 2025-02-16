@@ -78,7 +78,6 @@ export function RecentBoardgameItem({
   return (
     <div className='div-boardgame-item'>
       <img className='custom-link' src={imageUrl || "/img/F2_no_image.png"} width="20%" alt={nameKor} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
-      {/* <div style={{"width": "4vw"}}></div> */}
       <span className='custom-link' style={{"marginLeft" : "10px"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>
         { nameKor || nameEng }
       </span>

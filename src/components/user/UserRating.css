@@ -23,11 +23,11 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 2em;
   color: white;
   background-color: #394955;
-  min-width: 10vw;
-  min-height: 10vw; 
+  min-width: 2em;
+  min-height: 2em; 
   border-radius: 50%;
 }
 

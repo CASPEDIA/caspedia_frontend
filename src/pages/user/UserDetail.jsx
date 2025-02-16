@@ -62,12 +62,12 @@ export default function UserDetail() {
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
-    width: '20vw',
-    height: '20vw',
+    width: '7em',
+    height: '7em',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '10vw',
+    borderRadius: '50%',
   };
 
   const otherImageStyle = {
@@ -75,12 +75,12 @@ export default function UserDetail() {
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
-    width: '20vw',
-    height: '20vw',
+    width: '7em',
+    height: '7em',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '10vw',
+    borderRadius: '50%',
   };
 
   const debouncedIntroductionChange = useCallback(
@@ -458,9 +458,9 @@ export default function UserDetail() {
           </div>
         }
         <div className='div-calculated-infos'>
-          <div className='div-outer-card' style={{"height" : "32vw", "width" : "49%"}}>
+          <div className='div-outer-card' style={{"height" : "11em", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>
-              <div style={{"fontSize" : "1.5em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
+              <div style={{"fontSize" : "1.2em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
               {/* <div style={{"height" : "1rem"}}></div> */}
               <h1 className='custom-link' style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
                 <strong>{likedCount}</strong>
@@ -468,14 +468,14 @@ export default function UserDetail() {
             </div>  
           </div>
           <div style={{"width" : "49%"}}>
-            <div className='div-outer-card' style={{"height" : "15vw", "marginBottom" : "2vw"}}>
+            <div className='div-outer-card' style={{"height" : "5em", "marginBottom" : "1em"}}>
               <div className='div-inner-card'>
                 <div style={{"fontSize" : "1.3em"}}><strong>리뷰</strong></div>
                 {/* <div style={{"height" : "1em"}}></div> */}
                 <div style={{"fontSize" : "1.3em"}}><strong>{ratingCount}</strong></div>
               </div>
             </div>
-            <div className='div-outer-card' style={{"height" : "15vw"}}>
+            <div className='div-outer-card' style={{"height" : "5em"}}>
               <div className='div-inner-card'>
                 <h3 style={{"fontSize" : "1.3em"}}><strong>평균 평점</strong></h3>
                 {/* <div style={{"height" : "1em"}}></div> */}
