@@ -434,10 +434,6 @@ export default function UserDetail() {
                   text="비밀번호 변경"
                   onClick={() => openPasswordModal()}
                   />
-                {/* <CustomButton 
-                  text="로그아웃" 
-                  onClick={() => userLogout()} 
-                  /> */}
               </>
               : ""}
             </div>
@@ -581,7 +577,7 @@ export default function UserDetail() {
           onKeyDown={keyPress}
         />
         <div className={`div-new-nickname-message ${newNicknameClassname}`}>{newNicknameMessage}</div>
-        <div onClick={handleNicknameChangeConfirmMessage}>
+        <div className='custom-link' onClick={handleNicknameChangeConfirmMessage}>
           변경하기
         </div>
       </SecondModal>
@@ -622,7 +618,7 @@ export default function UserDetail() {
           maxLength="64"
         />
         <div className={`div-new-password-message ${newPasswordClassname}`}>{newPasswordMessage}</div>
-        <div onClick={handlePutNewPassword}>
+        <div className='custom-link' onClick={handlePutNewPassword}>
           변경하기
         </div>
       </SecondModal>

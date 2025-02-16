@@ -33,7 +33,7 @@ export default function BoardgameRating({
     setTagList(tmpList);
   }, [])
   return (
-    <div className={`div-boardgame-rating-card ${isMyInfo(nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
+    <div className={`custom-link div-boardgame-rating-card ${isMyInfo(nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
           <img className='custom-link' src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"borderRadius": "8vw", "width" : "16vw", "height" : "16vw"}} alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
@@ -76,12 +76,6 @@ export default function BoardgameRating({
           <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
-          {/* <div className='div-collapse-rating'>
-            <CancelButton 
-              text="접기"
-              onClick={toggleExpand}
-            />
-          </div> */}
         </>
         :
         <>

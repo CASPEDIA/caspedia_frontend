@@ -36,7 +36,7 @@ export default function UserRating({
   }, [])
 
   return (
-    <div className='div-user-rating-card' onClick={toggleExpand}>
+    <div className='custom-link div-user-rating-card' onClick={toggleExpand}>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
           <img className='custom-link' src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
