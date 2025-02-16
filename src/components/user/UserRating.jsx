@@ -39,13 +39,13 @@ export default function UserRating({
     <div className='div-user-rating-card' onClick={toggleExpand}>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
-          <img src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}/>
+          <img className='custom-link' src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
-            <strong style={{"cursor" : "pointer"}} onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
+            <strong className='custom-link' onClick={() => navigate("/boardgame/" + boardgameKey)}>{nameKor || nameEng}</strong>
           </div>
           {
             isMyInfo(nanoid) ?
-            <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
+            <img className='custom-link' src="/img/F1_edit_pencil.png" width="5%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
             :
             <></>
           }

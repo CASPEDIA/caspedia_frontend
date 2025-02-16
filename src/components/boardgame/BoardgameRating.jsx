@@ -36,11 +36,11 @@ export default function BoardgameRating({
     <div className={`div-boardgame-rating-card ${isMyInfo(nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
       <div className='div-boardgame-rating-basic-info'>
         <div className='div-boardgame-rating'>
-          <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"cursor" : "pointer", "borderRadius": "8vw", "width" : "16vw", "height" : "16vw"}} alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
+          <img className='custom-link' src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"borderRadius": "8vw", "width" : "16vw", "height" : "16vw"}} alt="이미지" onClick={() => navigate("/user/" + nanoid)}/>
           <div style={{"textAlign":"left", "padding":"0 1rem 0 1rem"}}>
-            <strong style={{"paddingRight":"0.5rem" , "cursor" : "pointer"}} onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
+            <strong className='custom-link' style={{"paddingRight":"0.5rem" }} onClick={() => navigate("/user/" + nanoid)}>{nickname}</strong>
             {isMyInfo(nanoid) ?
-              <img src="/img/F1_edit_pencil.png" style={{"cursor" : "pointer"}} width="7%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
+              <img className='custom-link' src="/img/F1_edit_pencil.png" width="7%" alt="수정하기" onClick={() => navigate(`/rating/${boardgameKey}`)}/>
               :
               <></>
             }

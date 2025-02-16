@@ -55,7 +55,7 @@ export default function Navbar() {
         </>
         :
         <>
-          <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon" style={{"marginRight" : "2%" , "cursor" : "pointer"}} onClick={() => navigate('/')}/>
+          <img src="/img/F5_navbar_logo.png" alt="Home" className="nav-icon custom-link" style={{"marginRight" : "2%" }} onClick={() => navigate('/')}/>
           { location.pathname.includes('/user') ? <UserSearchBar /> : 
             isExtraPage || isRootPath ? <BoardgameSearchBar /> : <></>
           }
@@ -64,8 +64,8 @@ export default function Navbar() {
               <img 
                 src={user.userImageKey ? `/user_profile/profile_${user.userImageKey < 10 ? "0" : ""}${user.userImageKey}.png` : "/img/F5_user_menu.png" } 
                 alt="User" 
-                className="nav-icon" 
-                style={{"marginRight" : "2%" , "cursor" : "pointer", "borderRadius":"50%"}} 
+                className="nav-icon custom-link"
+                style={{"marginRight" : "2%" , "borderRadius":"50%"}} 
                 onClick={toggleDropdown}/>
               {isDropdownOpen ? 
                 (

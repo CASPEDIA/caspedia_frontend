@@ -410,7 +410,7 @@ export default function UserDetail() {
       <div className='div-user-basic-info'>
         <div className='div-user-name-info'>
           { isMyPage ?
-            <div style={userImageStyle} onClick={() => openProfileModal()}>
+            <div className='custom-link' style={userImageStyle} onClick={() => openProfileModal()}>
               <img src="/img/F1_change_profile.png" alt="changeprofile" width="35%" />
             </div>
             :
@@ -421,7 +421,7 @@ export default function UserDetail() {
               <strong>{nickname}&nbsp;</strong>
               { isMyPage 
                 ? 
-                <img src="/img/F1_edit_pencil.png" style={{"cursor":"pointer"}} width="5%" alt="" onClick={handleChangeNickname}/>
+                <img className='custom-link' src="/img/F1_edit_pencil.png" width="5%" alt="" onClick={handleChangeNickname}/>
                 : 
                 <></> 
               }
@@ -466,7 +466,7 @@ export default function UserDetail() {
             <div className='div-inner-card mr-2'>
               <div style={{"fontSize" : "1.5em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
               {/* <div style={{"height" : "1rem"}}></div> */}
-              <h1 style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
+              <h1 className='custom-link' style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
                 <strong>{likedCount}</strong>
               </h1>
             </div>  
@@ -555,7 +555,7 @@ export default function UserDetail() {
             <div className='div-profile-select-scroll-container'>
               {profiles.map((item, index) => 
                 <img
-                  className='div-profile-item'
+                  className='div-profile-item custom-link'
                   key={index} 
                   src={`/user_profile/${item["url"]}`} 
                   alt={`프로필 ${item["id"]}`}
