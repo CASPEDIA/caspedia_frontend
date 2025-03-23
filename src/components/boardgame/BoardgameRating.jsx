@@ -50,7 +50,7 @@ export default function BoardgameRating({
               </>
               :
               <>
-                <p className='p-rating-comment'>
+                <p className='p-rating-comment custom-whitespace '>
                   {comment}
                 </p>
               </>
@@ -73,7 +73,7 @@ export default function BoardgameRating({
               )
             })}
           </div>
-          <p style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
+          <p className='custom-whitespace' style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
         </>
