@@ -42,7 +42,7 @@ export default function RecentUser() {
               style={{"width" : "75%"}}
             >
               <span style={{"fontWeight" : "bold", "fontSize" : "2em"}}>WHO</span> <br />
-              <span style={{"fontSize" : "1em"}}>최근에 평가한 사람</span>
+              <span style={{"fontSize" : "1em"}}>최근에 평가한 10인</span>
             </div>
           </div>
           <hr />
