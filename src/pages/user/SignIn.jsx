@@ -50,8 +50,9 @@ export default function SignIn() {
   }, [navigate])
   return (
     <div className='div-signin'>
-      <img src="/img/F5_main_logo.png" style={{height:"30vh", width:"auto"}}  alt="메인 로고" />
-      <div style={{height:"8vh"}}></div>
+      <img src="/img/F5_main_logo_02.png" style={{height:"auto", width:"80%"}}  alt="메인 로고" />
+      {/* <img src="/img/F5_main_logo.png" style={{height:"30vh", width:"auto"}}  alt="메인 로고" /> */}
+      <div style={{height:"4vh"}}></div>
       <div className='div-signin-form'>
         <div>
           아이디

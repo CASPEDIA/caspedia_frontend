@@ -156,10 +156,11 @@ export default function BoardgameBasicInfo() {
               src={isLikePressed ? "/img/F3_heart_fill.png" : "/img/F3_heart_empty.png"} 
               width="45%" 
               alt="하트" 
+              className='custom-link'
               onClick={pressLike}
             />
             <div>
-              <span onClick={openLikedModal}>
+              <span className='custom-link' onClick={openLikedModal}>
                 {likedCount}
               </span>
             </div>

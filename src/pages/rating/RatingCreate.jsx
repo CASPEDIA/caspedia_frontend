@@ -233,16 +233,16 @@ export default function RatingCreate({
           <h5 style={{"marginRight":"5%"}}><strong>평점</strong></h5>
           <div>
             <div className='div-star-continer'>
-              <img src={score > 0 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(1)}/>
-              <img src={score > 1 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(2)}/>
-              <img src={score > 2 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(3)}/>
-              <img src={score > 3 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(4)}/>
-              <img src={score > 4 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(5)}/>
-              <img src={score > 5 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(6)}/>
-              <img src={score > 6 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(7)}/>
-              <img src={score > 7 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(8)}/>
-              <img src={score > 8 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(9)}/>
-              <img src={score > 9 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(10)}/>
+              <img className='custom-link' src={score > 0 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(1)}/>
+              <img className='custom-link' src={score > 1 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(2)}/>
+              <img className='custom-link' src={score > 2 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(3)}/>
+              <img className='custom-link' src={score > 3 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(4)}/>
+              <img className='custom-link' src={score > 4 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(5)}/>
+              <img className='custom-link' src={score > 5 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(6)}/>
+              <img className='custom-link' src={score > 6 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(7)}/>
+              <img className='custom-link' src={score > 7 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(8)}/>
+              <img className='custom-link' src={score > 8 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(9)}/>
+              <img className='custom-link' src={score > 9 ? fill_star : empty_star} width="9%" style={{"marginRight" : "1%"}} alt="star" onClick={() => changeStar(10)}/>
             </div>
             <div style={{"textAlign" : "left", "marginTop" : "2%"}}>
               {scoreText}
@@ -262,7 +262,7 @@ export default function RatingCreate({
         <div className='div-tagselect-container'>
           <div className='div-tagselect-scroll-container'>
             {tags.map((item, index) => 
-              <div className='div-review-tags div-custom-review-tag' idx={index} key={index} onClick={tagClicked}>
+              <div className='div-review-tags div-custom-review-tag custom-link' idx={index} key={index} onClick={tagClicked}>
                 {item}
               </div>
             )}
