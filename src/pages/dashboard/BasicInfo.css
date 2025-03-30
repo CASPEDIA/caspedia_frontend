@@ -1,30 +1,64 @@
-.div-index_introduction{
-  color:white;
+.div-index_introduction {
+  color: white;
   text-align: center;
-  background-color: rgba(95,95,95,0.6);
+  background-color: rgba(95, 95, 95, 0.6);
   border-radius: var(--basic-border-radius);
   padding: var(--basic-padding);
   margin: var(--basic-margin);
 }
 
 .div-recent-info {
-  /* padding: var(--basic-padding); */
-  /* margin: var(--basic-margin); */
   display: flex;
   justify-content: start;
+}
+
+.image-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.image-container {
+  display: flex;
+  width: 200%; /* 이미지 개수에 따라 동적으로 설정 가능 */
+}
+
+.slider-image {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  transition: transform 0.3s ease-out;
+}
+
+.image-slider:active {
+  cursor: grabbing;
+}
+
+/* 🔵 Carousel 인디케이터 스타일 */
+.carousel-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  gap: 5px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5); /* 기본 색 (흐린 점) */
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dot.active {
+  background-color: rgba(255, 255, 255, 1); /* 현재 이미지에 해당하는 점 (밝게) */
 }
 
 @supports (-webkit-touch-callout: none) {
   .div-recent-info {
     width: 100%;
   }
-}
-
-.image-slider {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
 }
 
 .slider-btn {
@@ -34,10 +68,10 @@
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 5px; /* 버튼 패딩을 줄여서 크기를 작게 */
+  padding: 5px;
   cursor: pointer;
   z-index: 10;
-  font-size: 18px; /* 폰트 크기도 줄여서 버튼 크기 작게 */
+  font-size: 18px;
   border-radius: 50%;
 }
 
