@@ -19,3 +19,36 @@
     width: 100%;
   }
 }
+
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px; /* 버튼 패딩을 줄여서 크기를 작게 */
+  cursor: pointer;
+  z-index: 10;
+  font-size: 18px; /* 폰트 크기도 줄여서 버튼 크기 작게 */
+  border-radius: 50%;
+}
+
+.slider-btn.left {
+  left: 10px;
+}
+
+.slider-btn.right {
+  right: 10px;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}

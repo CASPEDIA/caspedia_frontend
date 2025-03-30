@@ -114,12 +114,12 @@ export default function SearchResult() {
         { page == 1 || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_first_page.svg" width="6%" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
+          <img className='custom-link' src="/img/F2_first_page.svg" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
         }
         { page == 1 || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_prev_page.svg" width="6%" alt="prev" onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
+          <img className='custom-link' src="/img/F2_prev_page.svg" alt="prev" onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
         }
         <div className='div-pagination-numbers-container'>
           { pagination.map((item) => {
