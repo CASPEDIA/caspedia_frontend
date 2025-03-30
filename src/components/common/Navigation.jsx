@@ -21,9 +21,9 @@ export default function Navigation() {
   }
   return (
     <div className='custom-navigation'>
-      <img src="/img/F5_toHome.png" alt="Home" className="nav-icon" style={{"cursor" : "pointer"}} onClick={() => navigate('/')}/>
+      <img src="/img/F5_toHome.png" alt="Home" className="nav-icon custom-link" onClick={() => navigate('/')}/>
       { hasAdmin() ?
-        <img src="/img/F5_toAdmin.png" alt="Admin" className="nav-icon" style={{"cursor" : "pointer"}} onClick={() => navigate('/admin')}/>
+        <img src="/img/F5_toAdmin.png" alt="Admin" className="nav-icon custom-link" onClick={() => navigate('/admin')}/>
         :
         <div></div>
       }

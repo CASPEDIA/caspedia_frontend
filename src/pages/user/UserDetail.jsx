@@ -62,12 +62,12 @@ export default function UserDetail() {
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
-    width: '20vw',
-    height: '20vw',
+    width: '7em',
+    height: '7em',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '10vw',
+    borderRadius: '50%',
   };
 
   const otherImageStyle = {
@@ -75,12 +75,12 @@ export default function UserDetail() {
     backgroundSize: 'cover',    // 이미지 크기 조정
     backgroundPosition: 'center', // 이미지 위치 조정
     backgroundRepeat: 'no-repeat', // 이미지 반복 방지
-    width: '20vw',
-    height: '20vw',
+    width: '7em',
+    height: '7em',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '10vw',
+    borderRadius: '50%',
   };
 
   const debouncedIntroductionChange = useCallback(
@@ -410,7 +410,7 @@ export default function UserDetail() {
       <div className='div-user-basic-info'>
         <div className='div-user-name-info'>
           { isMyPage ?
-            <div style={userImageStyle} onClick={() => openProfileModal()}>
+            <div className='custom-link' style={userImageStyle} onClick={() => openProfileModal()}>
               <img src="/img/F1_change_profile.png" alt="changeprofile" width="35%" />
             </div>
             :
@@ -421,7 +421,7 @@ export default function UserDetail() {
               <strong>{nickname}&nbsp;</strong>
               { isMyPage 
                 ? 
-                <img src="/img/F1_edit_pencil.png" style={{"cursor":"pointer"}} width="5%" alt="" onClick={handleChangeNickname}/>
+                <img className='custom-link' src="/img/F1_edit_pencil.png" width="5%" alt="" onClick={handleChangeNickname}/>
                 : 
                 <></> 
               }
@@ -434,10 +434,6 @@ export default function UserDetail() {
                   text="비밀번호 변경"
                   onClick={() => openPasswordModal()}
                   />
-                {/* <CustomButton 
-                  text="로그아웃" 
-                  onClick={() => userLogout()} 
-                  /> */}
               </>
               : ""}
             </div>
@@ -462,24 +458,24 @@ export default function UserDetail() {
           </div>
         }
         <div className='div-calculated-infos'>
-          <div className='div-outer-card' style={{"height" : "32vw", "width" : "49%"}}>
+          <div className='div-outer-card' style={{"height" : "11em", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>
-              <div style={{"fontSize" : "1.5em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
+              <div style={{"fontSize" : "1.2em"}}><strong>{nickname} 님이<br />좋아요한 게임들</strong></div>
               {/* <div style={{"height" : "1rem"}}></div> */}
-              <h1 style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
+              <h1 className='custom-link' style={{"fontSize" : "4em"}} onClick={() => openLikedModal()}>
                 <strong>{likedCount}</strong>
               </h1>
             </div>  
           </div>
           <div style={{"width" : "49%"}}>
-            <div className='div-outer-card' style={{"height" : "15vw", "marginBottom" : "2vw"}}>
+            <div className='div-outer-card' style={{"height" : "5em", "marginBottom" : "1em"}}>
               <div className='div-inner-card'>
                 <div style={{"fontSize" : "1.3em"}}><strong>리뷰</strong></div>
                 {/* <div style={{"height" : "1em"}}></div> */}
                 <div style={{"fontSize" : "1.3em"}}><strong>{ratingCount}</strong></div>
               </div>
             </div>
-            <div className='div-outer-card' style={{"height" : "15vw"}}>
+            <div className='div-outer-card' style={{"height" : "5em"}}>
               <div className='div-inner-card'>
                 <h3 style={{"fontSize" : "1.3em"}}><strong>평균 평점</strong></h3>
                 {/* <div style={{"height" : "1em"}}></div> */}
@@ -555,7 +551,7 @@ export default function UserDetail() {
             <div className='div-profile-select-scroll-container'>
               {profiles.map((item, index) => 
                 <img
-                  className='div-profile-item'
+                  className='div-profile-item custom-link'
                   key={index} 
                   src={`/user_profile/${item["url"]}`} 
                   alt={`프로필 ${item["id"]}`}
@@ -581,7 +577,7 @@ export default function UserDetail() {
           onKeyDown={keyPress}
         />
         <div className={`div-new-nickname-message ${newNicknameClassname}`}>{newNicknameMessage}</div>
-        <div onClick={handleNicknameChangeConfirmMessage}>
+        <div className='custom-link' onClick={handleNicknameChangeConfirmMessage}>
           변경하기
         </div>
       </SecondModal>
@@ -622,7 +618,7 @@ export default function UserDetail() {
           maxLength="64"
         />
         <div className={`div-new-password-message ${newPasswordClassname}`}>{newPasswordMessage}</div>
-        <div onClick={handlePutNewPassword}>
+        <div className='custom-link' onClick={handlePutNewPassword}>
           변경하기
         </div>
       </SecondModal>

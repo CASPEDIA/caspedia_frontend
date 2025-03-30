@@ -18,10 +18,10 @@ export default function UserItem({
   return (
     <tr onClick={clickEvent}>
       <td width="15%">
-        <img src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"cursor" : "pointer", "borderRadius": "8vw", "width" : "10vw", "height" : "10vw"}} alt="이미지"/>
+        <img className='custom-link' src={`/user_profile/profile_${userImageKey < 10 ? "0" : ""}${userImageKey}.png` || "/user_profile/profile_01.png"} style={{"borderRadius": "50%", "width" : "4em", "height" : "4em"}} alt="이미지"/>
       </td>
       <td width="15%" style={{textAlign:"left", color: "blue", textDecoration: "underline"}}>
-        <div onClick={() => navigate("/user/" + nanoid)}>{name}</div>
+        <div className='custom-link' onClick={() => navigate("/user/" + nanoid)}>{name}</div>
       </td>
       <td width="15%">
         <div>{studentId}</div>

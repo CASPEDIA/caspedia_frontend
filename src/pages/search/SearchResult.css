@@ -20,11 +20,11 @@
 }
 
 .div-pagination-numbers-container {
-  margin: 0 2vw 0 2vw;
+  margin: 0 0 0 0;
 }
 
 .span-pagination-item{
-  margin: 0 2vw 0 2vw;
+  margin: 0 1em 0 1em;
 }
 
 .span-pagination-item.current-page {

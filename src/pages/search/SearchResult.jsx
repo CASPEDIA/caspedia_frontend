@@ -49,6 +49,7 @@ export default function SearchResult() {
             likes: item.likes,
             geekScore: item.geek_score,
             castScore: item.cast_score,
+            yearPublished: item.year_published,
           }
         });
         setSearchResult(resultData);        
@@ -113,20 +114,19 @@ export default function SearchResult() {
         { page == 1 || total == 0 ?
           <></>
           :
-          <img src="/img/F2_first_page.svg" style={{"cursor" : "pointer"}} width="6%" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
+          <img className='custom-link' src="/img/F2_first_page.svg" width="6%" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
         }
         { page == 1 || total == 0 ?
           <></>
           :
-          <img src="/img/F2_prev_page.svg" width="6%" alt="prev" style={{"cursor" : "pointer"}}  onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
+          <img className='custom-link' src="/img/F2_prev_page.svg" width="6%" alt="prev" onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
         }
         <div className='div-pagination-numbers-container'>
           { pagination.map((item) => {
             return(
               <span 
                 key={item}
-                className={`span-pagination-item ${page === item ? 'current-page' : ''}`}
-                style={{"cursor" : "pointer"}}
+                className={`custom-link span-pagination-item ${page === item ? 'current-page' : ''}`}
                 onClick={() => navigate(`/search?query=${query}&page=${item}`)}
               >
                 {item}
@@ -137,12 +137,12 @@ export default function SearchResult() {
         { page == lastPage || total == 0 ?
           <></>
           :
-          <img src="/img/F2_next_page.svg" width="6%" alt="next" style={{"cursor" : "pointer"}}  onClick={() => navigate(`/search?query=${query}&page=${Number(page)+1}`)}/>
+          <img className='custom-link' src="/img/F2_next_page.svg" width="6%" alt="next" onClick={() => navigate(`/search?query=${query}&page=${Number(page)+1}`)}/>
         }
         { page == lastPage || total == 0 ?
           <></>
           :
-          <img src="/img/F2_last_page.svg" style={{"cursor" : "pointer"}} width="6%" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
+          <img className='custom-link' src="/img/F2_last_page.svg" width="6%" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
         }
       </div>
       { isLoading && (

@@ -137,3 +137,11 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-link {
+  cursor: pointer;
+}
+
+.custom-whitespace {
+  white-space: pre-line;
+}
