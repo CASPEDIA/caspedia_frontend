@@ -43,7 +43,7 @@ export default function RecentBoardgame() {
               style={{"width" : "75%"}}
             >
               <span style={{"fontWeight" : "bold", "fontSize" : "2em"}}>WHAT</span> <br />
-              <span style={{"fontSize" : "1em"}}>최근에 평가된 게임</span>
+              <span style={{"fontSize" : "1em"}}>최근에 평가된 10게임</span>
             </div>
           </div>
           <hr />
