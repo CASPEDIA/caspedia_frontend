@@ -2,18 +2,28 @@ import React, { useState, useRef } from 'react';
 import './BasicInfo.css';
 import RecentBoardgame from './RecentBoardgame';
 import RecentUser from './RecentUser';
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicInfo() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [translateX, setTranslateX] = useState(0);
+  const navigate = useNavigate();
   const startX = useRef(0);
 
   const images = [
     "/main/F5_event_01.png",
+    "/main/F5_best_review_03.png",
     "/main/F5_best_review_02.png",
     "/main/F5_best_review_01.png",
   ];
+
+  const links = [
+    "/",
+    "/boardgame/129622",
+    "/boardgame/202737",
+    "/boardgame/375651",
+  ]
 
   // 터치 시작
   const handleTouchStart = (e) => {
@@ -60,7 +70,7 @@ export default function BasicInfo() {
             }}
           >
             {images.map((src, index) => (
-              <img key={index} src={src} alt="caspedia" className="slider-image" />
+              <img key={index} src={src} alt="caspedia" className="slider-image custom-link" onClick={() => navigate(links[index])}/>
             ))}
           </div>
         </div>
