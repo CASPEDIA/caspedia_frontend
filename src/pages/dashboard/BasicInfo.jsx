@@ -11,7 +11,8 @@ export default function BasicInfo() {
 
   const images = [
     "/main/F5_event_01.png",
-    "/main/F5_best_review_01.png"
+    "/main/F5_best_review_02.png",
+    "/main/F5_best_review_01.png",
   ];
 
   // 터치 시작
