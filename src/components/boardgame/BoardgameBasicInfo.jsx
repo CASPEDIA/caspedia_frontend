@@ -167,6 +167,20 @@ export default function BoardgameBasicInfo() {
           </div>
         </div>
       </div>
+      <div className='div-func'>
+        <div className='div-addi-func'>
+          <img src="/img/F3_request.png" width="30%" alt="리뷰요청" />
+          <div>
+            <span>리뷰요청</span>
+          </div>
+        </div>
+        <div className='div-addi-func'>
+          <img src="/img/F3_share.png" width="30%" alt="공유하기" />
+          <div>
+            <span>공유하기</span>
+          </div>
+        </div>
+      </div>
       <table className='div-boardgame-more-info'>
         <tbody>
           <tr>

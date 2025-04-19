@@ -38,6 +38,35 @@
   font-weight: bold;
 }
 
+.div-func {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: #e7e7e9; */
+  padding: 1% 3% ;
+}
+
+.div-func > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-func > div > div{
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.div-addi-func{
+  padding: 1% 3% ;
+  border-radius: var(--basic-border-radius)
+} 
+
+.div-addi-func:hover {
+  background: rgba(0, 0, 0, 0.1);
+  cursor : pointer;
+} 
+
 .basic-boardgame-comment {
   height : 30%;
   display: -webkit-box; 
