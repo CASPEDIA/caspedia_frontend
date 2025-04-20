@@ -70,7 +70,7 @@ export default function SearchResult() {
         <thead>
           <tr>
             <th>total {total}</th>
-            <th className='wide-column'>이름</th>
+            <th className='wide-column'>게임명</th>
             <th>좋아요</th>
             <th>BGG 평점</th>
             <th>CAST 평점</th>
