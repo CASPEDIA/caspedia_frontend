@@ -3,6 +3,9 @@ import './BasicInfo.css';
 import RecentBoardgame from './RecentBoardgame';
 import RecentUser from './RecentUser';
 import { useNavigate } from 'react-router-dom';
+import ScoreRank from './ScoreRank';
+import RatingRank from './RatingRank';
+import RatingRequests from './RatingRequests';
 
 export default function BasicInfo() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -54,7 +57,7 @@ export default function BasicInfo() {
 
   return (
     <div>
-      <div className="m-3">
+      {/* <div className="m-3">
         <div 
           className="image-slider"
           onTouchStart={handleTouchStart}
@@ -75,7 +78,6 @@ export default function BasicInfo() {
           </div>
         </div>
 
-        {/* 이미지 인디케이터 */}
         <div className="carousel-indicator">
           {images.map((_, index) => (
             <span 
@@ -84,6 +86,15 @@ export default function BasicInfo() {
             ></span>
           ))}
         </div>
+      </div> */}
+      
+      <ScoreRank />
+      <RatingRank />
+      <RatingRequests />
+
+      <div className="div-recent-info">
+        <RecentBoardgame />
+        <RecentUser />
       </div>
 
       <div className="div-index_introduction">
@@ -96,10 +107,6 @@ export default function BasicInfo() {
         </a>
       </div>
 
-      <div className="div-recent-info">
-        <RecentBoardgame />
-        <RecentUser />
-      </div>
     </div>
   );
 }
