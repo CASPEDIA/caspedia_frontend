@@ -1,0 +1,26 @@
+.div-rr-title {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.div-recent-request-item {
+  display : flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 5%;
+  /* text-align: left; */
+}
+
+.div-recent-request-inner-boardgame{  
+  display : flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+.div-recent-request-inner-user{  
+  display : flex;
+  justify-content: right;
+  align-items: center;
+  text-align: left;
+}
