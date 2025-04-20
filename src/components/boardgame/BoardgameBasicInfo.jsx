@@ -7,6 +7,7 @@ import { addBoardgameLike, checkBoardgameLike, getBoardgameBasicInfo, getBoardga
 import { useRecoilState } from 'recoil';
 import { BoardGame, boardgameState } from 'recoil/boardgame/atom';
 import LoadingProvider from 'components/common/LoadingProvider';
+import { linkCopy, successToastMessage } from 'hooks/toastHooks';
 
 export default function BoardgameBasicInfo() {
   const {boardid} = useParams();
@@ -16,6 +17,15 @@ export default function BoardgameBasicInfo() {
   const [likedCount, setLikedCount] = useState(0);
   const [likedUsers, setLikedUsers] = useState([]);
   const modalRef = useRef(null);
+
+  const handleCopy = () => {
+    linkCopy();
+  };
+  
+  const handleReviewRequest = () => {
+    successToastMessage("리뷰를 요청하였습니다.");
+  }
+
   // const [imageUrl, setImageUrl] = useState("");
   // const [nameKor, setNameKor] = useState("");
   // const [nameEng, setNameEng] = useState("");
@@ -167,20 +177,6 @@ export default function BoardgameBasicInfo() {
           </div>
         </div>
       </div>
-      <div className='div-func'>
-        <div className='div-addi-func'>
-          <img src="/img/F3_request.png" width="30%" alt="리뷰요청" />
-          <div>
-            <span>리뷰요청</span>
-          </div>
-        </div>
-        <div className='div-addi-func'>
-          <img src="/img/F3_share.png" width="30%" alt="공유하기" />
-          <div>
-            <span>공유하기</span>
-          </div>
-        </div>
-      </div>
       <table className='div-boardgame-more-info'>
         <tbody>
           <tr>
@@ -213,6 +209,20 @@ export default function BoardgameBasicInfo() {
           </tr>
         </tbody>
       </table>
+      <div className='div-func'>
+        <div className='div-addi-func' onClick={handleReviewRequest}>
+          <img src="/img/F3_request.png" width="30%" alt="리뷰요청" />
+          <div>
+            <span>리뷰요청</span>
+          </div>
+        </div>
+        <div className='div-addi-func' onClick={handleCopy}>
+          <img src="/img/F3_share.png" width="30%" alt="공유하기" />
+          <div>
+            <span>공유하기</span>
+          </div>
+        </div>
+      </div>
       <div className='div-additional-info'>
         작가 : {boardgame.designer}<br />
         Category<br />
