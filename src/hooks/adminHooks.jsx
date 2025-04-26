@@ -1,6 +1,7 @@
 import http from "api/http";
 import { useRecoilValue } from "recoil";
 import { userState } from "recoil/userstate/atom";
+import { infoToastMessage, successToastMessage, warningToastMessage } from "./toastHooks";
 
 export async function getUsers() {
   try {
@@ -22,6 +23,7 @@ export async function addUserByAdmin(newUser) {
         "enabled" : newUser.enabled,
         "authority_key" : newUser.authorityKey,
       })
+    successToastMessage("유저가 생성되었습니다.");
     return data;
   } catch (e) {
     throw e;
@@ -48,6 +50,7 @@ export async function removeUser(nanoid) {
   try {
     const { data } = await http
       .delete(`/admin/user?nanoid=${nanoid}`)
+    warningToastMessage("유저가 삭제되었습니다.");
     return data;
   } catch (e) {
     throw e;
@@ -58,6 +61,7 @@ export async function resetPassword(nanoid) {
   try {
     const { data } = await http
       .put(`/admin/reset?nanoid=${nanoid}`)
+    infoToastMessage("유저의 비밀번호가 초기화되었습니다.");
     return data;
   } catch (e) {
     throw e;

@@ -1,0 +1,40 @@
+import React from 'react'
+import './RatingRankItem.css'
+import { Link } from 'react-router-dom'
+
+export default function RatingRankItem({
+  ranking=1,
+  boardgameKey=36218,
+  imageUrl = "/img/F2_no_image.png",
+  nameKor = "도미니언",
+  nameEng = "Dominion",
+  likes = 777,
+  geekScore = 7.6,
+  castScore = 8.0,
+  reviewCount = 77,
+}) {
+  return (
+    <tr>
+      <td width="20%">
+        <Link to={`/boardgame/${boardgameKey}`}>
+          <img src={imageUrl || "/img/F2_no_image.png"} alt="noImage" style={{"maxHeight":"5em", "maxWidth":"90%"}}/>
+        </Link>
+      </td>
+      <td width="30%" style={{textAlign:"left"}}>
+        <Link to={`/boardgame/${boardgameKey}`}>
+          {nameKor || nameEng}
+        </Link>
+        </td>
+      <td width="15%">
+        {likes}&nbsp;
+        <img src="/img/F2_heart_liked.png" alt="heart" width="16vw" />
+      </td>
+      <td width="15%">
+        {geekScore}&nbsp;<img src="/img/F2_geek_logo.png" alt="logo" width="13vw" />
+      </td>
+      <td width="15%">
+        {reviewCount}
+      </td>
+    </tr>
+  )
+}

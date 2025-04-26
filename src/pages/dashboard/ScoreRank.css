@@ -1,0 +1,82 @@
+.div-score-rank-container {
+  width: 100%;
+  overflow: 'hidden';
+}
+
+.div-score-rank-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
+
+.ranking-list.horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+  overflow-x: auto;            /* ✅ 가로 스크롤 */
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;                 /* ✅ 부모 안에서만 스크롤 */
+  box-sizing: border-box;
+  padding: 0.5rem 0;
+  margin: 0;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.ranking-item.horizontal-item {
+  flex: 0 0 auto;
+  min-width: 100px;      /* ✅ 고정 너비 설정 */
+  max-width: 100px;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  scroll-snap-align: start;
+  transition: transform 0.2s;
+}
+
+.ranking-item.horizontal-item:hover {
+  transform: translateY(-4px);
+}
+
+.rank-number {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #3dd9c0;
+  margin-bottom: 0.3rem;
+}
+
+.game-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  margin-bottom: 0.3rem;
+}
+
+.game-info {
+  font-size: 0.85rem;
+}
+
+.game-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  max-height: 2.4em; /* 1.2(line-height) * 2줄 = 2.4em */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* ✅ 두 줄까지만 보여줌 */
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+
+.game-score{
+  color: #888;
+  font-size: 0.75rem;
+}

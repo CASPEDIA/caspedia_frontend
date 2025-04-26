@@ -15,6 +15,9 @@ import ScrollToTop from 'pages/ScrollToTop';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RequireAdmin from 'hooks/RequireAdmin';
 import AdminPage from 'pages/admin/AdminPage';
+import { ToastContainer } from 'react-toastify';
+import ScoreRankDetail from 'pages/rank/ScoreRankDetail';
+import RatingRankDetail from 'pages/rank/RatingRankDetail';
 
 const App = createBrowserRouter([
   {
@@ -26,6 +29,7 @@ const App = createBrowserRouter([
           <Outlet />
         </div>
         {/* <Navigation /> */}
+        <ToastContainer position="bottom-center" autoClose={2000} />
       </div>
     ),
     children: [
@@ -75,6 +79,24 @@ const App = createBrowserRouter([
           <RequireAuth>
             <ScrollToTop />
             <Rating />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'rank/score',
+        element: (
+          <RequireAuth>
+            <ScrollToTop />
+            <ScoreRankDetail />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'rank/rating',
+        element: (
+          <RequireAuth>
+            <ScrollToTop />
+            <RatingRankDetail />
           </RequireAuth>
         ),
       },

@@ -1,6 +1,7 @@
 import http from "api/http";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { UNLOGINED_USER, userState } from "recoil/userstate/atom";
+import { errorToastMessage, infoToastMessage } from "./toastHooks";
 
 
 export function useUserLogin() {
@@ -176,8 +177,10 @@ export async function setMyNewNickname(newNickname) {
       .put(`/user/nickname`, {
         "new_nickname" : newNickname
       })
+    infoToastMessage("닉네임이 변경되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
@@ -187,16 +190,18 @@ export async function setMyNewNickname(newNickname) {
  * @param {이전 비밀번호} oldPassword 
  * @param {새 비밀번호} newPassword 
  * @returns 
- */
+*/
 export async function setMyNewPassword(oldPassword, newPassword) {
   try {
     const { data } = await http
-      .put(`/user/password`, {
-        "old_password" : oldPassword,
-        "new_password" : newPassword
-      })
+    .put(`/user/password`, {
+      "old_password" : oldPassword,
+      "new_password" : newPassword
+    })
+    infoToastMessage("비밀번호가 변경되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
   
@@ -206,11 +211,11 @@ export async function setMyNewPassword(oldPassword, newPassword) {
  * 유저 검색 자동 완성성
  * @param {쿼리} query 
  * @returns 
- */
+*/
 export async function autoFillUser(query) {
   try {
     const { data } = await http
-      .get(`/user/autofill?q=${query}`)
+    .get(`/user/autofill?q=${query}`)
     return data;
   } catch (e) {
     throw e
@@ -221,15 +226,17 @@ export async function autoFillUser(query) {
  * 이미지 변경
  * @param {새 이미지 키} newImageKey 
  * @returns 
- */
+*/
 export async function setMyNewProfile(newImageKey) {
   try {
     const { data } = await http
-      .put(`/user/image`, {
-        "new_image_key" : newImageKey
-      })
+    .put(`/user/image`, {
+      "new_image_key" : newImageKey
+    })
+    infoToastMessage("유저 이미지가 변경되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
