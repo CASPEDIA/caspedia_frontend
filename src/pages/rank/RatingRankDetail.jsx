@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import './RatingRankDetail.css'
-import { useNavigate } from 'react-router-dom'
 import RatingRankItem from 'components/rank/RatingRankItem';
 import LoadingProvider from 'components/common/LoadingProvider';
 import { getRCountRanks } from 'hooks/ratingHooks';
 
 export default function RatingRankDetail() {
-  // const navigate = useNavigate();
   const [rCountRankItems, setRCountRankItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selected, setSelected] = useState(30); // 기본값: 한달

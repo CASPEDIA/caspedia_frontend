@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import './ScoreRankDetail.css'
-import { useNavigate } from 'react-router-dom'
 import ScoreRankItem from 'components/rank/ScoreRankItem';
 import { getScoreRanks } from 'hooks/ratingHooks';
 import LoadingProvider from 'components/common/LoadingProvider';
 
 export default function ScoreRankDetail() {
-  const navigate = useNavigate();
   const [scoreRankItems, setScoreRankItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
