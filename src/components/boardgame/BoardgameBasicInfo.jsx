@@ -73,16 +73,9 @@ export default function BoardgameBasicInfo() {
     console.log(boardgame.boardgameKey);
     addRatingRequest(boardgame.boardgameKey)
       .then((data) => {
-        successToastMessage("리뷰를 요청하였습니다.");
       })
       .catch((e) => {
-        if (e.response?.status === 400) {
-          warningToastMessage("보드게임을 찾을 수 없습니다다.");
-        } else if (e.response?.status === 409) {
-          warningToastMessage("이미 진행중인 리뷰 요청이 있습니다.");
-        } else {
-          errorToastMessage("리뷰 요청에 실패하였습니다.");
-        }
+        console.log(e);
       })
   }
 

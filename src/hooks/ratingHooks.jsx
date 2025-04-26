@@ -1,4 +1,5 @@
 import http from "api/http"
+import { errorToastMessage, infoToastMessage, successToastMessage, warningToastMessage } from "./toastHooks";
 
 /**
  * 평가 추가
@@ -16,8 +17,10 @@ export async function addRating(boardgameKey, score, comment, tagKey) {
         "comment" : comment,
         "tag_key" : tagKey,
       })
+    successToastMessage("리뷰가 생성되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
@@ -29,17 +32,19 @@ export async function addRating(boardgameKey, score, comment, tagKey) {
  * @param {한줄평} comment 
  * @param {선택한 태그} tagKey 
  * @returns 
- */
+*/
 export async function setRating(boardgameKey, score, comment, tagKey) {
   try {
     const { data } = await http
-      .put(`/rating/${boardgameKey}`,{
-        "score" : score,
-        "comment" : comment,
-        "tag_key" : tagKey,
-      })
+    .put(`/rating/${boardgameKey}`,{
+      "score" : score,
+      "comment" : comment,
+      "tag_key" : tagKey,
+    })
+    infoToastMessage("리뷰가 수정되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
@@ -48,13 +53,15 @@ export async function setRating(boardgameKey, score, comment, tagKey) {
  * 평가 제거
  * @param {보드게임키} boardgameKey 
  * @returns 
- */
+*/
 export async function removeRating(boardgameKey) {
   try {
     const { data } = await http
-      .delete(`/rating/${boardgameKey}`)
+    .delete(`/rating/${boardgameKey}`)
+    warningToastMessage("리뷰가 삭제되었습니다.");
     return data;
   } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
@@ -84,8 +91,16 @@ export async function addRatingRequest(boardgameKey) {
   try {
     const { data } = await http
       .post(`/rating/req/${boardgameKey}`)
+    successToastMessage("리뷰를 요청하였습니다.");
     return data;
   } catch (e) {
+    if (e.response?.status === 400) {
+        warningToastMessage("보드게임을 찾을 수 없습니다다.");
+      } else if (e.response?.status === 409) {
+        warningToastMessage("이미 진행중인 리뷰 요청이 있습니다.");
+      } else {
+        errorToastMessage("리뷰 요청에 실패하였습니다.");
+    }
     throw e;
   }
 }
@@ -104,6 +119,10 @@ export async function getRatingRequest() {
   }
 }
 
+/**
+ * 평점 랭킹 상위 5개개
+ * @returns 
+ */
 export async function getScoreRankTop5() {
   try {
     const { data } = await http
@@ -114,7 +133,10 @@ export async function getScoreRankTop5() {
   }
 }
 
-
+/**
+ * 평점 랭킹 전체 (100개)
+ * @returns 
+ */
 export async function getScoreRanks() {
   try {
     const { data } = await http
@@ -125,7 +147,10 @@ export async function getScoreRanks() {
   }
 }
 
-
+/**
+ * 리뷰 수 랭킹 상위 5개개
+ * @returns 
+ */
 export async function getRCountRankTop5() {
   try {
     const { data } = await http
@@ -136,7 +161,11 @@ export async function getRCountRankTop5() {
   }
 }
 
-
+/**
+ * 기간별 리뷰 수 랭킹킹
+ * @param {30/90/전체} period 
+ * @returns 
+ */
 export async function getRCountRanks(period) {
   try {
     const { data } = await http
