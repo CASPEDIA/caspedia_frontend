@@ -9,12 +9,8 @@ export async function linkCopy() {
   }
 }
 
-export async function customMessage(message) {
-  toast.success(message);
-}
-
 export async function infoToastMessage(message) {
-  toast.success(message);
+  toast.info(message);
 }
 
 export async function successToastMessage(message) {
@@ -22,9 +18,9 @@ export async function successToastMessage(message) {
 }
 
 export async function warningToastMessage(message) {
-  toast.success(message);
+  toast.warning(message);
 }
 
 export async function errorToastMessage(message) {
-  toast.success(message);
+  toast.error(message);
 }

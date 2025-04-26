@@ -5,22 +5,31 @@
 
 .div-recent-request-item {
   display : flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1% 5%;
-  /* text-align: left; */
+  padding : 1% 2%;
 }
 
 .div-recent-request-inner-boardgame{  
+  width: 65%;
   display : flex;
   justify-content: left;
   align-items: center;
   text-align: left;
 }
 
+.div-recent-request-inner-boardgame > img {
+  width: 20%;
+}
+
 .div-recent-request-inner-user{  
+  width: 35%;
   display : flex;
   justify-content: right;
   align-items: center;
   text-align: left;
+}
+
+.div-recent-request-inner-user > img {
+  width: 30%;
+  border-radius: 50%;
 }

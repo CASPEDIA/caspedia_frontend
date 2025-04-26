@@ -74,3 +74,32 @@ export async function getMyRating(boardgameKey) {
   }
   
 }
+
+/**
+ * 리뷰 요청 생성
+ * @param {보드게임키} boardgameKey 
+ * @returns 
+ */
+export async function addRatingRequest(boardgameKey) {
+  try {
+    const { data } = await http
+      .post(`/rating/req/${boardgameKey}`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+/**
+ * 리뷰 요청 목록록
+ * @returns 
+ */
+export async function getRatingRequest() {
+  try {
+    const { data } = await http
+      .get(`/rating/req`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}

@@ -7,7 +7,8 @@ import { addBoardgameLike, checkBoardgameLike, getBoardgameBasicInfo, getBoardga
 import { useRecoilState } from 'recoil';
 import { BoardGame, boardgameState } from 'recoil/boardgame/atom';
 import LoadingProvider from 'components/common/LoadingProvider';
-import { linkCopy, successToastMessage } from 'hooks/toastHooks';
+import { errorToastMessage, linkCopy, successToastMessage, warningToastMessage } from 'hooks/toastHooks';
+import { addRatingRequest } from 'hooks/ratingHooks';
 
 export default function BoardgameBasicInfo() {
   const {boardid} = useParams();
@@ -21,10 +22,6 @@ export default function BoardgameBasicInfo() {
   const handleCopy = () => {
     linkCopy();
   };
-  
-  const handleReviewRequest = () => {
-    successToastMessage("리뷰를 요청하였습니다.");
-  }
 
   // const [imageUrl, setImageUrl] = useState("");
   // const [nameKor, setNameKor] = useState("");
@@ -70,6 +67,23 @@ export default function BoardgameBasicInfo() {
           console.log(e);
         });
     }
+  }
+
+  const pressRatingRequest = () => {
+    console.log(boardgame.boardgameKey);
+    addRatingRequest(boardgame.boardgameKey)
+      .then((data) => {
+        successToastMessage("리뷰를 요청하였습니다.");
+      })
+      .catch((e) => {
+        if (e.response?.status === 400) {
+          warningToastMessage("보드게임을 찾을 수 없습니다다.");
+        } else if (e.response?.status === 409) {
+          warningToastMessage("이미 진행중인 리뷰 요청이 있습니다.");
+        } else {
+          errorToastMessage("리뷰 요청에 실패하였습니다.");
+        }
+      })
   }
 
   useEffect(() => {
@@ -210,7 +224,7 @@ export default function BoardgameBasicInfo() {
         </tbody>
       </table>
       <div className='div-func'>
-        <div className='div-addi-func' onClick={handleReviewRequest}>
+        <div className='div-addi-func' onClick={pressRatingRequest}>
           <img src="/img/F3_request.png" width="30%" alt="리뷰요청" />
           <div>
             <span>리뷰요청</span>
