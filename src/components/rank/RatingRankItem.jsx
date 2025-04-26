@@ -3,11 +3,11 @@ import './RatingRankItem.css'
 import { Link } from 'react-router-dom'
 
 export default function RatingRankItem({
+  ranking=1,
   boardgameKey=36218,
   imageUrl = "/img/F2_no_image.png",
   nameKor = "도미니언",
   nameEng = "Dominion",
-  yearPublished = 2008,
   likes = 777,
   geekScore = 7.6,
   castScore = 8.0,
@@ -23,7 +23,6 @@ export default function RatingRankItem({
       <td width="30%" style={{textAlign:"left"}}>
         <Link to={`/boardgame/${boardgameKey}`}>
           {nameKor || nameEng}
-          {'('}{yearPublished}{')'}
         </Link>
         </td>
       <td width="15%">

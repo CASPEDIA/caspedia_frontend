@@ -8,7 +8,6 @@ export default function ScoreRankItem({
   imageUrl = "/img/F2_no_image.png",
   nameKor = "도미니언",
   nameEng = "Dominion",
-  yearPublished = 2008,
   likes = 777,
   geekScore = 7.6,
   castScore = 8.0
@@ -26,7 +25,6 @@ export default function ScoreRankItem({
       <td width="30%" style={{textAlign:"left"}}>
         <Link to={`/boardgame/${boardgameKey}`}>
           {nameKor || nameEng}
-          {'('}{yearPublished}{')'}
         </Link>
         </td>
       <td width="15%">

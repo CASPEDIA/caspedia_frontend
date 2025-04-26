@@ -91,7 +91,7 @@ export async function addRatingRequest(boardgameKey) {
 }
 
 /**
- * 리뷰 요청 목록록
+ * 리뷰 요청 목록
  * @returns 
  */
 export async function getRatingRequest() {
@@ -103,3 +103,47 @@ export async function getRatingRequest() {
     throw e;
   }
 }
+
+export async function getScoreRankTop5() {
+  try {
+    const { data } = await http
+      .get(`/rating/ranking/score/top5`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+export async function getScoreRanks() {
+  try {
+    const { data } = await http
+    .get(`/rating/ranking/score/top100`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+export async function getRCountRankTop5() {
+  try {
+    const { data } = await http
+      .get(`/rating/ranking/count/top5`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+export async function getRCountRanks(period) {
+  try {
+    const { data } = await http
+      .get(`/rating/ranking/count/top100?period=${period}`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+

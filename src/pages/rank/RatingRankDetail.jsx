@@ -2,25 +2,67 @@ import React, { useState } from 'react'
 import './RatingRankDetail.css'
 import { useNavigate } from 'react-router-dom'
 import RatingRankItem from 'components/rank/RatingRankItem';
+import LoadingProvider from 'components/common/LoadingProvider';
+import { getRCountRanks } from 'hooks/ratingHooks';
 
 export default function RatingRankDetail() {
-  const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+  // const navigate = useNavigate();
+  const [rCountRankItems, setRCountRankItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selected, setSelected] = useState('한달'); // 기본값: 한달
+  const [selected, setSelected] = useState(30); // 기본값: 한달
 
-  const options = ['한달', '세달', '전체'];
+  const texts = ['한달', '세달', '전체']
+  const options = [ 30, 90, 0];
+
+  const changeRankingOption = (period) => {
+    setIsLoading(true);
+    getRCountRanks(period)
+      .then((data) => {
+        var tmpList = [];
+        data.forEach((item) => {
+          tmpList.push({
+            ranking: item.ranking,
+            boardgameKey: item.boardgame_key,
+            imageUrl: item.image_url,
+            nameKor: item.name_kor,
+            nameEng: item.name_eng,
+            likes: item.likes,
+            geekScore: item.geek_score.toFixed(2),
+            castScore: item.cast_score,
+            reviewCount: item.review_count
+          })
+        })
+        setRCountRankItems(tmpList);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false); // 로딩 종료
+        }, 500); // 1초 딜레이
+      });
+  }
+
+  const handleOptionChanged = (newOption) => {
+    setSelected(newOption);
+    changeRankingOption(newOption);
+  }
+
+  useState(() => {
+    changeRankingOption(30);
+  }, [selected])
 
   return (
     <div className='custom-rating-rank'>
       <div className='div-month-tab'>
-        {options.map((label) => (
+        {texts.map((text, index) => (
           <span
-            key={label}
-            className={`span-month-item ${selected === label ? 'active' : ''}`}
-            onClick={() => setSelected(label)}
+            key={index}
+            className={`span-month-item ${selected === options[index] ? 'active' : ''}`}
+            onClick={() => handleOptionChanged(options[index])}
           >
-            {label}
+            {text}
           </span>
         ))}
       </div>
@@ -35,32 +77,27 @@ export default function RatingRankDetail() {
           </tr>
         </thead>
         <tbody>
-          {/* {searchResult.map((item,index) => {
+          {rCountRankItems.map((item,index) => {
             return (
-              <Result 
-              key={index}
-              boardgameKey={item.boardgameKey}
-              imageUrl={item.imageUrl}
-              nameKor ={item.nameKor}
-              nameEng ={item.nameEng}
-              yearPublished = {item.yearPublished}
-              likes = {item.likes}
-              geekScore = {item.geekScore}
-              castScore = {item.castScore}
+              <RatingRankItem
+                key={index}
+                ranking={item.ranking}
+                boardgameKey={item.boardgameKey}
+                imageUrl={item.imageUrl}
+                nameKor ={item.nameKor}
+                nameEng ={item.nameEng}
+                likes = {item.likes}
+                geekScore = {item.geekScore}
+                castScore = {item.castScore}
+                reviewCount = {item.reviewCount}
               />
             )
-          })} */}
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
-          <RatingRankItem />
+          })}
         </tbody>
       </table>
+      { isLoading && (
+        <LoadingProvider />
+      )}
     </div>
   )
 }

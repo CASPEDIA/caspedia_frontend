@@ -2,11 +2,42 @@ import React, { useState } from 'react'
 import './ScoreRankDetail.css'
 import { useNavigate } from 'react-router-dom'
 import ScoreRankItem from 'components/rank/ScoreRankItem';
+import { getScoreRanks } from 'hooks/ratingHooks';
+import LoadingProvider from 'components/common/LoadingProvider';
 
 export default function ScoreRankDetail() {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+  const [scoreRankItems, setScoreRankItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useState(() => {
+    setIsLoading(true);
+    getScoreRanks()
+      .then((data) => {
+        var tmpList = [];
+        data.forEach((item) => {
+          tmpList.push({
+            ranking: item.ranking,
+            boardgameKey: item.boardgame_key,
+            imageUrl: item.image_url,
+            nameKor: item.name_kor,
+            nameEng: item.name_eng,
+            likes: item.likes,
+            geekScore: item.geek_score.toFixed(2),
+            castScore: item.cast_score
+          })
+        })
+        setScoreRankItems(tmpList);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false); // 로딩 종료
+        }, 500); // 1초 딜레이
+      });
+  }, [])
 
   return (
     <div className='custom-score-rank'>
@@ -22,35 +53,26 @@ export default function ScoreRankDetail() {
           </tr>
         </thead>
         <tbody>
-          {/* {searchResult.map((item,index) => {
+          {scoreRankItems.map((item,index) => {
             return (
-              <Result 
-              key={index}
-              boardgameKey={item.boardgameKey}
-              imageUrl={item.imageUrl}
-              nameKor ={item.nameKor}
-              nameEng ={item.nameEng}
-              yearPublished = {item.yearPublished}
-              likes = {item.likes}
-              geekScore = {item.geekScore}
-              castScore = {item.castScore}
+              <ScoreRankItem
+                key={index}
+                ranking={item.ranking}
+                boardgameKey={item.boardgameKey}
+                imageUrl={item.imageUrl}
+                nameKor ={item.nameKor}
+                nameEng ={item.nameEng}
+                likes = {item.likes}
+                geekScore = {item.geekScore}
+                castScore = {item.castScore}
               />
             )
-          })} */}
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
-          <ScoreRankItem />
+          })}
         </tbody>
       </table>
+      { isLoading && (
+        <LoadingProvider />
+      )}
     </div>
   )
 }

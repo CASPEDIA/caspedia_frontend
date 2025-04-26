@@ -10,11 +10,8 @@ export default function RatingRequests() {
   useEffect(() => {
     getRatingRequest()
       .then((data) => {
-        console.log(data);
         var tmpList = [];
-
         data.forEach((item) => {
-          console.log(item);
           tmpList.push({
             reqKey: item.req_key,
             boardgameKey: item.boardgame_key,
@@ -27,10 +24,6 @@ export default function RatingRequests() {
             createdAt: item.created_at
           })
         })
-
-        console.log("tmplist")
-        console.log(tmpList)
-
         setRatingRequestItems(tmpList);
       })
       .catch((e) => {
