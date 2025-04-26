@@ -11,3 +11,8 @@
   padding: 5%;
   text-align: left;
 }
+
+.img-user {
+  width : 20%;
+  border-radius: 50%;
+}
