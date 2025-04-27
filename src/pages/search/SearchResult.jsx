@@ -114,12 +114,12 @@ export default function SearchResult() {
         { page == 1 || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_first_page.svg" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
+          <img className='custom-link pagination-button' src="/img/F2_first_page.svg" alt="first" onClick={() => navigate(`/search?query=${query}&page=1`)}/>
         }
         { page == 1 || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_prev_page.svg" alt="prev" onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
+          <img className='custom-link pagination-button' src="/img/F2_prev_page.svg" alt="prev" onClick={() => navigate(`/search?query=${query}&page=${Number(page)-1}`)}/>
         }
         <div className='div-pagination-numbers-container'>
           { pagination.map((item) => {
@@ -137,12 +137,12 @@ export default function SearchResult() {
         { page == lastPage || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_next_page.svg" width="6%" alt="next" onClick={() => navigate(`/search?query=${query}&page=${Number(page)+1}`)}/>
+          <img className='custom-link pagination-button' src="/img/F2_next_page.svg" alt="next" onClick={() => navigate(`/search?query=${query}&page=${Number(page)+1}`)}/>
         }
         { page == lastPage || total == 0 ?
           <></>
           :
-          <img className='custom-link' src="/img/F2_last_page.svg" width="6%" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
+          <img className='custom-link pagination-button' src="/img/F2_last_page.svg" alt="last" onClick={() => navigate(`/search?query=${query}&page=${lastPage}`)}/>
         }
       </div>
       { isLoading && (

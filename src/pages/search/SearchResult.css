@@ -81,3 +81,7 @@
 .table-searchresult td:last-child::before {
   content: none;
 }
+
+.pagination-button {
+  width: 6%;
+}
