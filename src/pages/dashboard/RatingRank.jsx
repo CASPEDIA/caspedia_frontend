@@ -86,7 +86,7 @@ export function RCountRankItem ({
   const navigate = useNavigate();
 
   return (
-    <li className="ranking-item horizontal-item"  onClick={() => navigate(`/boardgame/${boardgameKey}`)}>
+    <li className="ranking-item horizontal-item custom-link"  onClick={() => navigate(`/boardgame/${boardgameKey}`)}>
       <div className="rank-number">{ranking}</div>
       <img src={imageUrl} alt={nameKor} className="game-thumbnail" />
       <div className="game-info">
