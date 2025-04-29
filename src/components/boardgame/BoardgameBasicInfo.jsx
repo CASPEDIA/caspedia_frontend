@@ -9,15 +9,19 @@ import { BoardGame, boardgameState } from 'recoil/boardgame/atom';
 import LoadingProvider from 'components/common/LoadingProvider';
 import { errorToastMessage, linkCopy, successToastMessage, warningToastMessage } from 'hooks/toastHooks';
 import { addRatingRequest } from 'hooks/ratingHooks';
+import CancelButton from 'components/common/CancelButton';
+import CustomButton from 'components/common/CustomButton';
 
 export default function BoardgameBasicInfo() {
   const {boardid} = useParams();
   const [boardgame, setBoardgame] = useRecoilState(boardgameState);
   const [isLikePressed, setIsLikePressed] = useState(false);
   const [isLikedModalOpen, setIsLikedModalOpen] = useState(false);
+  const [isRatingRequestModalOpen, setIsRatingRequestModalOpen] = useState(false);
   const [likedCount, setLikedCount] = useState(0);
   const [likedUsers, setLikedUsers] = useState([]);
-  const modalRef = useRef(null);
+  const likedModalRef = useRef(null);
+  const ratingRequestModalRef = useRef(null);
 
   const handleCopy = () => {
     linkCopy();
@@ -42,11 +46,21 @@ export default function BoardgameBasicInfo() {
   const openLikedModal = () => {
     if (likedCount === 0) return null;
     setIsLikedModalOpen(true);
-    if (modalRef.current) {
-      modalRef.current.handleResize();
+    if (likedModalRef.current) {
+      likedModalRef.current.handleResize();
     }
   }
+
+  const openRatingRequestModal = () => {
+    setIsRatingRequestModalOpen(true);
+    if (ratingRequestModalRef.current) {
+      ratingRequestModalRef.current.handleResize();
+    }
+  }
+
   const closeLikedModal = () => setIsLikedModalOpen(false);
+  const closeRatingRequestModal = () => setIsRatingRequestModalOpen(false);
+
   const pressLike = () => {
     if (isLikePressed) {
       removeBoardgameLike(boardid)
@@ -76,6 +90,9 @@ export default function BoardgameBasicInfo() {
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        closeRatingRequestModal();
       })
   }
 
@@ -217,7 +234,7 @@ export default function BoardgameBasicInfo() {
         </tbody>
       </table>
       <div className='div-func'>
-        <div className='div-addi-func' onClick={pressRatingRequest}>
+        <div className='div-addi-func' onClick={openRatingRequestModal}>
           <img src="/img/F3_request.png" width="30%" alt="리뷰요청" />
           <div>
             <span>리뷰요청</span>
@@ -256,7 +273,7 @@ export default function BoardgameBasicInfo() {
       <CommonModal 
         isModalOpen={isLikedModalOpen}
         closeModal={closeLikedModal}
-        ref={modalRef}
+        ref={likedModalRef}
       >
         {likedUsers.map((item,index) => {
           return (
@@ -268,6 +285,27 @@ export default function BoardgameBasicInfo() {
             />
           )
         })}
+      </CommonModal>
+      <CommonModal
+        isModalOpen={isRatingRequestModalOpen}
+        closeModal={closeRatingRequestModal}
+        ref={ratingRequestModalRef}
+      >
+        <div>
+          <div>리뷰 요청은 일주일동안 게시됩니다.</div>
+          <div> 진행하시겠습니까?</div>
+          <div className='div-modal-button-container'>
+            <CancelButton 
+              onClick={closeRatingRequestModal}
+              text="취소"
+              />
+            <div></div>
+            <CustomButton 
+              onClick={pressRatingRequest}
+              text="예"
+              />
+          </div>
+        </div>
       </CommonModal>
       {isLoading && (
         <LoadingProvider />

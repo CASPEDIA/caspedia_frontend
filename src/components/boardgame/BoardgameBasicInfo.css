@@ -102,3 +102,10 @@
   padding: var(--basic-padding);
   text-align: left;
 }
+
+.div-modal-button-container {
+  padding-top : 5%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
