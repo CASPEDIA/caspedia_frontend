@@ -15,17 +15,17 @@ export default function BasicInfo() {
   const startX = useRef(0);
 
   const images = [
-    "/main/F5_event_01.png",
-    "/main/F5_best_review_03.png",
-    "/main/F5_best_review_02.png",
-    "/main/F5_best_review_01.png",
+    "/main/F5_event_end_01.png",
+    "/main/F5_event_end_02.png",
+    "/main/F5_event_end_03.png",
+    "/main/F5_event_end_04.png",
   ];
 
   const links = [
     "/",
-    "/boardgame/129622",
-    "/boardgame/202737",
-    "/boardgame/375651",
+    "/",
+    "/",
+    "/",
   ]
 
   // 터치 시작
@@ -57,7 +57,7 @@ export default function BasicInfo() {
 
   return (
     <div>
-      {/* <div className="m-3">
+      <div className="m-3">
         <div 
           className="image-slider"
           onTouchStart={handleTouchStart}
@@ -73,7 +73,9 @@ export default function BasicInfo() {
             }}
           >
             {images.map((src, index) => (
-              <img key={index} src={src} alt="caspedia" className="slider-image custom-link" onClick={() => navigate(links[index])}/>
+              <img key={index} src={src} alt="caspedia" className="slider-image custom-link" 
+              // onClick={() => navigate(links[index])}
+              />
             ))}
           </div>
         </div>
@@ -86,7 +88,7 @@ export default function BasicInfo() {
             ></span>
           ))}
         </div>
-      </div> */}
+      </div>
       
       <ScoreRank />
       <RatingRank />
@@ -106,7 +108,6 @@ export default function BasicInfo() {
           구글폼 링크
         </a>
       </div>
-
     </div>
   );
 }
