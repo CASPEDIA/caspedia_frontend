@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './UserRating.css'
 import { useNavigate } from 'react-router-dom'
-import { REVIEW_TAGLIST } from 'recoil/tag/atom';
+import { REVIEW_TAGLIST, REVIEW_TAGLIST_ORDER } from 'recoil/tag/atom';
 import { useIsMyInfo } from 'hooks/userHooks';
 
 export default function UserRating({
@@ -28,8 +28,8 @@ export default function UserRating({
   useEffect(() => {
     const tmpList = [];
     for (let i = 0; i < tagKey.length; i++){
-      if(tagKey[i] === '1') {
-        tmpList.push(REVIEW_TAGLIST[i]);
+      if(tagKey[REVIEW_TAGLIST_ORDER[i]] === '1') {
+        tmpList.push(REVIEW_TAGLIST[REVIEW_TAGLIST_ORDER[i]]);
       } 
     }
     setTagList(tmpList);

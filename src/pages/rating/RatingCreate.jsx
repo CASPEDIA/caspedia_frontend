@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './RatingCreate.css'
-// import { useParams } from 'react-router-dom'
-import { REVIEW_TAGLIST } from "recoil/tag/atom.jsx";
+import { REVIEW_TAGLIST, REVIEW_TAGLIST_ORDER } from "recoil/tag/atom.jsx";
 import CancelButton from 'components/common/CancelButton';
 import CustomButton from 'components/common/CustomButton';
 import CommonModal from 'components/modal/CommonModal';
@@ -26,7 +25,8 @@ export default function RatingCreate({
   const empty_star = "/img/F4_rating_star_empty.png";
   const fill_star = "/img/F4_rating_star_fill.png";
   const tags = REVIEW_TAGLIST;
-  const [tagSelected, setTagSelected] = useState("000000000000000000000000");
+  const tagOrder = REVIEW_TAGLIST_ORDER;
+  const [tagSelected, setTagSelected] = useState("0000000000000000000000000000");
   const [tagSelectedCount, setTagSelectedCount] = useState(0);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function RatingCreate({
 
   const modifyTagSelected = (index, newChar) => {
     setTagSelected((prev) => prev.slice(0, index) + newChar + prev.slice(index + 1));
-    // console.log(tagSelected);
+    console.log(tagSelected);
   }
 
   const tagClicked = (e) => {
@@ -52,7 +52,7 @@ export default function RatingCreate({
     const countText = document.getElementById("currentSelectedCount");
     const idx = Number(curElement.getAttribute("idx"));
 
-    // console.log(tagSelected);
+    console.log(tagSelected);
     
     if (curElement.classList.contains("div-custom-review-tag")){
       if (tagSelectedCount === 5) return
@@ -93,8 +93,9 @@ export default function RatingCreate({
     // console.log(tagElements);
     let count = 0;
 
-    tagElements.forEach((element, index) => {
-      const isActive = tagCode[index] === "1";
+    tagElements.forEach((element) => {
+      const idx = Number(element.getAttribute("idx"));
+      const isActive = tagCode[idx] === "1";
       if (isActive) count++;
       if (isActive && element.classList.contains("div-custom-review-tag")) {
         element.classList.remove("div-custom-review-tag");
@@ -106,7 +107,6 @@ export default function RatingCreate({
       }
     });
 
-    // console.log(count);
 
     setTagSelectedCount(count);
 
@@ -261,9 +261,9 @@ export default function RatingCreate({
         <h5 style={{"textAlign" : "left"}}><strong>태그 선택</strong>&nbsp;&nbsp;<span id="currentSelectedCount">({tagSelectedCount}/5)</span></h5>
         <div className='div-tagselect-container'>
           <div className='div-tagselect-scroll-container'>
-            {tags.map((item, index) => 
-              <div className='div-review-tags div-custom-review-tag custom-link' idx={index} key={index} onClick={tagClicked}>
-                {item}
+            {tagOrder.map((item, index) => 
+              <div className='div-review-tags div-custom-review-tag custom-link' idx={item} key={index} onClick={tagClicked}>
+                {tags[item]}
               </div>
             )}
           </div>

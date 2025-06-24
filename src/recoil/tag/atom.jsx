@@ -1,9 +1,4 @@
-// import { atom } from "recoil";
-// import { recoilPersist } from "recoil-persist";
-
-// const { persistAtom } = recoilPersist();
-
-export const REVIEW_TAGLIST =  [
+export const REVIEW_TAGLIST =  [ 
   "2인베스트✌",
   "3인베스트🤟",
   "4인베스트🖖",
@@ -28,4 +23,12 @@ export const REVIEW_TAGLIST =  [
   "순발력이 필요한😎",
   "상호작용이 많은⚔",
   "상호작용이 적은😌",
+  "5인 베스트🖐",
+  "6인 베스트6️⃣",
+  "운이 중요해요🎲",
+  "테마가 매력적인🎨"
 ];
+
+export const REVIEW_TAGLIST_ORDER = [
+  0,1,2,24,25,3,4,5,6,7,8,9,10,11,12,13,14,27,15,16,17,18,19,20,21,22,23,26
+]
