@@ -40,12 +40,12 @@
   background-color: var(--basic-mint-color);
   padding: 2%;
   border-radius: var(--basic-border-radius);
-  height : 25vh;
+  /* height : 25vh; */
 }
 
 .div-tagselect-scroll-container {
-  overflow-y: auto;
-  max-height: 22vh;
+  /* overflow-y: auto; */
+  /* max-height: 22vh; */
   display: flex;
   flex-wrap: wrap;
 }
