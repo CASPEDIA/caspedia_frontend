@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ScoreRankDetail.css'
 import ScoreRankItem from 'components/rank/ScoreRankItem';
 import { getScoreRanks } from 'hooks/ratingHooks';
@@ -8,7 +8,7 @@ export default function ScoreRankDetail() {
   const [scoreRankItems, setScoreRankItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useState(() => {
+  useEffect(() => {
     setIsLoading(true);
     getScoreRanks()
       .then((data) => {

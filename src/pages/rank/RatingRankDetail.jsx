@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './RatingRankDetail.css'
 import RatingRankItem from 'components/rank/RatingRankItem';
 import LoadingProvider from 'components/common/LoadingProvider';
@@ -47,7 +47,7 @@ export default function RatingRankDetail() {
     changeRankingOption(newOption);
   }
 
-  useState(() => {
+  useEffect(() => {
     changeRankingOption(30);
   }, [selected])
 
