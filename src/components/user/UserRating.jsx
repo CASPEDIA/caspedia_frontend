@@ -3,6 +3,7 @@ import './UserRating.css'
 import { useNavigate } from 'react-router-dom'
 import { REVIEW_TAGLIST, REVIEW_TAGLIST_ORDER } from 'recoil/tag/atom';
 import { useIsMyInfo } from 'hooks/userHooks';
+import CustomTag from 'components/tagged/CustomTag';
 
 export default function UserRating({
   ratingKey=10,
@@ -29,14 +30,18 @@ export default function UserRating({
     const tmpList = [];
     for (let i = 0; i < tagKey.length; i++){
       if(tagKey[REVIEW_TAGLIST_ORDER[i]] === '1') {
-        tmpList.push(REVIEW_TAGLIST[REVIEW_TAGLIST_ORDER[i]]);
+        tmpList.push({
+            "index" : REVIEW_TAGLIST_ORDER[i]+1,
+            "value" : REVIEW_TAGLIST[REVIEW_TAGLIST_ORDER[i]]
+          }
+        );
       } 
     }
     setTagList(tmpList);
   }, [])
 
   return (
-    <div className='custom-link div-user-rating-card' onClick={toggleExpand}>
+    <div className=' div-user-rating-card' onClick={toggleExpand}>
       <div className='div-user-rating-basic-info'>
         <div className='div-user-rating'>
           <img className='custom-link' src={imageUrl || "/img/F2_no_image.png"} width="15%" alt="이미지" onClick={() => navigate("/boardgame/" + boardgameKey)}/>
@@ -59,9 +64,10 @@ export default function UserRating({
           <div className='div-tag-container'>
             {tagList.map((item, index) => {
               return(
-                <SelectedTag 
+                <CustomTag
                   key={index}
-                  text={item}
+                  text={item["value"]}
+                  idx={item["index"]}
                 />
               )
             })}
@@ -79,14 +85,4 @@ export default function UserRating({
       } */}
     </div>
   )
-}
-
-function SelectedTag({
-  text="Selected"
-}) {
-  return(
-    <div className='div-tag-item'>
-      {text}
-    </div>
-  );
 }

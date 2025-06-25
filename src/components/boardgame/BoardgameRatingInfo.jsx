@@ -6,6 +6,7 @@ import { getBoardgameRatings } from 'hooks/boardgameHooks';
 import { useCookies } from 'react-cookie';
 import { REVIEW_TAGLIST } from 'recoil/tag/atom';
 import { useIsMyInfo } from 'hooks/userHooks';
+import CountedTag from 'components/tagged/CountedTag';
 
 export default function BoardgameReviewInfo() {
   const navigate = useNavigate();
@@ -95,17 +96,15 @@ export default function BoardgameReviewInfo() {
         {topTags && topTags.length > 0 ? 
           topTags.map((item, index) => {
           return (
-            <BestTag
+            <CountedTag
               key={index} 
               text={REVIEW_TAGLIST[item.index]}
+              idx={item.index+1}
               count={item.value}
             />
           )})
           :
-          <BestTag
-            text="정보 없음"
-            count=""
-          />
+          <></>
         }
       </div>
       <div className='div-boardgame-ratings'>
@@ -146,22 +145,6 @@ export default function BoardgameReviewInfo() {
             />
           )
         })}
-      </div>
-    </div>
-  )
-}
-
-function BestTag({
-  text="text",
-  count=1,
-}){
-  return(
-    <div className='div-selected-tag'>
-      <div>
-        {text}
-      </div>
-      <div>
-        {count}
       </div>
     </div>
   )

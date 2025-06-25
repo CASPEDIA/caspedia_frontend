@@ -176,3 +176,17 @@ export async function getRCountRanks(period) {
   }
 }
 
+/**
+ * 태그된 게임들 목록
+ * @param {태그 아이디} tagId 
+ * @returns 
+ */
+export async function getTaggedGames(tagId) {
+  try {
+    const { data } = await http
+      .get(`/rating/tagged/${tagId}`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
