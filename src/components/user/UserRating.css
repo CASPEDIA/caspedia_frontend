@@ -47,18 +47,6 @@
   padding: 3%;
 }
 
-.div-tag-item {
-  flex: 0 0 48%;       
-  box-sizing: border-box; 
-  padding: 1% 3% 1% 3%;
-  margin: 1%;
-  border: 1px solid black;
-  border-radius: var(--basic-border-radius);
-  background-color: var(--basic-white-color);
-  text-align: left;
-  font-size: 0.8em;
-}
-
 .div-collapse-rating{
   display: flex;
   justify-content: end;
