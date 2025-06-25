@@ -19,10 +19,10 @@ export default function UserRating({
 }) {
   const isMyInfo = useIsMyInfo();
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
   const [tagList, setTagList] = useState([]);
   const toggleExpand = () => {
-    setIsExpanded((prev) => !prev);
+    // setIsExpanded((prev) => !prev);
   };
 
   useEffect(() => {
@@ -54,8 +54,8 @@ export default function UserRating({
           {score}
         </div>
       </div>
-      {isExpanded ?
-        <>
+      {/* {isExpanded ?
+        <> */}
           <div className='div-tag-container'>
             {tagList.map((item, index) => {
               return(
@@ -69,14 +69,14 @@ export default function UserRating({
           <p className='custom-whitespace ' style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
-        </>
+        {/* </>
         :
         <>
           <p className='p-rating-comment custom-whitespace '>
             {comment}
           </p>
         </>  
-      }
+      } */}
     </div>
   )
 }

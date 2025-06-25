@@ -17,10 +17,10 @@ export default function BoardgameRating({
 }) {
   const navigate = useNavigate();
   const isMyInfo = useIsMyInfo();
-  const [isExpanded, setIsExpanded] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
   const [tagList, setTagList] = useState([]);
   const toggleExpand = () => {
-    setIsExpanded((prev) => !prev);
+    // setIsExpanded((prev) => !prev);
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function BoardgameRating({
               <></>
             }
             <br />
-            {isExpanded ? 
+            {/* {isExpanded ? 
               <>
               </>
               :
@@ -54,15 +54,15 @@ export default function BoardgameRating({
                   {comment}
                 </p>
               </>
-            }
+            } */}
           </div>
         </div>
         <div className='boardgame-rating-circle'>
           {score}
         </div>
       </div>
-      {isExpanded ?
-        <>
+      {/* {isExpanded ?
+        <> */}
           <div className='div-tag-container'>
             {tagList.map((item, index) => {
               return(
@@ -76,11 +76,11 @@ export default function BoardgameRating({
           <p className='custom-whitespace' style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
             {comment}
           </p>
-        </>
+        {/* </>
         :
         <>
         </>  
-      }
+      } */}
     </div>
   )
 }
