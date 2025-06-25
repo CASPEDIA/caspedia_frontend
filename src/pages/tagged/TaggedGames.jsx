@@ -4,6 +4,7 @@ import TaggedGameItem from 'components/tagged/TaggedGameItem';
 import LoadingProvider from 'components/common/LoadingProvider';
 import { getTaggedGames } from 'hooks/ratingHooks';
 import { useParams } from 'react-router-dom';
+import { REVIEW_TAGLIST } from 'recoil/tag/atom';
 
 export default function TaggedGames() {
   const {tagid} = useParams();
@@ -44,7 +45,7 @@ export default function TaggedGames() {
       <table className='table-tagged-games'>
         <thead>
           <tr>
-            <th>태그된 게임들</th>
+            <th>{REVIEW_TAGLIST[tagid-1]}</th>
             <th className='wide-column'>게임명</th>
             <th>좋아요</th>
             <th>CAST 평점</th>

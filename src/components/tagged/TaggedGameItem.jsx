@@ -13,7 +13,7 @@ export default function TaggedGameItem({
 }) {
   return (
     <tr>
-      <td width="20%">
+      <td width="25%">
         <Link to={`/boardgame/${boardgameKey}`}>
           <img src={imageUrl || "/img/F2_no_image.png"} alt="noImage" style={{"maxHeight":"5em", "maxWidth":"90%"}}/>
         </Link>
@@ -30,7 +30,7 @@ export default function TaggedGameItem({
       <td width="15%">
         {castScore} &nbsp;<img src="/img/F2_cast_rating_logo.png" alt="logo" width="13vw" />
       </td>
-      <td width="15%">
+      <td width="10%">
         {tagCount}
       </td>
     </tr>
