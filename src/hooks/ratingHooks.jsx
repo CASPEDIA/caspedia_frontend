@@ -36,11 +36,11 @@ export async function addRating(boardgameKey, score, comment, tagKey) {
 export async function setRating(boardgameKey, score, comment, tagKey) {
   try {
     const { data } = await http
-    .put(`/rating/${boardgameKey}`,{
-      "score" : score,
-      "comment" : comment,
-      "tag_key" : tagKey,
-    })
+      .put(`/rating/${boardgameKey}`,{
+        "score" : score,
+        "comment" : comment,
+        "tag_key" : tagKey,
+      })
     infoToastMessage("리뷰가 수정되었습니다.");
     return data;
   } catch (e) {
@@ -187,6 +187,122 @@ export async function getTaggedGames(tagId) {
       .get(`/rating/tagged/${tagId}`)
     return data;
   } catch (e) {
+    throw e;
+  }
+}
+
+/**
+ * 평가 공감 추가
+ * @param {평가 아이디} ratingKey 
+ * @returns 
+ */
+export async function addRatingImpressed(ratingKey) {
+  try {
+    const { data } = await http
+      .post(`/rating/impressed/${ratingKey}`)
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;
+  }
+}
+
+/**
+ * 평가 공감 삭제
+ * @param {평가 아이디} ratingKey 
+ * @returns 
+ */
+export async function removeRatingImpressed(ratingKey) {
+  try {
+    const { data } = await http
+      .delete(`/rating/impressed/${ratingKey}`)
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;
+  }
+}
+
+/**
+ * 평가 상세페이지에서 정보 가져오기
+ * @param {평가 아이디} ratingKey 
+ * @returns 
+ */
+export async function getRatingDetail(ratingKey) {
+  try {
+    const { data } = await http
+      .get(`/rating/detail/${ratingKey}`)
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+/**
+ * 평가에 댓글 추가
+ * @param {평가 아이디} ratingKey 
+ * @param {댓글 내용} content 
+ * @returns 
+ */
+export async function addReply(ratingKey, content) {
+  try {
+    const { data } = await http
+      .post(`/rating/reply/${ratingKey}`,{
+        "content" : content,
+      })
+    successToastMessage("댓글을 추가하였습니다.");
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;
+  }
+}
+
+/**
+ * 평가에 댓글 삭제
+ * @param {댓글 아이디} replyKey 
+ * @returns 
+ */
+export async function removeReply(replyKey) {
+  try {
+    const { data } = await http
+      .delete(`/rating/reply/${replyKey}`)
+    infoToastMessage("댓글을 삭제하였습니다.");
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;
+  }
+}
+
+/**
+ * 댓글에 공감 추가
+ * @param {댓글 아이디} replyKey 
+ * @returns 
+ */
+export async function addReplyImpressed(replyKey) {
+  try {
+    const { data } = await http
+      .post(`/rating/reply/impressed/${replyKey}`)
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;
+  }
+}
+
+/**
+ * 댓글에 공감 삭제
+ * @param {댓글 아이디} replyKey 
+ * @returns 
+ */
+export async function removeReplyImpressed(replyKey) {
+  try {
+    const { data } = await http
+      .delete(`/rating/reply/impressed/${replyKey}`)
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
     throw e;
   }
 }
