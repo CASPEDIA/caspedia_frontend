@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './RatingDetail.css'
-import { addRatingImpressed, getRatingDetail, removeRatingImpressed } from 'hooks/ratingHooks'
+import { addRatingImpressed, addReply, getRatingDetail, removeRatingImpressed } from 'hooks/ratingHooks'
 import { useNavigate, useParams } from 'react-router-dom'
-import CustomCard from 'components/common/CustomCard';
 import CustomTag from 'components/tagged/CustomTag';
 import { REVIEW_TAGLIST, REVIEW_TAGLIST_ORDER } from 'recoil/tag/atom';
+import { userState } from 'recoil/userstate/atom';
+import { useRecoilValue } from 'recoil';
+import CancelButton from 'components/common/CancelButton';
+import Reply from 'components/rating/Reply';
 
 export default function RatingDetail() {
   const {ratingkey} = useParams();
+  const user = useRecoilValue(userState);
 
   const [gameInfo, setGameInfo] = useState({});
   const [ratingInfo, setRatingInfo] = useState({});
   const [replyInfo, setReplyInfo] = useState([]);
   const [tagList, setTagList] = useState([]);
+  const [replyContent, setReplyContent] = useState("");
+  const inputRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -43,6 +49,30 @@ export default function RatingDetail() {
         })
     }
   }
+
+  const handleCreateReply = () => {
+    if (replyContent === "") return;
+    addReply(ratingkey, replyContent)
+      .then((data) => {
+        setReplyContent("");
+        navigate(0);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+  }
+
+  const handleReplyContentChange = (e) => {
+    const query = e.target.value;
+    setReplyContent(query);
+  }
+
+  const handleReplyContentKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleCreateReply();
+    }
+  }
+
 
   useEffect(() => {
     var tmpGameInfo = {};
@@ -99,7 +129,7 @@ export default function RatingDetail() {
             userImageKey: item.user_image_key,
             impressedCount: item.impressed_count,
             content: item.content,
-            isImpressed: item.is_impressed,
+            isImpressed: item.is_Impressed,
           }
           tmpReplyListInfo2.push(tmpReplyInfo);
         })
@@ -185,13 +215,47 @@ export default function RatingDetail() {
           </div>
         </div>
 
-      </div>
-      <div className='div-ratingdetail-detail-reply-container'>
-        <div className='div-ratingdetail-detail-replies'>
-
-        </div>
-        <div className='div-ratingdetail-detail-add-reply'>
-          
+        <div className='div-ratingdetail-detail-reply-container'>
+          <div className='div-ratingdetail-detail-replies'>
+            {replyInfo.map((item,index) => {
+              return (
+                <Reply 
+                  key={index}
+                  replyKey={item.replyKey}
+                  nanoid={item.nanoid}
+                  nickname={item.nickname}
+                  userImageKey={item.userImageKey}
+                  impressedCount={item.impressedCount}
+                  content={item.content}
+                  isImpressed={item.isImpressed}
+                />
+              )
+            })
+            
+            }
+          </div>
+          <div className='div-ratingdetail-detail-add-reply'>
+            <img 
+                src={user.userImageKey ? `/user_profile/profile_${user.userImageKey < 10 ? "0" : ""}${user.userImageKey}.png` : "/img/F5_user_menu.png" } 
+                alt="User" 
+                className="nav-icon"
+                style={{"marginRight" : "2%" , "borderRadius":"50%"}} 
+            />
+            <input 
+              type="text" 
+              placeholder='이 한줄평에 댓글 남기기...'
+              className='custom-input'
+              maxLength="299"
+              value={replyContent}
+              onChange={handleReplyContentChange}
+              onKeyDown={handleReplyContentKeyDown}
+              ref={inputRef}
+            />
+            <CancelButton 
+              onClick={() => handleCreateReply()}
+              text="등록"
+            />
+          </div>
         </div>
       </div>
     </div>

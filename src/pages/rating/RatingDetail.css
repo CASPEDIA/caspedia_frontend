@@ -17,10 +17,14 @@
 }
 
 .div-boardgame-ratingdetail-detail {
+  flex: 1; /* 남은 공간을 모두 사용하게 함 */
+  overflow-y: auto;
   padding: 1%;
   background-color: var(--basic-gray-color);
   border-radius: var(--basic-border-radius);
-  min-height : 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh; /* 전체 화면 높이 기준 */
 }
 
 .div-boardgame-ratingdetail-card {
@@ -85,5 +89,35 @@
 }
 
 .div-ratingdetail-detail-reply-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
 
+.div-ratingdetail-detail-replies {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 7em; /* 입력창 가릴 일 없도록 여유 주기 */
+}
+
+.div-ratingdetail-detail-add-reply {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 798px;
+  padding: 1rem 4%;
+  background-color: var(--basic-white-color);
+  z-index: 1;
+  display:flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.custom-input {
+  width: 100%;
+  border: none;
+  text-align: left;
 }

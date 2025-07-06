@@ -1,0 +1,31 @@
+.div-reply-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3%;
+  padding: 0.1em 0%;
+}
+
+.div-reply-left {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  text-align: left;
+}
+
+.div-reply-right {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.div-rating-button-container{
+  display: flex;
+  padding: var(--basic-padding);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-modal-overlay{
+  transform: translateX(-8.5%);
+}
