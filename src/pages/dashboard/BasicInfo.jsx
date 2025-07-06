@@ -57,7 +57,7 @@ export default function BasicInfo() {
 
   return (
     <div>
-      <div className="m-3">
+      {/* <div className="m-3">
         <div 
           className="image-slider"
           onTouchStart={handleTouchStart}
@@ -88,8 +88,9 @@ export default function BasicInfo() {
             ></span>
           ))}
         </div>
-      </div>
-      
+      </div> */}
+      {/* <img src="/img/F5_main_logo_02.png" style={{height:"auto", width:"50%"}}  alt="메인 로고" /> */}
+    
       <ScoreRank />
       <RatingRank />
       <RatingRequests />
