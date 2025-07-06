@@ -379,7 +379,9 @@ export default function UserDetail() {
             tagKey: item.tag_key,
             imageUrl: item.image_url,
             createdAt: item.created_at,
-            updatedAt: item.updated_at
+            updatedAt: item.updated_at,
+            replyCount: item.reply_count,
+            impressedCount: item.impressed_count,
           }
         });
         setratingCount(tmpCount);
@@ -517,6 +519,8 @@ export default function UserDetail() {
                 imageUrl={item.imageUrl}
                 createdAt={item.createdAt}
                 updatedAt={item.updatedAt}
+                replyCount={item.replyCount}
+                impressedCount={item.impressedCount}
               />
             )
           })}

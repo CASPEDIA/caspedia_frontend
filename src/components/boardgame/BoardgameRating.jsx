@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { REVIEW_TAGLIST, REVIEW_TAGLIST_ORDER } from 'recoil/tag/atom';
 import { useIsMyInfo } from 'hooks/userHooks';
 import CustomTag from 'components/tagged/CustomTag';
+import { addRatingImpressed, removeRatingImpressed } from 'hooks/ratingHooks';
 
 export default function BoardgameRating({
   boardgameKey=1,
+  ratingKey=1,
   nanoid="guest",
   nickname="guest",
   userImageKey=1,
@@ -15,7 +17,10 @@ export default function BoardgameRating({
   createdAt="2024-11-16T15:47:37.450685",
   updatedAt="2024-11-16T19:24:48.835425",
   tagKeys="111110000000000000000000",
+  replyCount=0,
+  isImpressed=false,
 }) {
+  const [isIImpressed, setIsIImpressed] = useState(isImpressed);
   const navigate = useNavigate();
   const isMyInfo = useIsMyInfo();
   // const [isExpanded, setIsExpanded] = useState(false);
@@ -23,6 +28,26 @@ export default function BoardgameRating({
   const toggleExpand = () => {
     // setIsExpanded((prev) => !prev);
   };
+
+  const pressImpressed = () => {
+    if (isIImpressed) {
+      removeRatingImpressed(ratingKey)
+        .then((data) => {
+          setIsIImpressed(false);
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    } else {
+      addRatingImpressed(ratingKey)
+        .then((data) => {
+          setIsIImpressed(true);
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    }
+  }
 
   useEffect(() => {
     var tmpList = []
@@ -37,6 +62,7 @@ export default function BoardgameRating({
     }
     setTagList(tmpList);
   }, [])
+
   return (
     <div className={` div-boardgame-rating-card ${isMyInfo(nanoid) ? "div-my-rating" : ""}`} onClick={toggleExpand}>
       <div className='div-boardgame-rating-basic-info'>
@@ -79,14 +105,41 @@ export default function BoardgameRating({
               )
             })}
           </div>
-          <p className='custom-whitespace' style={{"textAlign": "left", "padding" : "0% 3% 1% 3%"}}>
+          <div className='custom-whitespace' style={{"textAlign": "left", "padding" : "0% 3%"}}>
             {comment}
-          </p>
+          </div>
         {/* </>
         :
         <>
         </>  
       } */}
+      <div className='div-etc-container'>
+        {isMyInfo() ? 
+          <></>
+          :
+          isIImpressed ?
+            <img 
+              className='custom-link'
+              onClick={pressImpressed}
+              src="/img/impressed_fill.svg" 
+              alt="impressed" 
+              width="20em" />        
+            :
+            <img 
+              className='custom-link'
+              onClick={pressImpressed}
+              src="/img/impressed_empty.svg" 
+              alt="impressed" 
+              width="20em" />        
+        }
+        <div style={{"padding" : "0% 3%"}}></div>
+        <img src="/img/reply.svg" alt="impressed" width="20em" />
+        <div style={{"padding" : "0% 3%"}}>{replyCount}</div>
+        <div className='custom-link' style={{"padding" : "0% 1%"}} onClick={() => navigate(`/ratingdetail/${ratingKey}`)}>
+          <strong>자세히</strong>
+          <img src="/img/F2_last_page.svg" width="20em" alt="last"/>
+        </div>
+      </div>
     </div>
   )
 }

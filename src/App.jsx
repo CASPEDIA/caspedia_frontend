@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import ScoreRankDetail from 'pages/rank/ScoreRankDetail';
 import RatingRankDetail from 'pages/rank/RatingRankDetail';
 import TaggedGames from 'pages/tagged/TaggedGames';
+import RatingDetail from 'pages/rating/RatingDetail';
 
 const App = createBrowserRouter([
   {
@@ -82,6 +83,15 @@ const App = createBrowserRouter([
             <Rating />
           </RequireAuth>
         ),
+      },
+      {
+        path: 'ratingdetail/:ratingkey',
+        element: (
+          <RequireAuth>
+            <ScrollToTop />
+            <RatingDetail />
+          </RequireAuth>
+        )
       },
       {
         path: 'tagged/:tagid',

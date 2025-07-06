@@ -35,6 +35,7 @@ export default function BoardgameReviewInfo() {
           if(isMyInfo(item.nanoid)) {
             setAlreadyRated(true);
             myRate = {
+              ratingKey: item.rating_key,
               nanoid: item.nanoid,
               nickname: item.nickname,
               userImageKey: item.user_image_key,
@@ -43,9 +44,12 @@ export default function BoardgameReviewInfo() {
               createdAt: item.created_at,
               updatedAt: item.updated_at,
               tagKeys: item.tag_keys,
+              replyCount: item.reply_count,
+              isImpressed: item.is_Impressed,
             }
           } else {
             parsedData.push({
+              ratingKey: item.rating_key,
               nanoid: item.nanoid,
               nickname: item.nickname,
               userImageKey: item.user_image_key,
@@ -54,6 +58,8 @@ export default function BoardgameReviewInfo() {
               createdAt: item.created_at,
               updatedAt: item.updated_at,
               tagKeys: item.tag_keys,
+              replyCount: item.reply_count,
+              isImpressed: item.is_Impressed,
             });
           }
         });
@@ -111,6 +117,7 @@ export default function BoardgameReviewInfo() {
         { alreadyRated ? 
           <BoardgameRating 
             boardgameKey={boardid}
+            ratingKey={myRateInfo.ratingKey}
             nanoid={myRateInfo.nanoid}
             nickname={myRateInfo.nickname}
             userImageKey={myRateInfo.userImageKey}
@@ -119,6 +126,8 @@ export default function BoardgameReviewInfo() {
             createdAt={myRateInfo.createdAt}
             updatedAt={myRateInfo.updatedAt}
             tagKeys={myRateInfo.tagKeys}
+            replyCount={myRateInfo.replyCount}
+            isImpressed={myRateInfo.isImpressed}
           />
         :
           <div className='div-to-create-rating-container custom-link' onClick={() => navigate(`/rating/${boardid}`)}>
@@ -134,6 +143,7 @@ export default function BoardgameReviewInfo() {
             <BoardgameRating 
               key={index}
               boardgameKey={boardid}
+              ratingKey={item.ratingKey}
               nanoid={item.nanoid}
               nickname={item.nickname}
               userImageKey={item.userImageKey}
@@ -142,6 +152,8 @@ export default function BoardgameReviewInfo() {
               createdAt={item.createdAt}
               updatedAt={item.updatedAt}
               tagKeys={item.tagKeys}
+              replyCount={item.replyCount}
+              isImpressed={item.isImpressed}
             />
           )
         })}

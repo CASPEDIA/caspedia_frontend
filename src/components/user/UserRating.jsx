@@ -17,6 +17,8 @@ export default function UserRating({
   imageUrl="/img/F2_no_image.png",
   createdAt="2024-11-16T15:47:37.450685",
   updatedAt="2024-11-16T19:24:48.835425",
+  replyCount=0,
+  impressedCount=0,
 }) {
   const isMyInfo = useIsMyInfo();
   const navigate = useNavigate();
@@ -83,6 +85,19 @@ export default function UserRating({
           </p>
         </>  
       } */}
+      <div className='div-etc-container'>
+        <img 
+          src="/img/impressed_fill.svg" 
+          alt="impressed" 
+          width="20em" />
+        <div style={{"padding" : "0% 3%"}}>{impressedCount}</div>
+        <img src="/img/reply.svg" alt="impressed" width="20em" />
+        <div style={{"padding" : "0% 3%"}}>{replyCount}</div>
+        <div className='custom-link' style={{"padding" : "0% 1%"}} onClick={() => navigate(`/ratingdetail/${ratingKey}`)}>
+          <strong>자세히</strong>
+          <img src="/img/F2_last_page.svg" width="20em" alt="last"/>
+        </div>
+      </div>
     </div>
   )
 }
