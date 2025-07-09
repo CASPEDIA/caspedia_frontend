@@ -20,6 +20,7 @@ import ScoreRankDetail from 'pages/rank/ScoreRankDetail';
 import RatingRankDetail from 'pages/rank/RatingRankDetail';
 import TaggedGames from 'pages/tagged/TaggedGames';
 import RatingDetail from 'pages/rating/RatingDetail';
+import ExploreGames from 'pages/explore/ExploreGames';
 
 const App = createBrowserRouter([
   {
@@ -63,6 +64,15 @@ const App = createBrowserRouter([
           <RequireAuth>
             <ScrollToTop />
             <SearchResult />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'explore',
+        element: (
+          <RequireAuth>
+            <ScrollToTop />
+            <ExploreGames />
           </RequireAuth>
         ),
       },

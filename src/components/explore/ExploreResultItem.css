@@ -1,0 +1,29 @@
+td {
+  vertical-align: middle;
+  border-top: 1px solid black; /* 가로선 추가 */
+  border-bottom: 1px solid black; /* 가로선 추가 */
+  padding: 2%;
+  text-align: center;
+  position: relative; 
+}
+
+td::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  width: 0.5px; 
+  height: 50%; 
+  background-color: black;
+}
+
+/* 첫 번째 셀의 왼쪽 세로선 제거 */
+td:first-child::after {
+  content: none;
+}
+
+/* 마지막 셀의 오른쪽 세로선 제거 */
+td:last-child::before {
+  content: none;
+}

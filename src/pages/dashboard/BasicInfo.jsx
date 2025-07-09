@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ScoreRank from './ScoreRank';
 import RatingRank from './RatingRank';
 import RatingRequests from './RatingRequests';
+import CancelButton from 'components/common/CancelButton';
 
 export default function BasicInfo() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -91,6 +92,12 @@ export default function BasicInfo() {
       </div> */}
       {/* <img src="/img/F5_main_logo_02.png" style={{height:"auto", width:"50%"}}  alt="메인 로고" /> */}
     
+      <div style={{margin: "0% 3%"}}>
+        <CancelButton
+          onClick={() => navigate(`/explore`)}
+          text='보드게임 탐방하기'
+          />
+      </div>
       <ScoreRank />
       <RatingRank />
       <RatingRequests />

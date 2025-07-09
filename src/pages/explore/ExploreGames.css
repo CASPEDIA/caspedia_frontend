@@ -1,0 +1,108 @@
+.div-explore-container {
+  padding: var(--basic-padding);
+  background-color: var(--basic-white-color);
+  min-height : 100%;
+}
+
+.div-explore-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.div-explore-header-inner {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.div-explore-header-comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-explore-filter {
+  display: flex;
+  border: 1px solid black;
+  border-radius: var(--basic-border-radius);
+  overflow: hidden;
+  margin-top: 3%;
+  width: 100%;
+}
+
+.div-explore-table {
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-cell-left {
+  flex: 1;
+  background-color: #f0f0f0;
+  border-top-right-radius: var(--basic-border-radius);
+  border-bottom-right-radius: var(--basic-border-radius);
+  margin-right: -1px; /* 겹침을 위해 살짝 당김 */
+  z-index: 1; /* 위로 올라오게 */
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  padding: 2% 1%;
+  gap: 2.5em;
+  white-space: nowrap;
+}
+
+.explore-cell-right {
+  flex: 5;
+  background-color: #ffffff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  z-index: 0;
+  padding: 4%;
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  gap: 3em; /* 슬라이더 사이 간격 */
+}
+
+.div-explore-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3% 0%;
+}
+
+
+.div-pagination {
+  position: sticky;
+  background-color: var(--basic-white-color);
+  /* bottom: var(--navigation-height); */
+  /* left: 0;   */
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  padding : 10px 0px;
+  /* z-index: 1000;           */
+  background-color: rgb(--basic-white-color);
+}
+
+.div-pagination-numbers-container {
+  margin: 0 0 0 0;
+}
+
+.span-pagination-item{
+  margin: 0 1em 0 1em;
+}
+
+.span-pagination-item.current-page {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: underline;
+  /* color: blue; */
+}
+
+.pagination-button {
+  width: 6%;
+}

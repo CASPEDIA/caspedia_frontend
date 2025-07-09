@@ -1,4 +1,5 @@
 import http from "api/http"
+import { errorToastMessage } from "./toastHooks";
 
 export async function getBoardgameBasicInfo (boardgameKey) {
   try {
@@ -77,7 +78,19 @@ export async function getBoardgameSearchResult(query, page) {
       .get(`/boardgame/search?q=${query}&page=${page}`)
     return data;
   } catch (e) {
-    console.log(e);
+    throw e;
+  }
+  
+}
+
+export async function getExploreResults(page, minp, maxp, mint, maxt, ming, maxg, sort) {
+  try {
+    const {data} = await http
+      .get(`/boardgame/explore?page=${page}&minp=${minp}&maxp=${maxp}&mint=${mint}&maxt=${maxt}&ming=${ming}&maxg=${maxg}&sort=${sort}`)
+    return data;
+  } catch (e) {
+    errorToastMessage("서버 에러가 발생하였습니다.");
+    throw e;    
   }
   
 }
