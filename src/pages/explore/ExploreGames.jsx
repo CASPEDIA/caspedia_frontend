@@ -8,10 +8,12 @@ import ExploreResultItem from 'components/explore/ExploreResultItem';
 import { useRecoilState } from 'recoil';
 import { exploreQueryState } from 'recoil/explore/atom';
 import CancelButton from 'components/common/CancelButton';
+import { infoToastMessage } from 'hooks/toastHooks';
+import CustomCard from 'components/common/CustomCard';
 
 export default function ExploreGames() {
   const [queryState, setQueryState] = useRecoilState(exploreQueryState);
-  // const [pagination, setPagination] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   const handlePlayerSliderChange = (value) => {
     setQueryState(prev => ({ ...prev, player: [...value] }));
@@ -48,6 +50,14 @@ export default function ExploreGames() {
       exploreResult: [],
       pagination: [],
     }))
+  }
+
+  const handleExploreInfo = () => {
+    setVisible(true);
+    // 10초 후 자동 숨김
+    setTimeout(() => {
+      setVisible(false);
+    }, 10000);
   }
 
   const handleGetResult = (pageValue, isButton) => {
@@ -114,7 +124,13 @@ export default function ExploreGames() {
           <img style={{"marginRight": "4%"}} src="/img/F5_toHome.png" alt="explore"  width="15%"/>
           <h3 style={{"whiteSpace": "nowrap"}} ><strong>보드게임 탐방하기</strong></h3>
         </div>
-        <img src="/img/info.svg" alt="explore"  width="7%"/>
+        <img src="/img/info.svg" alt="explore"  width="7%" className='custom-link' onClick={handleExploreInfo}/>
+      </div>
+      <div className={`collapse-box ${visible ? 'open' : 'closed'}`}>
+        <div className='div-explore-info-collapse'>
+          <div style={{fontSize: "1.5em"}}>오늘은 어떤 게임을 만나게 될까요?</div>
+          <div style={{marginTop: "0.3em"}}>※ 보드게임 탐방하기 기능은 <strong style={{color:"red"}}>국문 게임</strong> 또는 <strong style={{color:"red"}}>리뷰가 1개 이상 있는 게임</strong>에 제한됩니다.</div>
+        </div>
       </div>
       <div className='div-explore-header-comment'>
         <div>

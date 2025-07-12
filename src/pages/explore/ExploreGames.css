@@ -106,3 +106,29 @@
 .pagination-button {
   width: 6%;
 }
+
+.collapse-box {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.collapse-box.open {
+  max-height: 200px; /* 충분히 큰 값 */
+  opacity: 1;
+}
+
+.collapse-box.closed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.div-explore-info-collapse {
+  background-color: #f0f0f0;
+  border-radius: var(--basic-border-radius);
+  padding: 3%;
+  margin-bottom: 1em;
+  border : 1px solid gray;
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.5);
+}
