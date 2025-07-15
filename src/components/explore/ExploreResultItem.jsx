@@ -12,7 +12,7 @@ export default function ExploreResultItem({
   castScore = 8.0
 }) {
   return (
-    <tr>
+    <tr className='div-explore-result-item-tr'>
       <td width="20%">
         <Link to={`/boardgame/${boardgameKey}`}>
           <img src={imageUrl || "/img/F2_no_image.png"} alt="noImage" style={{"maxHeight":"5em", "maxWidth":"90%"}}/>

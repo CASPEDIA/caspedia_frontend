@@ -1,4 +1,4 @@
-td {
+tr.div-explore-result-item-tr td {
   vertical-align: middle;
   border-top: 1px solid black; /* 가로선 추가 */
   border-bottom: 1px solid black; /* 가로선 추가 */
@@ -7,7 +7,7 @@ td {
   position: relative; 
 }
 
-td::after {
+tr.div-explore-result-item-tr td::after {
   content: '';
   position: absolute;
   top: 25%;
@@ -19,11 +19,11 @@ td::after {
 }
 
 /* 첫 번째 셀의 왼쪽 세로선 제거 */
-td:first-child::after {
+tr.div-explore-result-item-tr td:first-child::after {
   content: none;
 }
 
 /* 마지막 셀의 오른쪽 세로선 제거 */
-td:last-child::before {
+tr.div-explore-result-item-tr td:last-child::before {
   content: none;
 }

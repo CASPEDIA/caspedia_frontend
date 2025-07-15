@@ -8,8 +8,6 @@ import ExploreResultItem from 'components/explore/ExploreResultItem';
 import { useRecoilState } from 'recoil';
 import { exploreQueryState } from 'recoil/explore/atom';
 import CancelButton from 'components/common/CancelButton';
-import { infoToastMessage } from 'hooks/toastHooks';
-import CustomCard from 'components/common/CustomCard';
 
 export default function ExploreGames() {
   const [queryState, setQueryState] = useRecoilState(exploreQueryState);
