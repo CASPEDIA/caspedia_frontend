@@ -20,7 +20,7 @@
   width: 80%;
   padding: var(--basic-padding);
   border-radius: var(--basic-border-radius);
-  max-height: 75vh;
+  /* max-height: 75vh; */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   z-index: 2001;
 }

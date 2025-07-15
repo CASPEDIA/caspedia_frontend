@@ -26,6 +26,6 @@
   align-items: center;
 }
 
-.div-modal-overlay{
+.div-reply-container > .div-modal-overlay{
   transform: translateX(-8.5%);
 }
