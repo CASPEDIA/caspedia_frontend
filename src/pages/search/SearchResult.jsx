@@ -47,8 +47,8 @@ export default function SearchResult() {
             nameKor: item.name_kor,
             nameEng: item.name_eng,
             likes: item.likes,
-            geekScore: item.geek_score,
-            castScore: item.cast_score,
+            geekScore: item.geek_score.toFixed(2),
+            castScore: item.cast_score.toFixed(1),
             yearPublished: item.year_published,
           }
         });

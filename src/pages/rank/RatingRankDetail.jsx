@@ -26,7 +26,7 @@ export default function RatingRankDetail() {
             nameEng: item.name_eng,
             likes: item.likes,
             geekScore: item.geek_score.toFixed(2),
-            castScore: item.cast_score,
+            castScore: item.cast_score.toFixed(1),
             reviewCount: item.review_count
           })
         })

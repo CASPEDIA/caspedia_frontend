@@ -23,7 +23,7 @@ export default function TaggedGames() {
             nameKor: item.name_kor,
             nameEng: item.name_eng,
             likes: item.likes,
-            castScore: item.cast_score,
+            castScore: item.cast_score.toFixed(1),
             tagCount: item.tag_count
           })
         })
