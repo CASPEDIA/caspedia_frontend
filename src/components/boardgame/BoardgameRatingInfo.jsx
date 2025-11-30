@@ -65,7 +65,7 @@ export default function BoardgameReviewInfo() {
         });
         setMyRateInfo(myRate);
         setRatingCount(tmpCount);
-        setTagKeys(tmpList);
+        setTagKeys(tmpList.filter(Boolean));
         setRatedUsers(parsedData);
       })
       .catch((e) => {
