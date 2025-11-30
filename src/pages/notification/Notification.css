@@ -1,0 +1,6 @@
+.custom-notification-list {
+  width: 100%;  
+  min-height: 100%;
+  background-color: var(--basic-white-color);
+  padding: var(--basic-padding);
+}

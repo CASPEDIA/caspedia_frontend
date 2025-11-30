@@ -1,0 +1,45 @@
+.div-notification-info-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  /* 높이 & 여백 */
+  min-height: 100px;              /* 알림 높이 일정하게 */
+  padding: 10px 16px;
+
+  /* 구분선 */
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+
+  /* 클릭 & hover 효과 */
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+/* 읽은 상태 */
+.div-notification-info-container.read {
+  background-color: #e6e6e6;  /* 더 진한 회색 */
+  opacity: 0.8;
+}
+
+.div-notification-info-container.read:hover {
+  background-color: #e6e6e6;  /* 더 진한 회색 */
+  opacity: 0.8;
+}
+
+.div-notification-info-container:hover {
+  background-color: #f7f7f7;     /* hover 시 색 변함 */
+}
+
+.notification-inner-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 30px;
+  flex-shrink: 0;                /* 아이콘 크기 줄어들지 않게 */
+}
+
+.notification-inner-description {
+  text-align: left;
+  flex: 1;                       /* 나머지 영역을 다 차지 */
+  line-height: 1.4;
+}

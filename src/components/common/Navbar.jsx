@@ -7,6 +7,7 @@ import { useHasAuth, useUserLogout } from 'hooks/userHooks';
 import { useRecoilValue } from 'recoil';
 import { userState } from 'recoil/userstate/atom';
 import { useHasAdmin } from 'hooks/adminHooks';
+import { getNotificationCount } from 'hooks/notificationHooks';
 
 export default function Navbar() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export default function Navbar() {
   const userLogout = useUserLogout();
 
   const [isRootPath, setIsRootPath] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 드롭다운 상태 관리
   const isExtraPage = ['/search', '/boardgame'].some(path => location.pathname.includes(path));
 
@@ -46,6 +48,15 @@ export default function Navbar() {
   useEffect(() => {
     setIsRootPath(location.pathname.length === 1);
     setIsDropdownOpen(false);
+    if (hasAuth()) {
+      getNotificationCount()
+      .then((data) => {
+        setNotificationCount(data.count);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+    }
   },[location.pathname]);
 
   return (
@@ -61,6 +72,20 @@ export default function Navbar() {
           }
           { hasAuth() ?
             <div className='div-user-menu-container'>
+              <div className="div-user-notification-icon" onClick={() => navigate('/notification')}>
+                <div className="notification-wrapper">
+                  <img 
+                    src="/img/F5_bell.png"
+                    className="notification-bell"
+                    alt="알림"
+                  />
+                  {notificationCount > 0 && (
+                    <span className="notification-badge">
+                      {notificationCount}
+                    </span>
+                  )}
+                </div>
+              </div>
               <img 
                 src={user.userImageKey ? `/user_profile/profile_${user.userImageKey < 10 ? "0" : ""}${user.userImageKey}.png` : "/img/F5_user_menu.png" } 
                 alt="User" 
