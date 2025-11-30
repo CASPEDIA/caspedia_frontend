@@ -19,15 +19,17 @@ export default function NotificationItem({
   const [notificationType, setNotificationType] = useState("RATING_ON_RATED_BOARDGAME");
 
   const clickedNotification = (flag) => {
-    setNotificationRead(notificationKey);
-    if (flag === 1 || flag === 2 || flag === 3) {
-      navigate(`/ratingdetail/${ratingKey}`);
-      return
-    }
-    else {
-      navigate(`/boardgame/${boardgameKey}`);
-      return
-    }
+    setNotificationRead(notificationKey)
+      .then(() => {
+        if (flag === 1 || flag === 2 || flag === 3) {
+          navigate(`/ratingdetail/${ratingKey}`);
+          return
+        }
+        else {
+          navigate(`/boardgame/${boardgameKey}`);
+          return
+        }
+      })
   }
 
   const getNotificationIcon = (flag) => {
