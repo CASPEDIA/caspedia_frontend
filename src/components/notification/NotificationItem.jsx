@@ -41,7 +41,6 @@ export default function NotificationItem({
   };
 
   useEffect(() => {
-    console.log(isRead)
     setNotificationType(getNotificationFlag(code));
   },[])
 

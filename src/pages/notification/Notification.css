@@ -4,3 +4,10 @@
   background-color: var(--basic-white-color);
   padding: var(--basic-padding);
 }
+
+.custom-notification-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}

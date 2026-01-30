@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import './Notification.css'
-import { getNotifications } from 'hooks/notificationHooks'
+import { getNotifications, setNotificationRead } from 'hooks/notificationHooks'
 import NotificationItem from 'components/notification/NotificationItem';
+import CancelButton from 'components/common/CancelButton';
 
 export default function Notification() {
   const [myNotiList, setMyNotiList] = useState([]);
+
+  const allRead = () => {
+    myNotiList.forEach((item) => {
+      setNotificationRead(item.notificationKey);
+    })
+    window.location.reload();
+  }
 
   useEffect(() => {
     getNotifications()
@@ -33,6 +41,12 @@ export default function Notification() {
 
   return (
     <div className='custom-notification-list'>
+      <div className='custom-notification-button-container'>
+        <CancelButton
+          onClick={() => allRead()}
+          text="모두 읽음"
+      />
+      </div>
       {
         myNotiList.map((item,index) => {
           return (

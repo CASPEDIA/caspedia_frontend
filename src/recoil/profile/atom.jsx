@@ -14,4 +14,8 @@ export const PROFILE_LIST =  [
   { "id" : 13, "url" : "profile_13.png"},
   { "id" : 14, "url" : "profile_14.png"},
   { "id" : 15, "url" : "profile_15.png"},
+  { "id" : 16, "url" : "profile_16.png"},
+  { "id" : 17, "url" : "profile_17.png"},
+  { "id" : 18, "url" : "profile_18.png"},
+  { "id" : 19, "url" : "profile_19.png"},
 ];
