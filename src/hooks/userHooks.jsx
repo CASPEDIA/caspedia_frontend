@@ -240,3 +240,18 @@ export async function setMyNewProfile(newImageKey) {
     throw e;
   }
 }
+
+/**
+ * 유저의 업적 모음
+ * @param {검색하고자 하는 유저} nanoid 
+ * @returns 
+ */
+export async function getUserAchievement (nanoid) {
+  try {
+    const { data } = await http
+      .get(`/user/achievement/${nanoid}`);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}

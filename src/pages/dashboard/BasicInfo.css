@@ -1,3 +1,31 @@
+.div-new-game {
+  /* color: white; */
+  text-align: center;
+  background-color: var(--basic-white-color);
+  border-radius: var(--basic-border-radius);
+  padding: 2%;
+  margin: var(--basic-margin);
+}
+.div-new-game-2 {
+  /* color: white; */
+  display: flex;
+  text-align: center;
+  background-color: var(--basic-white-color);
+  border-radius: var(--basic-border-radius);
+  padding: 2%; 
+  margin: var(--basic-margin);
+}
+.div-new-game-inner-0 {
+  width: 8%
+}
+.div-new-game-inner-1 {
+  width: 27%
+}
+.div-new-game-inner-2 {
+  width: 65%;
+  display: flex;
+  align-items: center;
+}
 .div-index_introduction {
   color: white;
   text-align: center;

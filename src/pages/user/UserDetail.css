@@ -144,3 +144,46 @@
 .div-password-wrong {
   color: red;
 }
+
+.div-badge-container {
+  margin-bottom: 0.5em;
+  display: flex;
+}
+
+.div-badge-inner-container {
+  flex: 65;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.div-badge-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  flex: 15;
+  text-align: left;
+  margin-bottom: 0.3em;
+}
+
+.div-badge-additional {
+  display: flex;
+  flex: 20;
+  align-items: center;
+}
+
+.custom-badge-icon {
+  /* width: 2.5em; */
+  height: 2.5em;
+  margin-right: 2%;
+}
+
+.custom-badge-normal {
+  width: 25%;
+  margin-right: 5%;
+}
+
+.custom-badge-normal-gray {
+  width: 25%;
+  margin-right: 5%;
+  filter: grayscale(100%);
+  opacity: 0.25;
+}

@@ -106,7 +106,17 @@ export default function BasicInfo() {
         <RecentBoardgame />
         <RecentUser />
       </div>
-
+      <div className="div-new-game-2">
+        <div className='div-new-game-inner-0'>
+        </div>
+        <a className='div-new-game-inner-1' href="https://forms.gle/RkpBdoZEa3nTP7W8A" target="_blank" style={{color:"#00BFFF"}} rel="noopener noreferrer">
+          <img width="70%" src="/img/talking.png" alt="말하는 병민"/>
+        </a>
+        <div className='div-new-game-inner-2'>
+          캐스피디아에 게임이 없다면?<br/>
+          나를 눌러서 등록 신청을 해봐
+        </div>
+      </div>
       <div className="div-index_introduction">
         이용 중 불편하신 점이 있다면 관리자에게 문의 바랍니다. <br />
         <br />

@@ -22,6 +22,7 @@ import TaggedGames from 'pages/tagged/TaggedGames';
 import RatingDetail from 'pages/rating/RatingDetail';
 import ExploreGames from 'pages/explore/ExploreGames';
 import Notification from 'pages/notification/Notification';
+import Achievement from 'pages/achievement/Achievement';
 
 const App = createBrowserRouter([
   {
@@ -74,6 +75,15 @@ const App = createBrowserRouter([
           <RequireAuth>
             <ScrollToTop />
             <Notification />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: 'achievement/:nanoid',
+        element: (
+          <RequireAuth>
+            <ScrollToTop />
+            <Achievement />
           </RequireAuth>
         ),
       },

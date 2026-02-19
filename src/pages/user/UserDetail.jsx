@@ -3,8 +3,8 @@ import UserRating from 'components/user/UserRating'
 import './UserDetail.css'
 import CommonModal from 'components/modal/CommonModal';
 import UserLikedBoardgame from 'components/user/UserLikedBoardgame';
-import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo } from 'hooks/userHooks';
-import { useParams } from 'react-router-dom';
+import { checkMyNewNickname, getLikedBoardgames, getRatedBoardgames, getUserAchievement, getUserBasicInfo, setMyNewNickname, setMyNewPassword, setMyNewProfile, setUserIntroduction, useIsMyInfo } from 'hooks/userHooks';
+import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import SecondModal from 'components/modal/SecondModal';
 import CancelButton from 'components/common/CancelButton';
@@ -19,6 +19,7 @@ export default function UserDetail() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isNicknameModalOpen, setIsNicknameModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const {nanoid} = useParams();
   // const [id, setId] = useState('');
@@ -45,6 +46,8 @@ export default function UserDetail() {
   const [sortOrder, setSortOrder] = useState({ type: "updatedAt", direction: "desc" }); // 초기 정렬: 작성순 ▼
   const [ratingCount, setratingCount] = useState(0);
   const [averageScore, setAverageScore] = useState(0.0);
+
+  const [badges, setBadges] = useState([]);
 
   const profileModalRef = useRef(null);
   const likedModalRef = useRef(null);
@@ -395,6 +398,58 @@ export default function UserDetail() {
       .catch((err) => {
         console.log(err);
       })
+
+    getUserAchievement(nanoid)
+      .then((data) => {
+        console.log(data);
+        var common_badge = data["common_badge"];
+
+        const thresholds = [500, 400, 300, 200, 100, 50, 10, 1];
+        const keys = ["login", "rating", "comment", "like"];
+        const result = [];
+
+        // 1. 각 항목(key)을 먼저 순회
+        keys.forEach(key => {
+          const currentScore = common_badge[key];
+          
+          // 2. 높은 숫자(threshold)부터 순회하다가 처음으로 조건을 만족하면 추가하고 break
+          // find는 조건을 만족하는 첫 번째 요소를 반환합니다.
+          const highestThreshold = thresholds.find(t => currentScore >= t);
+
+          if (highestThreshold) {
+            result.push(`${key}_${highestThreshold}.png`);
+          }
+        });
+
+        var event_badge = data["event_badge"];
+
+        event_badge.forEach(event => {
+          result.push(`${event}.png`);
+        })
+
+        // 상태 업데이트 
+        setBadges(result);
+        // var common_badge = data["common_badge"]
+
+        // const thresholds = [500, 400, 300, 200, 100, 50, 10, 1];
+        // const keys = ["login", "rating", "comment", "like"];
+        // const result = [];
+
+        // // 로직 실행
+        // thresholds.forEach(threshold => {
+        //   keys.forEach(key => {
+        //     if (common_badge[key] >= threshold) {
+        //       result.push(`${key}_${threshold}.png`);
+        //     }
+        //   });
+        // });
+
+        // // 상태 업데이트
+        // setBadges(result.slice(0,8));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }, [nanoid]);
 
   useEffect(() => {
@@ -459,6 +514,29 @@ export default function UserDetail() {
             {introduction}
           </div>
         }
+        <div className='div-badge-container'>
+          <div 
+            className='div-badge-title custom-link'
+            onClick={() => navigate(`/achievement/${nanoid}`)}
+          >
+            업적
+          </div>
+          <div className='div-badge-inner-container'>
+            {badges.map((src, index) => (
+              <img 
+                className='custom-badge-icon'
+                key={`${src}-${index}`} // 고유 키 설정
+                src={`/img/badge/${src}`} // 실제 이미지 경로에 맞게 수정하세요
+                alt={src}
+              />
+            ))}
+          </div>
+          <div 
+            className='div-badge-additional custom-link'
+            onClick={() => navigate(`/achievement/${nanoid}`)}>
+              자세히&nbsp;&nbsp;&gt;&gt;
+          </div>
+        </div>
         <div className='div-calculated-infos'>
           <div className='div-outer-card' style={{"height" : "11em", "width" : "49%"}}>
             <div className='div-inner-card mr-2'>
